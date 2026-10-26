@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../islands/Hero';
+import About from '../islands/About';
+import WhatWeDo from '../islands/WhatWeDo';
+import Showcase from '../islands/Showcase';
+import Rankings from '../islands/Rankings';
+import { hero } from '../data/hero';
+import { about } from '../data/about';
+import { whatWeDo } from '../data/whatWeDo';
+import { showcase } from '../data/showcase';
+import { rankings } from '../data/rankings';
+---
+
+<BaseLayout title="IHS">
+  <main>
+    <Hero client:load {...hero} />
+    <About client:visible {...about} />
+    <WhatWeDo client:visible {...whatWeDo} />
+    <Showcase client:visible {...showcase} />
+    <Rankings client:visible {...rankings} />
+  </main>
+</BaseLayout>

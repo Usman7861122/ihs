@@ -1,0 +1,107 @@
+/*
+  TYPOGRAPHY STANDARDS
+  Source: https://ironhealthsolutions.com/ (desktop values)
+  Font: Figtree only (variable font, self-hosted via @fontsource-variable).
+  Colors are NOT set here. Design/colors come later.
+*/
+
+@import "@fontsource-variable/figtree/index.css";
+@import "@fontsource-variable/figtree/wght-italic.css";
+/* Accent font: only for highlighted words in headlines (italic serif) */
+@import "@fontsource-variable/playfair-display/wght-italic.css";
+
+@theme {
+  --font-accent: "Playfair Display Variable", "Playfair Display", Georgia, serif;
+  --font-sans: "Figtree Variable", "Figtree", ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale: size / line-height / letter-spacing */
+  --text-h1: 65px;
+  --text-h1--line-height: 75px;
+  --text-h1--letter-spacing: 1px;
+
+  --text-h2: 40px;
+  --text-h2--line-height: 50px;
+
+  --text-h3: 20px;
+  --text-h3--line-height: 30px;
+
+  --text-lead: 20px;          /* footer / intro paragraphs */
+  --text-lead--line-height: 30px;
+
+  --text-body-lg: 17px;       /* main paragraph text */
+  --text-body-lg--line-height: 25.5px;
+
+  --text-body: 16px;          /* default body text */
+  --text-body--line-height: 24px;
+
+  --text-nav: 18px;
+  --text-nav--line-height: 20px;
+
+  --text-button: 14px;
+  --text-button--line-height: 14px;
+  --text-button--letter-spacing: 1px;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-weight: 400;
+    letter-spacing: normal;
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    line-height: var(--text-h1--line-height);
+    letter-spacing: var(--text-h1--letter-spacing);
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    font-weight: 400;
+  }
+
+  p {
+    font-size: var(--text-body-lg);
+    line-height: var(--text-body-lg--line-height);
+    font-weight: 400;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+}
+
+/* Reusable text styles (use as classes: text-nav, text-button) */
+@utility text-nav {
+  font-size: var(--text-nav);
+  line-height: var(--text-nav--line-height);
+  font-weight: 400;
+}
+
+@utility text-button {
+  font-size: var(--text-button);
+  line-height: var(--text-button--line-height);
+  letter-spacing: var(--text-button--letter-spacing);
+  font-weight: 500;
+  text-transform: uppercase;
+}

@@ -1,0 +1,69 @@
+---
+import { topbar, navItems, headerButtons } from '../../data/navigation';
+---
+
+<header class="contents">
+  <!-- Top bar: fixed, 37px -->
+  <div class="fixed inset-x-0 top-0 z-[99] h-(--header-topbar-h) bg-brand px-2.5">
+    <a
+      href={topbar.href}
+      class="mx-auto flex h-full w-full max-w-(--container-topbar) items-center justify-center gap-[5px] py-2.5 text-[17px] leading-[17px] font-medium text-white"
+    >
+      <span>{topbar.text}</span>
+      <svg aria-hidden="true" viewBox="0 0 448 512" class="size-5 fill-white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z"></path>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Main bar: fixed under top bar, 101.2px -->
+  <div class="fixed inset-x-0 top-(--header-topbar-h) z-[99] bg-surface px-2.5">
+    <div class="mx-auto flex w-full max-w-(--container-header) items-center py-2.5">
+      <a href="/" class="block w-60 shrink-0" aria-label="Iron Health Solutions home">
+        <img
+          src="/images/Logo.png"
+          alt="Iron Health Solutions"
+          width="802"
+          height="268"
+          class="block h-auto w-60"
+        />
+      </a>
+
+      <div class="hidden flex-1 items-center justify-end gap-[15px] lg:flex">
+        <nav aria-label="Main">
+          <ul class="flex items-center gap-[15px]">
+            {navItems.map((item) => (
+              <li>
+                <a
+                  href={item.href ?? '#'}
+                  class="flex h-10 items-center pr-[7px] pl-2 text-[16px] leading-5 font-normal text-ink"
+                >
+                  {item.label}
+                  {item.hasDropdown && (
+                    <span class="ml-2.5 flex items-center" aria-hidden="true">
+                      <svg viewBox="0 0 320 512" class="h-4 w-2.5 fill-ink" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path>
+                      </svg>
+                    </span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {headerButtons.map((btn) => (
+          <a
+            href={btn.href}
+            class:list={[
+              'text-button box-border inline-flex h-10 items-center justify-center rounded-[50px] border border-brand px-2 py-3',
+              btn.variant === 'solid' ? 'bg-brand text-white' : 'bg-surface text-brand',
+            ]}
+          >
+            {btn.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</header>

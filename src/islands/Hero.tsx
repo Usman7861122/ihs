@@ -1,0 +1,197 @@
+import { useRef } from 'react';
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type Variants,
+} from 'framer-motion';
+
+interface HeroProps {
+  title: { word: string; accent?: boolean; newLine?: boolean }[];
+  text: string;
+  cta: { label: string; href: string };
+  video: string;
+  poster: string;
+}
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+export default function Hero({ title, text, cta, video, poster }: HeroProps) {
+  const ref = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+
+  // Scroll effects: content fades up (the video stays still, no zoom)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start'],
+  });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -80]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.55], [1, reduce ? 1 : 0]);
+  const cueOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
+
+  // Entrance: words slide up from behind a mask, one after another
+  const titleVariants: Variants = {
+    hidden: {},
+    show: { transition: { staggerChildren: reduce ? 0 : 0.09, delayChildren: 0.25 } },
+  };
+  const wordVariants: Variants = {
+    hidden: { y: reduce ? '0%' : '112%', opacity: reduce ? 0 : 1 },
+    show: {
+      y: '0%',
+      opacity: 1,
+      transition: { duration: reduce ? 0.2 : 0.95, ease: EASE },
+    },
+  };
+  const fadeUp = (delay: number): Variants => ({
+    hidden: { opacity: 0, y: reduce ? 0 : 24 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduce ? 0.2 : 0.8, ease: EASE, delay: reduce ? 0 : delay },
+    },
+  });
+
+  return (
+    <section
+      ref={ref}
+      className="relative h-[56.25vw] min-h-[640px] w-full overflow-hidden bg-[#2a1208] text-white"
+    >
+      {/* Background video */}
+      <div className="absolute inset-0">
+        <video
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={poster}
+          aria-hidden="true"
+        >
+          <source src={video} type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Readability overlays */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(20,7,1,0.85)_0%,rgba(20,7,1,0.62)_35%,rgba(20,7,1,0.3)_60%,rgba(20,7,1,0)_85%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-linear-to-b from-black/25 to-transparent"
+      />
+
+      {/* Content */}
+      <div className="relative z-10 h-full px-2.5">
+        <motion.div
+          style={{ y: contentY, opacity: contentOpacity }}
+          className="mx-auto flex h-full w-full max-w-(--container-header) items-center pt-(--header-h) pb-[10vh]"
+        >
+          <div className="max-w-[500px]">
+            <motion.h1
+              className="[text-shadow:0_2px_28px_rgba(0,0,0,0.4)]"
+              variants={titleVariants}
+              initial="hidden"
+              animate="show"
+              aria-label={title.map((t) => t.word).join(' ')}
+            >
+              {title.map(({ word, accent, newLine }, i) => (
+                <span key={i} aria-hidden="true">
+                  {newLine && <br />}
+                  <span className="-mt-[0.1em] -mb-[0.14em] inline-block overflow-hidden pt-[0.1em] pr-[0.08em] pb-[0.14em] align-bottom">
+                    <motion.span
+                      variants={wordVariants}
+                      className={
+                        accent
+                          ? 'inline-block cursor-default font-(family-name:--font-accent) font-normal text-brand italic transition-colors duration-300 hover:text-white'
+                          : 'inline-block cursor-default transition-colors duration-300 hover:text-brand-light'
+                      }
+                    >
+                      {word}
+                    </motion.span>
+                  </span>{' '}
+                </span>
+              ))}
+            </motion.h1>
+
+            <motion.p
+              variants={fadeUp(0.85)}
+              initial="hidden"
+              animate="show"
+              className="mt-5 max-w-[500px] text-white [text-shadow:0_1px_16px_rgba(0,0,0,0.5)]"
+            >
+              {text}
+            </motion.p>
+
+            <motion.div
+              variants={fadeUp(1.05)}
+              initial="hidden"
+              animate="show"
+              className="mt-[34px]"
+            >
+              <motion.a
+                href={cta.href}
+                initial="rest"
+                animate="rest"
+                whileHover="hover"
+                whileTap={{ scale: 0.97 }}
+                className="relative inline-flex h-[58px] items-center overflow-hidden rounded-[50px] border border-brand bg-brand px-[30px] text-[16px] leading-4 font-medium tracking-[1px] text-white uppercase focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              >
+                {/* white fill sweeps in from the left on hover */}
+                <motion.span
+                  aria-hidden="true"
+                  className="absolute inset-0 origin-left bg-white"
+                  variants={{ rest: { scaleX: 0 }, hover: { scaleX: 1 } }}
+                  transition={{ duration: 0.5, ease: EASE }}
+                />
+                <motion.span
+                  className="relative z-10"
+                  variants={{ rest: { color: '#ffffff' }, hover: { color: '#f5986a' } }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {cta.label}
+                </motion.span>
+                {/* arrow slides in on hover */}
+                <motion.span
+                  aria-hidden="true"
+                  className="relative z-10 flex items-center overflow-hidden"
+                  variants={{
+                    rest: { width: 0, marginLeft: 0, opacity: 0 },
+                    hover: { width: 20, marginLeft: 10, opacity: 1 },
+                  }}
+                  transition={{ duration: 0.4, ease: EASE }}
+                >
+                  <svg viewBox="0 0 448 512" className="size-5 shrink-0 fill-brand">
+                    <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
+                  </svg>
+                </motion.span>
+              </motion.a>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Scroll cue */}
+      <motion.div
+        style={{ opacity: cueOpacity }}
+        aria-hidden="true"
+        className="absolute bottom-[104px] left-1/2 z-10 -translate-x-1/2"
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: reduce ? 0 : 1.8, duration: 0.6 }}
+          className="flex h-11 w-[26px] justify-center rounded-full border border-white/60 pt-2"
+        >
+          <motion.span
+            className="block h-2 w-[3px] rounded-full bg-white"
+            animate={reduce ? undefined : { y: [0, 14, 0], opacity: [1, 0.2, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}

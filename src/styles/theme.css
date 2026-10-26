@@ -1,0 +1,18 @@
+/*
+  BRAND TOKENS
+  Source: https://ironhealthsolutions.com/ (measured from the live site)
+*/
+@theme {
+  --color-brand: #f5986a;        /* orange: top bar, buttons, borders */
+  --color-brand-light: #f7bea4;  /* light orange: hover/active tint */
+  --color-ink: #000000;          /* nav text */
+  --color-body: #333333;         /* default text */
+  --color-surface: #ffffff;
+
+  /* Header sizes (desktop) */
+  --header-topbar-h: 37px;
+  --header-main-h: 101.2px;
+  --header-h: 138.2px;           /* topbar + main */
+  --container-header: 1200px;
+  --container-topbar: 1140px;
+}
