@@ -5,11 +5,15 @@ import About from '../islands/About';
 import WhatWeDo from '../islands/WhatWeDo';
 import Showcase from '../islands/Showcase';
 import Rankings from '../islands/Rankings';
+import EhrIntegrations from '../islands/EhrIntegrations';
+import Mission from '../islands/Mission';
 import { hero } from '../data/hero';
 import { about } from '../data/about';
 import { whatWeDo } from '../data/whatWeDo';
 import { showcase } from '../data/showcase';
 import { rankings } from '../data/rankings';
+import { ehr } from '../data/ehr';
+import { mission } from '../data/mission';
 ---
 
 <BaseLayout title="IHS">
@@ -19,5 +23,7 @@ import { rankings } from '../data/rankings';
     <WhatWeDo client:visible {...whatWeDo} />
     <Showcase client:visible {...showcase} />
     <Rankings client:visible {...rankings} />
+    <EhrIntegrations client:visible {...ehr} />
+    <Mission client:visible {...mission} />
   </main>
 </BaseLayout>

@@ -42,11 +42,14 @@ function Chip({
   const y = useTransform(sy, [-0.5, 0.5], [-chip.depth, chip.depth]);
   const Icon = chip.icon;
   return (
-    <motion.div style={{ x, y }} className={`absolute hidden xl:block ${chip.pos}`}>
+    <motion.div
+      style={{ x, y }}
+      className={`group pointer-events-auto absolute hidden cursor-default will-change-transform xl:block ${chip.pos}`}
+    >
       <motion.div
         animate={reduce ? undefined : { y: [0, -12, 0] }}
         transition={{ duration: 5 + chip.delay, repeat: Infinity, ease: 'easeInOut', delay: chip.delay }}
-        className="group pointer-events-auto flex cursor-default items-center gap-3 rounded-full border border-brand/25 bg-white/75 py-2.5 pr-5 pl-2.5 shadow-[0_18px_40px_-16px_rgba(245,152,106,0.55)] backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-brand hover:bg-white"
+        className="pointer-events-none flex items-center gap-3 rounded-full border border-brand/25 bg-white/85 py-2.5 pr-5 pl-2.5 shadow-[0_18px_40px_-16px_rgba(201,111,58,0.55)] transition-[border-color,background-color] duration-300 group-hover:border-brand group-hover:bg-white"
       >
         <span className="flex size-10 items-center justify-center rounded-full bg-brand/15 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
           <Icon className="size-5" strokeWidth={1.7} aria-hidden="true" />
@@ -67,15 +70,22 @@ export default function Rankings({ titleStart, titleAccent, titleEnd, subtitle, 
   const sx = useSpring(mx, { stiffness: 80, damping: 18 });
   const sy = useSpring(my, { stiffness: 80, damping: 18 });
 
+  const frame = useRef(0);
   const onMove = (e: React.PointerEvent<HTMLElement>) => {
     if (e.pointerType === 'touch') return;
-    const r = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`);
-    e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`);
-    if (!reduce) {
-      mx.set((e.clientX - r.left) / r.width - 0.5);
-      my.set((e.clientY - r.top) / r.height - 0.5);
-    }
+    const el = e.currentTarget;
+    const { clientX, clientY } = e;
+    if (frame.current) return; // already scheduled for this frame
+    frame.current = requestAnimationFrame(() => {
+      frame.current = 0;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${clientX - r.left}px`);
+      el.style.setProperty('--my', `${clientY - r.top}px`);
+      if (!reduce) {
+        mx.set((clientX - r.left) / r.width - 0.5);
+        my.set((clientY - r.top) / r.height - 0.5);
+      }
+    });
   };
   const onLeave = () => {
     mx.set(0);
@@ -89,25 +99,25 @@ export default function Rankings({ titleStart, titleAccent, titleEnd, subtitle, 
       onPointerMove={onMove}
       onPointerLeave={onLeave}
       style={{ ['--mx' as string]: '50%', ['--my' as string]: '30%' }}
-      className="relative z-40 -mt-12 scroll-mt-(--header-h) overflow-clip rounded-t-[44px] bg-linear-to-b from-white via-[#fff4ea] to-white px-2.5 pt-[88px] text-ink md:pt-[104px]"
+      className="relative z-40 -mt-12 scroll-mt-(--header-h) overflow-clip rounded-t-[44px] bg-linear-to-b from-white via-[#fbf3ec] to-white px-2.5 pt-[88px] text-ink md:pt-[104px]"
     >
       {/* Living background */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         {/* faint dot grid */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(245,152,106,0.3)_1.2px,transparent_1.2px)] bg-[size:28px_28px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(201,111,58,0.3)_1.2px,transparent_1.2px)] bg-[size:28px_28px] [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
         {/* brighter dots revealed around the cursor */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(245,152,106,0.95)_1.6px,transparent_1.6px)] bg-[size:28px_28px] [mask-image:radial-gradient(240px_circle_at_var(--mx)_var(--my),black,transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(201,111,58,0.95)_1.6px,transparent_1.6px)] bg-[size:28px_28px] [mask-image:radial-gradient(240px_circle_at_var(--mx)_var(--my),black,transparent)]" />
         {/* cursor glow */}
-        <div className="absolute inset-0 [background:radial-gradient(460px_circle_at_var(--mx)_var(--my),rgba(245,152,106,0.18),transparent_70%)]" />
+        <div className="absolute inset-0 [background:radial-gradient(460px_circle_at_var(--mx)_var(--my),rgba(201,111,58,0.18),transparent_70%)]" />
 
         {/* drifting glows */}
         <motion.div
-          className="absolute top-[10%] -left-40 size-[560px] rounded-full bg-brand/25 blur-[130px]"
+          className="absolute top-[10%] -left-40 size-[560px] rounded-full bg-brand/25 blur-[130px] will-change-transform"
           animate={reduce ? undefined : { x: [0, 90, 0], y: [0, 60, 0] }}
           transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute top-[45%] -right-40 size-[520px] rounded-full bg-brand-light/60 blur-[130px]"
+          className="absolute top-[45%] -right-40 size-[520px] rounded-full bg-brand-light/60 blur-[130px] will-change-transform"
           animate={reduce ? undefined : { x: [0, -80, 0], y: [0, -50, 0] }}
           transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -152,7 +162,7 @@ export default function Rankings({ titleStart, titleAccent, titleEnd, subtitle, 
               return (
                 <figure
                   key={shot.label}
-                  className="group relative flex min-h-0 flex-col overflow-hidden rounded-xl bg-white ring-2 ring-transparent transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-18px_rgba(245,152,106,0.7)] hover:ring-brand/60"
+                  className="group relative flex min-h-0 flex-col overflow-hidden rounded-xl bg-white ring-2 ring-transparent transition-shadow duration-500 hover:shadow-[0_24px_50px_-18px_rgba(201,111,58,0.7)] hover:ring-brand/60"
                 >
                   <figcaption className="flex items-center gap-2.5 border-b border-black/10 px-4 py-2.5 md:py-3">
                     <span

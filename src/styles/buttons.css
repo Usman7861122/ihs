@@ -76,7 +76,7 @@
     transform: translateY(0) scale(0.98);
   }
   .btn:focus-visible {
-    outline: 2px solid var(--color-brand, #f5986a);
+    outline: 2px solid var(--color-brand, #C96F3A);
     outline-offset: 4px;
   }
 
@@ -109,13 +109,13 @@
   /* PRIMARY: transparent glass with orange edge (for photos, video, dark areas) */
   .btn-primary {
     color: #fff;
-    background: linear-gradient(135deg, rgba(245, 152, 106, 0.28), rgba(245, 152, 106, 0.08));
+    background: linear-gradient(135deg, rgba(201, 111, 58, 0.28), rgba(201, 111, 58, 0.08));
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow:
-      inset 0 0 0 1px rgba(245, 152, 106, 0.9),
+      inset 0 0 0 1px rgba(201, 111, 58, 0.9),
       inset 0 1px 0 rgba(255, 255, 255, 0.25),
-      0 12px 28px -16px rgba(245, 152, 106, 0.8);
+      0 12px 28px -16px rgba(201, 111, 58, 0.8);
   }
   .btn-primary::before {
     content: '';
@@ -124,7 +124,7 @@
     z-index: 0;
     transform: scaleX(0);
     transform-origin: left;
-    background: linear-gradient(135deg, #f7a77c, #f5986a 50%, #e8814f);
+    background: #C96F3A;
     transition: transform 0.6s var(--ease);
   }
   .btn-primary:hover::before {
@@ -132,9 +132,9 @@
   }
   .btn-primary:hover {
     box-shadow:
-      inset 0 0 0 1px rgba(245, 152, 106, 1),
-      0 0 0 5px rgba(245, 152, 106, 0.2),
-      0 18px 32px -14px rgba(245, 152, 106, 0.9);
+      inset 0 0 0 1px rgba(201, 111, 58, 1),
+      0 0 0 5px rgba(201, 111, 58, 0.2),
+      0 18px 32px -14px rgba(201, 111, 58, 0.9);
   }
   .btn-primary .btn-icon {
     background: rgba(255, 255, 255, 0.16);
@@ -143,9 +143,9 @@
 
   /* OUTLINE: for light backgrounds. A warm fill rises in on hover */
   .btn-outline {
-    color: #d9703a;
+    color: #C96F3A;
     background: transparent;
-    box-shadow: inset 0 0 0 1px rgba(245, 152, 106, 0.8);
+    box-shadow: inset 0 0 0 1px rgba(201, 111, 58, 0.8);
   }
   .btn-outline::before {
     content: '';
@@ -154,7 +154,7 @@
     z-index: 0;
     transform: scaleX(0);
     transform-origin: left;
-    background: linear-gradient(135deg, #f7a77c 0%, #f5986a 50%, #e8814f 100%);
+    background: #C96F3A;
     transition: transform 0.6s var(--ease);
   }
   .btn-outline:hover::before {
@@ -163,12 +163,12 @@
   .btn-outline:hover {
     color: #fff;
     box-shadow:
-      inset 0 0 0 1px rgba(214, 110, 60, 0.8),
-      0 0 0 5px rgba(245, 152, 106, 0.18),
-      0 18px 32px -14px rgba(245, 152, 106, 0.9);
+      inset 0 0 0 1px rgba(201, 111, 58, 1),
+      0 0 0 5px rgba(201, 111, 58, 0.18),
+      0 18px 32px -14px rgba(201, 111, 58, 0.9);
   }
   .btn-outline .btn-icon {
-    background: rgba(245, 152, 106, 0.16);
+    background: rgba(201, 111, 58, 0.16);
   }
   .btn-outline:hover .btn-icon {
     background: rgba(255, 255, 255, 0.28);
@@ -188,11 +188,11 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.22);
   }
   .btn-glass:hover {
-    background: rgba(245, 152, 106, 0.22);
+    background: #C96F3A;
     box-shadow:
-      inset 0 0 0 1px rgba(245, 152, 106, 0.9),
-      0 0 0 4px rgba(245, 152, 106, 0.16),
-      0 14px 28px -12px rgba(245, 152, 106, 0.7);
+      inset 0 0 0 1px rgba(201, 111, 58, 0.9),
+      0 0 0 4px rgba(201, 111, 58, 0.16),
+      0 14px 28px -12px rgba(201, 111, 58, 0.7);
   }
 
   @media (prefers-reduced-motion: reduce) {

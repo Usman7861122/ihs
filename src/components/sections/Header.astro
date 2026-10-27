@@ -1,28 +1,15 @@
 ---
 import NavMenu from '../../islands/NavMenu';
-import { topbar, navItems, headerButtons } from '../../data/navigation';
+import { navItems, headerButtons } from '../../data/navigation';
 ---
 
 <header class="contents">
-  <!-- Top bar: fixed, 37px -->
-  <div class="fixed inset-x-0 top-0 z-[99] h-(--header-topbar-h) bg-brand px-2.5">
-    <a
-      href={topbar.href}
-      class="mx-auto flex h-full w-full max-w-(--container-topbar) items-center justify-center gap-[5px] py-2.5 text-[17px] leading-[17px] font-medium text-white"
-    >
-      <span>{topbar.text}</span>
-      <svg aria-hidden="true" viewBox="0 0 448 512" class="size-5 fill-white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z"></path>
-      </svg>
-    </a>
-  </div>
-
-  <!-- Main bar: fixed under top bar, 101.2px -->
-  <div id="main-bar" class="main-bar fixed inset-x-0 top-(--header-topbar-h) z-[99] bg-surface px-2.5">
+  <!-- Main bar: fixed, transparent over the hero (like spacex.com), 101.2px -->
+  <div id="main-bar" class="main-bar fixed inset-x-0 top-0 z-[99] px-2.5">
     <div class="mx-auto flex w-full max-w-(--container-header) items-center py-2.5">
       <a href="/" class="block w-60 shrink-0" aria-label="Iron Health Solutions home">
         <img
-          src="/images/Logo.png"
+          src="/images/Logo-light.png"
           alt="Iron Health Solutions"
           width="802"
           height="268"

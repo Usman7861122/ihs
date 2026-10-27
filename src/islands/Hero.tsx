@@ -107,7 +107,7 @@ export default function Hero({ title, text, cta, video, poster }: HeroProps) {
                       className={
                         accent
                           ? 'inline-block cursor-default font-(family-name:--font-accent) font-normal text-brand italic transition-colors duration-300 hover:text-white'
-                          : 'inline-block cursor-default transition-colors duration-300 hover:text-brand-light'
+                          : 'inline-block cursor-default transition-colors duration-300 hover:text-brand'
                       }
                     >
                       {word}

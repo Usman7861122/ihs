@@ -79,7 +79,7 @@ function FeatureCard({
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 [background:radial-gradient(320px_circle_at_var(--mx,50%)_var(--my,0%),rgba(245,152,106,0.2),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 [background:radial-gradient(320px_circle_at_var(--mx,50%)_var(--my,0%),rgba(201,111,58,0.2),transparent_70%)]"
       />
       <span
         aria-hidden="true"
@@ -263,10 +263,6 @@ export default function Showcase({
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 90, damping: 20 });
   const sy = useSpring(my, { stiffness: 90, damping: 20 });
-  const rotateY = useTransform(sx, [-0.5, 0.5], [-5, 5]);
-  const rotateX = useTransform(sy, [-0.5, 0.5], [3.5, -3.5]);
-  const laptopX = useTransform(sx, [-0.5, 0.5], [10, -10]);
-  const phoneX = useTransform(sx, [-0.5, 0.5], [-22, 22]);
   const lightX = useTransform(sx, [-0.5, 0.5], ['-30vw', '30vw']);
   const lightY = useTransform(sy, [-0.5, 0.5], ['-18vh', '18vh']);
 
@@ -348,11 +344,10 @@ export default function Showcase({
         <div className="relative mt-12 md:mt-16">
           <div className="flex flex-col items-center justify-center">
             <motion.div
-              style={{ rotateX, rotateY, transformPerspective: 1500 }}
               className="relative w-full max-w-[1120px] pb-6"
             >
               {/* Laptop */}
-              <motion.div style={{ x: laptopX }} className="relative">
+              <motion.div className="relative">
                 <motion.div
                   initial={{ opacity: 0, y: reduce ? 0 : 70, scale: reduce ? 1 : 0.95 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -360,10 +355,10 @@ export default function Showcase({
                   transition={{ duration: 1.1, ease: EASE }}
                   className="relative mx-auto w-[88%] sm:w-[80%] md:ml-[16%] md:w-[min(78%,calc((100svh-320px)*1.5))]"
                 >
-                  <div className="relative rounded-t-[14px] border border-white/15 bg-[#0a0a0b] p-[1.6%] pb-[1.8%] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.9),0_0_0_1px_rgba(0,0,0,0.6)] md:rounded-t-[22px]">
+                  <div className="relative rounded-[8px] border border-white/15 bg-[#0a0a0b] p-[0.9%] pb-[3.4%] shadow-[0_60px_120px_-30px_rgba(0,0,0,0.9),0_0_0_1px_rgba(0,0,0,0.6)] md:rounded-[14px]">
                     <span
                       aria-hidden="true"
-                      className="absolute top-[0.7%] left-1/2 size-1 -translate-x-1/2 rounded-full bg-white/25 md:size-1.5"
+                      className="absolute bottom-[1.2%] left-1/2 size-1 -translate-x-1/2 rounded-full bg-white/30 md:size-1.5"
                     />
                     <div
                       ref={laptopScreenRef}
@@ -423,19 +418,15 @@ export default function Showcase({
                       )}
                     </div>
                   </div>
-                  <div className="relative mx-auto -mt-px h-2.5 w-[114%] -translate-x-[7%] rounded-b-[18px] bg-linear-to-b from-[#e3e4e7] via-[#a8aab0] to-[#6d6f75] md:h-[17px]">
-                    <span className="absolute top-0 left-1/2 h-[45%] w-[16%] -translate-x-1/2 rounded-b-xl bg-[#7d7f85]" />
-                  </div>
                   <div
                     aria-hidden="true"
-                    className="mx-auto mt-3 h-6 w-[90%] rounded-[50%] bg-black/70 blur-2xl"
+                    className="mx-auto mt-3 h-5 w-[60%] rounded-[50%] bg-black/60 blur-2xl"
                   />
                 </motion.div>
               </motion.div>
 
               {/* Phone */}
               <motion.div
-                style={{ x: phoneX }}
                 className="absolute bottom-[4%] left-[1%] z-10 w-[27%] sm:w-[22%] md:bottom-[8%] md:left-[2%] md:w-[min(19%,calc((100svh-320px)*0.3))]"
               >
                 <motion.div

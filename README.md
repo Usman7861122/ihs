@@ -29,7 +29,7 @@ Stack: Astro + React islands + Tailwind CSS + Framer Motion.
 - Saved in `docs/frontend-design.md`. Follow it when we start the design.
 
 ### Colors and header (done)
-- Brand tokens in `src/styles/theme.css`: orange `#F5986A`, light orange `#F7BEA4`, ink `#000`.
+- Brand tokens in `src/styles/theme.css`: Mars copper `#C96F3A`, light copper `#E4A269`, deep rust `#8F4222`, ink `#000`.
 - Header: `src/components/sections/Header.astro`, content in `src/data/navigation.ts`.
 - Sizes (desktop): top bar 37px · main bar 101.2px (total 138.2px) · logo 240px wide · container 1200px · nav 16px, items 40px tall, 15px gap · buttons 40px tall, 50px radius.
 - Logo file needed at `public/images/Logo.png`.

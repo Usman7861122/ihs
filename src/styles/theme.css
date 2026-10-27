@@ -3,17 +3,18 @@
   Source: https://ironhealthsolutions.com/ (measured from the live site)
 */
 @theme {
-  --color-brand: #f5986a;        /* orange: top bar, buttons, borders */
+  --color-brand: #C96F3A;        /* Mars copper: top bar, buttons, borders (from hero + about videos) */
   --radius-button: 6px; /* all buttons: square with slightly rounded corners */
-  --color-brand-light: #f7bea4;  /* light orange: hover/active tint */
+  --color-brand-deep: #8F4222;   /* deep rust: hover, shadows */
+  --color-brand-light: #E4A269;  /* light orange: hover/active tint */
   --color-ink: #000000;          /* nav text */
   --color-body: #333333;         /* default text */
   --color-surface: #ffffff;
 
   /* Header sizes (desktop) */
-  --header-topbar-h: 37px;
+  --header-topbar-h: 0px;         /* top bar removed */
   --header-main-h: 101.2px;
-  --header-h: 138.2px;           /* topbar + main */
+  --header-h: 101.2px;           /* main bar only */
   --container-header: 1200px;
   --container-topbar: 1140px;
 }

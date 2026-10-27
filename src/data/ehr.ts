@@ -1,0 +1,20 @@
+export const ehr = {
+  titleStart: 'Integrate Iron Health with Your',
+  titleAccent: 'EHR',
+  titleEnd: 'Software',
+  text: 'Iron Health connects with the EHR and practice systems you already use. Your patient data, appointments and reports stay in sync, so your team does not need to learn a new tool.',
+  note: 'And many more. Tell us your system and we will connect it.',
+  cta: { label: 'Talk to an Expert', href: '#get-started' },
+  logos: [
+    { name: 'eClinicalWorks', src: '/images/ehr/eclinicalworks.webp' },
+    { name: 'Elation Health', src: '/images/ehr/elation.webp' },
+    { name: 'athenahealth', src: '/images/ehr/athenahealth.webp' },
+    { name: 'Dentrix', src: '/images/ehr/dentrix.webp' },
+    { name: 'Practice Fusion', src: '/images/ehr/practice-fusion.webp' },
+    { name: 'Open Dental', src: '/images/ehr/open-dental.webp' },
+    { name: 'NextGen Healthcare', src: '/images/ehr/nextgen.webp' },
+    { name: 'Nextech', src: '/images/ehr/nextech.webp' },
+    { name: 'ChiroTouch', src: '/images/ehr/chirotouch.webp' },
+    { name: 'EHR partner', src: '/images/ehr/ehr-partner.webp' },
+  ],
+};

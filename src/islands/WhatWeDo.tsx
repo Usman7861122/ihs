@@ -100,7 +100,7 @@ function Step({ item, index, last, reached, current, reduce, onReach }: StepProp
           <span
             className={`relative flex size-16 items-center justify-center rounded-full border-2 transition-all duration-500 group-hover/step:scale-110 group-hover/step:border-brand group-hover/step:bg-brand group-hover/step:text-white ${
               reached
-                ? 'border-brand bg-brand text-white shadow-[0_10px_30px_-8px_rgba(245,152,106,0.8)]'
+                ? 'border-brand bg-brand text-white shadow-[0_10px_30px_-8px_rgba(201,111,58,0.8)]'
                 : 'border-black/15 bg-white text-brand'
             }`}
           >
@@ -146,11 +146,11 @@ export default function WhatWeDo({ titleLight, titleBold, intro, image, imageAlt
   return (
     <section
       id="what-we-do"
-      className="relative scroll-mt-(--header-h) overflow-clip bg-linear-to-b from-white via-[#fff5ec] to-white text-ink"
+      className="relative scroll-mt-(--header-h) overflow-clip bg-linear-to-b from-white via-[#fbf4ee] to-white text-ink"
     >
       {/* Living background (left side) */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(245,152,106,0.35)_1.2px,transparent_1.2px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_60%_70%_at_25%_45%,black_20%,transparent_75%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(201,111,58,0.35)_1.2px,transparent_1.2px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_60%_70%_at_25%_45%,black_20%,transparent_75%)]" />
         <motion.div
           className="absolute -top-32 -left-32 size-[620px] rounded-full bg-brand/25 blur-[130px]"
           animate={reduce ? undefined : { x: [0, 80, 0], y: [0, 50, 0] }}

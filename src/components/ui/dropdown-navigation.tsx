@@ -45,7 +45,7 @@ export function DropdownNavigation({ navItems }: { navItems: NavMenuItem[] }) {
                 aria-haspopup={navItem.subMenus ? 'true' : undefined}
                 aria-expanded={navItem.subMenus ? openMenu === navItem.label : undefined}
                 className={`group relative flex h-10 cursor-pointer items-center justify-center gap-1.5 px-3.5 text-[16px] leading-5 transition-colors duration-300 ${
-                  active ? 'text-[#c9622d]' : 'text-ink'
+                  active ? 'text-white' : 'text-white/90'
                 }`}
                 onMouseEnter={() => setIsHover(navItem.id)}
                 onMouseLeave={() => setIsHover(null)}
@@ -61,7 +61,7 @@ export function DropdownNavigation({ navItems }: { navItems: NavMenuItem[] }) {
                 {active && (
                   <motion.span
                     layoutId="hover-bg"
-                    className="absolute inset-0 rounded-button bg-brand/10 ring-1 ring-brand/30 ring-inset"
+                    className="absolute inset-0 rounded-button bg-white/12 ring-1 ring-white/25 ring-inset backdrop-blur-sm"
                     transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                   />
                 )}
@@ -82,7 +82,7 @@ export function DropdownNavigation({ navItems }: { navItems: NavMenuItem[] }) {
                       <div className="flex w-fit shrink-0 space-x-10">
                         {navItem.subMenus.map((sub) => (
                           <div key={sub.title} className="w-full">
-                            <h3 className="mb-4 text-[12px] font-medium tracking-[1.5px] text-brand uppercase">
+                            <h3 className="mb-5 border-b border-brand/30 pb-3 text-[14px] leading-none font-bold tracking-[2px] text-brand uppercase">
                               {sub.title}
                             </h3>
                             <ul className={navItem.columns === 2 ? 'grid grid-cols-2 gap-x-10 gap-y-5' : 'space-y-5'}>
@@ -95,7 +95,7 @@ export function DropdownNavigation({ navItems }: { navItems: NavMenuItem[] }) {
                                       onClick={() => setOpenMenu(null)}
                                       className="group/item flex items-start space-x-3"
                                     >
-                                      <div className="flex size-10 shrink-0 items-center justify-center rounded-button border border-brand/30 text-brand transition-all duration-300 group-hover/item:border-brand group-hover/item:bg-brand group-hover/item:text-white group-hover/item:shadow-[0_10px_20px_-8px_rgba(245,152,106,0.9)]">
+                                      <div className="flex size-10 shrink-0 items-center justify-center rounded-button border border-brand/30 text-brand transition-all duration-300 group-hover/item:border-brand group-hover/item:bg-brand group-hover/item:text-white group-hover/item:shadow-[0_10px_20px_-8px_rgba(201,111,58,0.9)]">
                                         <Icon className="h-5 w-5 flex-none" strokeWidth={1.75} />
                                       </div>
                                       <div className="w-[250px] leading-5 transition-transform duration-300 group-hover/item:translate-x-1">

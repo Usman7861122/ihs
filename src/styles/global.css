@@ -3,3 +3,18 @@
 @import "./typography.css";
 @import "./buttons.css";
 @import "./menu.css";
+
+/* EHR logo marquee: slides by half its width (two identical halves), pauses on hover */
+@keyframes ehr-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ehr-track {
+  animation: ehr-marquee var(--ehr-duration, 140s) linear infinite;
+}
+.ehr-viewport:hover .ehr-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ehr-track { animation: none; }
+}

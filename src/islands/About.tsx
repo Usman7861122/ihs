@@ -91,7 +91,7 @@ export default function About({
     <section
       ref={sectionRef}
       id="about"
-      className="relative z-20 -mt-12 scroll-mt-(--header-h) overflow-hidden rounded-t-[44px] bg-linear-to-b from-[#fff7f2] via-white to-white px-2.5 pt-[110px] pb-[100px] text-ink"
+      className="relative z-20 -mt-12 scroll-mt-(--header-h) overflow-hidden rounded-t-[44px] bg-linear-to-b from-[#fcf6f1] via-white to-white px-2.5 pt-[110px] pb-[100px] text-ink"
     >
       {/* soft glow that continues the hero's warm light */}
       <div
