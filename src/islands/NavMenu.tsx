@@ -1,7 +1,19 @@
-import { BookOpen, CircleDollarSign, Globe, Layers, MonitorSmartphone, Newspaper, Search, Users } from 'lucide-react';
+import {
+  FileText,
+  Info,
+  Megaphone,
+  MonitorSmartphone,
+  Newspaper,
+  Package,
+  ScanSearch,
+  Search,
+  Sparkles,
+  Star,
+  UserPlus,
+} from 'lucide-react';
 import { DropdownNavigation, type NavMenuItem } from '../components/ui/dropdown-navigation';
 
-// On this one-page site, links point to sections. Change to real pages later.
+// Same structure as ironhealthsolutions.com
 const NAV_ITEMS: NavMenuItem[] = [
   { id: 1, label: 'Home', link: '/' },
   {
@@ -9,10 +21,10 @@ const NAV_ITEMS: NavMenuItem[] = [
     label: 'About',
     subMenus: [
       {
-        title: 'Company',
+        title: 'About',
         items: [
-          { label: 'Our Story', description: 'Who we are and why we exist', icon: Users, href: '#about' },
-          { label: 'What We Do', description: 'Our step by step process', icon: Layers, href: '#what-we-do' },
+          { label: 'About Us', description: 'Our goal is to grow your practice’s patient volume.', icon: Info, href: '/about-us' },
+          { label: 'Join Iron Health Solutions', description: 'Get medical marketing, SEO and digital growth services.', icon: UserPlus, href: '/join-iron-health-solutions' },
         ],
       },
     ],
@@ -21,35 +33,33 @@ const NAV_ITEMS: NavMenuItem[] = [
   {
     id: 4,
     label: 'Services',
+    columns: 2,
     subMenus: [
       {
-        title: 'Grow your practice',
+        title: 'Our Services',
         items: [
-          { label: 'Medical Website Design', description: 'Fast, elegant sites for doctors', icon: MonitorSmartphone, href: '#websites' },
-          { label: 'SEO and AI Search', description: 'Get found on Google and AI', icon: Search, href: '#rankings' },
-          { label: 'Our Process', description: 'From plan to launch', icon: Layers, href: '#what-we-do' },
+          { label: 'Website Design Services', description: 'Medical websites that build patient trust and growth.', icon: MonitorSmartphone, href: '/services/website-design-services' },
+          { label: 'Medical SEO & Local Optimization', description: 'Boost your visibility with SEO and local search.', icon: Search, href: '/services/medical-seo-local-optimization' },
+          { label: 'Onsite Content Production', description: 'Content that informs patients and lifts rankings.', icon: FileText, href: '/services/onsite-content-production' },
+          { label: 'Reputation Management', description: 'Stronger reviews and more patient confidence.', icon: Star, href: '/services/reputation-management' },
+          { label: 'Paid Advertisement & AI Chat Bot', description: 'More patient inquiries from ads and chatbots.', icon: Megaphone, href: '/services/paid-advertisement-ai-chat-bot' },
+          { label: 'AEO', description: 'Help patients find answers faster in AI search.', icon: Sparkles, href: '/services/aeo' },
         ],
       },
     ],
   },
-  { id: 5, label: 'Portfolio', link: '#websites' },
+  { id: 5, label: 'Portfolio', link: '/portfolio' },
   {
     id: 6,
     label: 'Resources',
     align: 'right',
     subMenus: [
       {
-        title: 'Learn',
+        title: 'Resources',
         items: [
-          { label: 'Blog', description: 'Tips for growing your practice', icon: Newspaper, href: '/blog' },
-          { label: 'Guides', description: 'Find help quickly', icon: BookOpen, href: '/resources' },
-        ],
-      },
-      {
-        title: 'Plans',
-        items: [
-          { label: 'Pricing', description: 'Simple and clear packages', icon: CircleDollarSign, href: '/iron-packages' },
-          { label: 'Portfolio', description: 'Websites we built', icon: Globe, href: '#websites' },
+          { label: 'Blogs', description: 'Patient education that improves SEO and authority.', icon: Newspaper, href: '/blogs' },
+          { label: 'Iron Packages', description: 'High-performance web solutions to grow online.', icon: Package, href: '/iron-packages' },
+          { label: 'Practice Scanner', description: 'Check your site speed, SEO health and visibility.', icon: ScanSearch, href: 'https://reputation.ironhealthsolutions.com/scan-business/' },
         ],
       },
     ],

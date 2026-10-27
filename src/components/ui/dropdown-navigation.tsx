@@ -15,6 +15,7 @@ export type NavMenuItem = {
   label: string;
   link?: string;
   align?: 'left' | 'right';
+  columns?: 1 | 2;
   subMenus?: { title: string; items: NavSubItem[] }[];
 };
 
@@ -84,7 +85,7 @@ export function DropdownNavigation({ navItems }: { navItems: NavMenuItem[] }) {
                             <h3 className="mb-4 text-[12px] font-medium tracking-[1.5px] text-brand uppercase">
                               {sub.title}
                             </h3>
-                            <ul className="space-y-5">
+                            <ul className={navItem.columns === 2 ? 'grid grid-cols-2 gap-x-10 gap-y-5' : 'space-y-5'}>
                               {sub.items.map((item) => {
                                 const Icon = item.icon;
                                 return (
@@ -97,7 +98,7 @@ export function DropdownNavigation({ navItems }: { navItems: NavMenuItem[] }) {
                                       <div className="flex size-10 shrink-0 items-center justify-center rounded-button border border-brand/30 text-brand transition-all duration-300 group-hover/item:border-brand group-hover/item:bg-brand group-hover/item:text-white group-hover/item:shadow-[0_10px_20px_-8px_rgba(245,152,106,0.9)]">
                                         <Icon className="h-5 w-5 flex-none" strokeWidth={1.75} />
                                       </div>
-                                      <div className="w-max leading-5 transition-transform duration-300 group-hover/item:translate-x-1">
+                                      <div className="w-[250px] leading-5 transition-transform duration-300 group-hover/item:translate-x-1">
                                         <p className="text-[16px] font-medium text-ink">{item.label}</p>
                                         <p className="text-[14px] text-[#7a6a62] transition-colors duration-300 group-hover/item:text-ink">
                                           {item.description}

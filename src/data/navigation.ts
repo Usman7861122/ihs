@@ -4,19 +4,10 @@ export interface NavChild {
   href: string;
 }
 
-export interface NavFeatured {
-  title: string;
-  text: string;
-  image: string;
-  href: string;
-  cta: string;
-}
-
 export interface NavItem {
   label: string;
   href: string;
   children?: NavChild[];
-  featured?: NavFeatured;
 }
 
 export const topbar = {
@@ -24,38 +15,39 @@ export const topbar = {
   href: '/who-we-help',
 };
 
-// On this one-page site, links point to sections. Change to real pages later.
+// Same structure as ironhealthsolutions.com (used by the mobile menu).
 export const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   {
     label: 'About',
-    href: '#about',
+    href: '/about-us',
     children: [
-      { label: 'Our Story', desc: 'Who we are and why we exist', href: '#about' },
-      { label: 'What We Do', desc: 'Our step by step process', href: '#what-we-do' },
+      { label: 'About Us', desc: 'Our goal is to grow your practice’s patient volume.', href: '/about-us' },
+      { label: 'Join Iron Health Solutions', desc: 'Get medical marketing, SEO and digital growth services.', href: '/join-iron-health-solutions' },
     ],
-    featured: { title: 'Meet the team', text: 'Doctors and engineers building sites that win patients.', image: '/images/about.jpg', href: '#about', cta: 'Our story' },
   },
   { label: 'Who We Help', href: '/who-we-help' },
   {
     label: 'Services',
-    href: '#what-we-do',
+    href: '/services',
     children: [
-      { label: 'Medical Website Design', desc: 'Fast, elegant sites for doctors', href: '#websites' },
-      { label: 'SEO and AI Search', desc: 'Get found on Google and AI', href: '#rankings' },
-      { label: 'Our Process', desc: 'From plan to launch', href: '#what-we-do' },
+      { label: 'Website Design Services', desc: 'Medical websites that build patient trust and growth.', href: '/services/website-design-services' },
+      { label: 'Medical SEO & Local Optimization', desc: 'Boost your visibility with SEO and local search.', href: '/services/medical-seo-local-optimization' },
+      { label: 'Onsite Content Production', desc: 'Content that informs patients and lifts rankings.', href: '/services/onsite-content-production' },
+      { label: 'Reputation Management', desc: 'Stronger reviews and more patient confidence.', href: '/services/reputation-management' },
+      { label: 'Paid Advertisement & AI Chat Bot', desc: 'More patient inquiries from ads and chatbots.', href: '/services/paid-advertisement-ai-chat-bot' },
+      { label: 'AEO', desc: 'Help patients find answers faster in AI search.', href: '/services/aeo' },
     ],
-    featured: { title: 'See our work', text: 'Real sites we built for real practices. Scroll the full pages.', image: '/images/showcase-desktop.jpg', href: '#websites', cta: 'View websites' },
   },
-  { label: 'Portfolio', href: '#websites' },
+  { label: 'Portfolio', href: '/portfolio' },
   {
     label: 'Resources',
-    href: '/resources',
+    href: '/recourses',
     children: [
-      { label: 'Blog', desc: 'Tips for growing your practice', href: '/blog' },
-      { label: 'Pricing', desc: 'Simple and clear packages', href: '/iron-packages' },
+      { label: 'Blogs', desc: 'Patient education that improves SEO and authority.', href: '/blogs' },
+      { label: 'Iron Packages', desc: 'High-performance web solutions to grow online.', href: '/iron-packages' },
+      { label: 'Practice Scanner', desc: 'Check your site speed, SEO health and visibility.', href: 'https://reputation.ironhealthsolutions.com/scan-business/' },
     ],
-    featured: { title: 'Simple pricing', text: 'Clear packages. No surprises.', image: '/images/showcase-care.jpg', href: '/iron-packages', cta: 'See pricing' },
   },
 ];
 
