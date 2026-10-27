@@ -227,35 +227,12 @@ export default function About({
             viewport={{ once: true }}
             className="mt-10"
           >
-            <motion.a
-              href={cta.href}
-              initial="rest"
-              animate="rest"
-              whileHover="hover"
-              whileTap={{ scale: 0.97 }}
-              className="relative inline-flex h-[54px] items-center overflow-hidden rounded-[50px] border border-brand px-[28px] text-button text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-            >
-              <motion.span
-                aria-hidden="true"
-                className="absolute inset-0 origin-left bg-brand"
-                variants={{ rest: { scaleX: 0 }, hover: { scaleX: 1 } }}
-                transition={{ duration: 0.5, ease: EASE }}
-              />
-              <motion.span
-                className="relative z-10 flex items-center gap-2.5"
-                variants={{ rest: { color: '#f5986a' }, hover: { color: '#ffffff' } }}
-                transition={{ duration: 0.3 }}
-              >
-                {cta.label}
-                <motion.span
-                  className="flex"
-                  variants={{ rest: { x: 0 }, hover: { x: 5 } }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ArrowRight className="size-[18px]" strokeWidth={2} aria-hidden="true" />
-                </motion.span>
-              </motion.span>
-            </motion.a>
+            <a href={cta.href} className="btn btn-outline">
+              <span className="btn-label">{cta.label}</span>
+              <span className="btn-icon" aria-hidden="true">
+                <ArrowRight strokeWidth={2} />
+              </span>
+            </a>
           </motion.div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import {
   motion,
   useMotionValue,
   useReducedMotion,
+  useInView,
   useSpring,
   useTransform,
 } from 'framer-motion';
@@ -32,6 +33,7 @@ interface Site {
   id: string;
   name: string;
   specialty: string;
+  url?: string; // live site shown inside the mockups (must allow iframes)
   laptopImage: string;
   phoneImage: string;
   phone: PhoneData;
@@ -100,6 +102,60 @@ function FeatureCard({
   );
 }
 
+// Shows a real website inside a device screen. The page renders at its normal
+// design width, then is scaled down to fit the screen, so it stays interactive.
+function LiveFrame({
+  url,
+  designWidth,
+  title,
+  poster,
+  active,
+}: {
+  url: string;
+  designWidth: number;
+  title: string;
+  poster: string;
+  active: boolean;
+}) {
+  const boxRef = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const el = boxRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setSize({ w: el.clientWidth, h: el.clientHeight }));
+    ro.observe(el);
+    setSize({ w: el.clientWidth, h: el.clientHeight });
+    return () => ro.disconnect();
+  }, []);
+
+  const scale = size.w ? size.w / designWidth : 0;
+
+  return (
+    <div ref={boxRef} className="absolute inset-0 overflow-hidden bg-black">
+      <img src={poster} alt="" className="absolute top-0 left-0 w-full" />
+      {active && scale > 0 && (
+        <iframe
+          src={url}
+          title={title}
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+          style={{
+            width: designWidth,
+            height: size.h / scale,
+            transform: `scale(${scale})`,
+            transformOrigin: 'top left',
+            opacity: loaded ? 1 : 0,
+          }}
+          className="absolute top-0 left-0 border-0 bg-white transition-opacity duration-700"
+        />
+      )}
+    </div>
+  );
+}
+
 export default function Showcase({
   eyebrow,
   titleStart,
@@ -113,6 +169,8 @@ export default function Showcase({
   const reduce = !!useReducedMotion();
   const [idx, setIdx] = useState(0);
   const [hinted, setHinted] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const near = useInView(sectionRef, { once: true, margin: '400px' });
   const site = sites[idx];
   const { laptopImage, phoneImage, phone } = site;
   const go = (dir: 1 | -1) => {
@@ -225,6 +283,7 @@ export default function Showcase({
 
   return (
     <section
+      ref={sectionRef}
       id="websites"
       onPointerMove={onSectionMove}
       onPointerLeave={onSectionLeave}
@@ -308,10 +367,21 @@ export default function Showcase({
                     />
                     <div
                       ref={laptopScreenRef}
+                      onPointerEnter={() => site.url && setTouched(true)}
                       className={`relative aspect-[16/10] rounded-[4px] bg-black md:rounded-md ${
                         reduce ? 'overflow-y-auto' : 'overflow-hidden'
                       }`}
                     >
+                      {site.url ? (
+                        <LiveFrame
+                          key={site.id}
+                          url={site.url}
+                          designWidth={1440}
+                          title={`${site.name} website`}
+                          poster={laptopImage}
+                          active={near}
+                        />
+                      ) : (
                       <motion.img
                         key={site.id}
                         ref={laptopPageRef}
@@ -323,6 +393,7 @@ export default function Showcase({
                         alt={`${site.name} website designed by Iron Health Solutions`}
                         className="absolute top-0 left-0 h-auto w-full will-change-transform"
                       />
+                      )}
                       <div
                         aria-hidden="true"
                         className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/12 via-transparent to-transparent"
@@ -376,10 +447,22 @@ export default function Showcase({
                   <div className="relative aspect-[9/18.5] rounded-[22px] border border-white/20 bg-[#0a0a0b] p-[3.2%] shadow-[0_50px_90px_-20px_rgba(0,0,0,0.95)] md:rounded-[38px]">
                     <div
                       ref={phoneScreenRef}
+                      onPointerEnter={() => site.url && setTouched(true)}
                       className={`relative size-full rounded-[16px] bg-[#faf9f7] [container-type:inline-size] md:rounded-[30px] ${
                         reduce ? 'overflow-y-auto' : 'overflow-hidden'
                       }`}
                     >
+                      {site.url ? (
+                        <LiveFrame
+                          key={site.id}
+                          url={site.url}
+                          designWidth={390}
+                          title={`${site.name} mobile website`}
+                          poster={phoneImage}
+                          active={near}
+                        />
+                      ) : (
+                        <>
                       {/* scrolling mobile page */}
                       <motion.div
                         key={site.id}
@@ -485,6 +568,8 @@ export default function Showcase({
                           </span>
                         </div>
                       </div>
+                        </>
+                      )}
                       <span className="absolute top-[2.2%] left-1/2 z-20 h-[3.2%] w-[28%] -translate-x-1/2 rounded-full bg-black" />
                     </div>
                   </div>
@@ -498,7 +583,7 @@ export default function Showcase({
                 type="button"
                 onClick={() => go(-1)}
                 aria-label="Previous website"
-                className="flex size-11 items-center justify-center rounded-full border border-white/25 text-white transition-all duration-300 hover:scale-110 hover:border-brand hover:bg-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                className="btn btn-glass btn-square"
               >
                 <ArrowLeft className="size-5" aria-hidden="true" />
               </button>
@@ -514,7 +599,7 @@ export default function Showcase({
                 aria-label="Next website"
                 animate={reduce || hinted ? undefined : { x: [0, 6, 0] }}
                 transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-                className="flex size-11 items-center justify-center rounded-full border border-white/25 text-white transition-colors duration-300 hover:border-brand hover:bg-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                className="btn btn-glass btn-square"
               >
                 <ArrowRight className="size-5" aria-hidden="true" />
               </motion.button>
@@ -537,15 +622,11 @@ export default function Showcase({
           transition={{ duration: 0.8, ease: EASE }}
           className="mt-14 text-center"
         >
-          <a
-            href={cta.href}
-            className="group relative inline-flex h-[58px] items-center gap-3 overflow-hidden rounded-[50px] border border-brand bg-brand px-[34px] text-[16px] leading-4 font-medium tracking-[1px] text-white uppercase transition-colors duration-300 hover:bg-transparent hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-          >
-            {cta.label}
-            <ArrowRight
-              className="size-5 transition-transform duration-300 group-hover:translate-x-1.5"
-              aria-hidden="true"
-            />
+          <a href={cta.href} className="btn btn-primary btn-lg">
+            <span className="btn-label">{cta.label}</span>
+            <span className="btn-icon" aria-hidden="true">
+              <ArrowRight strokeWidth={2} />
+            </span>
           </a>
         </motion.div>
       </div>

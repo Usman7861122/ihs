@@ -7,6 +7,7 @@ export const showcase = {
   sites: [
     {
       id: 'bhalla',
+      url: 'https://bhalla-spine.vercel.app/',
       name: 'Dr. Amandeep Bhalla, MD',
       specialty: 'Orthopedic Spine Surgery',
       laptopImage: '/images/showcase-desktop.jpg',
@@ -37,6 +38,7 @@ export const showcase = {
     },
     {
       id: 'stem-cell',
+      url: 'https://the-stem-cell.vercel.app/',
       name: 'The Stem Cell Institute',
       specialty: 'Regenerative Medicine',
       laptopImage: '/images/showcase-desktop-2.jpg',
@@ -67,6 +69,7 @@ export const showcase = {
     },
     {
       id: 'run-doctor',
+      url: 'https://run-doctor.vercel.app/',
       name: 'The Run Doctor',
       specialty: 'Foot & Ankle Sports Medicine',
       laptopImage: '/images/showcase-desktop-3.jpg',

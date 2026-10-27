@@ -1,4 +1,5 @@
 ---
+import NavMenu from '../../islands/NavMenu';
 import { topbar, navItems, headerButtons } from '../../data/navigation';
 ---
 
@@ -17,7 +18,7 @@ import { topbar, navItems, headerButtons } from '../../data/navigation';
   </div>
 
   <!-- Main bar: fixed under top bar, 101.2px -->
-  <div class="fixed inset-x-0 top-(--header-topbar-h) z-[99] bg-surface px-2.5">
+  <div id="main-bar" class="main-bar fixed inset-x-0 top-(--header-topbar-h) z-[99] bg-surface px-2.5">
     <div class="mx-auto flex w-full max-w-(--container-header) items-center py-2.5">
       <a href="/" class="block w-60 shrink-0" aria-label="Iron Health Solutions home">
         <img
@@ -30,40 +31,101 @@ import { topbar, navItems, headerButtons } from '../../data/navigation';
       </a>
 
       <div class="hidden flex-1 items-center justify-end gap-[15px] lg:flex">
-        <nav aria-label="Main">
-          <ul class="flex items-center gap-[15px]">
-            {navItems.map((item) => (
-              <li>
-                <a
-                  href={item.href ?? '#'}
-                  class="flex h-10 items-center pr-[7px] pl-2 text-[16px] leading-5 font-normal text-ink"
-                >
-                  {item.label}
-                  {item.hasDropdown && (
-                    <span class="ml-2.5 flex items-center" aria-hidden="true">
-                      <svg viewBox="0 0 320 512" class="h-4 w-2.5 fill-ink" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"></path>
-                      </svg>
-                    </span>
-                  )}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <NavMenu client:load />
 
         {headerButtons.map((btn) => (
-          <a
-            href={btn.href}
-            class:list={[
-              'text-button box-border inline-flex h-10 items-center justify-center rounded-[50px] border border-brand px-2 py-3',
-              btn.variant === 'solid' ? 'bg-brand text-white' : 'bg-surface text-brand',
-            ]}
-          >
-            {btn.label}
+          <a href={btn.href} class="btn btn-sm btn-outline">
+            <span class="btn-label">{btn.label}</span>
           </a>
         ))}
       </div>
+
+      <!-- Mobile menu button -->
+      <button id="menu-toggle" type="button" class="menu-toggle ml-auto lg:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
+  <div id="mobile-menu" class="mobile-menu" hidden>
+    <nav aria-label="Mobile">
+      <ul>
+        {navItems.map((item) => (
+          <li>
+            <a href={item.href} data-nav>{item.label}</a>
+            {item.children && (
+              <ul class="mobile-sub">
+                {item.children.map((c) => (
+                  <li><a href={c.href} data-nav>{c.label}</a></li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div class="mobile-cta">
+        {headerButtons.map((btn) => (
+          <a href={btn.href} class="btn btn-sm btn-outline" data-nav><span class="btn-label">{btn.label}</span></a>
+        ))}
+      </div>
+    </nav>
+  </div>
 </header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const setOpen = (open: boolean) => {
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.classList.toggle('is-open', open);
+    menu.hidden = !open;
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+  document.querySelectorAll('[data-nav]').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+
+  // Mark the link of the section on screen as active
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav-link[href^="#"], .nav-sub[href^="#"]'));
+  const ids = [...new Set(links.map((l) => l.getAttribute('href')!.slice(1)))];
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const id = '#' + en.target.id;
+        document.querySelectorAll('.nav-link, .nav-sub').forEach((l) =>
+          l.classList.toggle('is-active', l.getAttribute('href') === id && l.classList.contains('nav-link')),
+        );
+        if (!list?.matches(':hover')) moveTo(current());
+      });
+    },
+    { rootMargin: '-40% 0px -55% 0px' },
+  );
+  ids.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) io.observe(el);
+  });
+  // Sliding pill: one highlight glides between links
+  const list = document.querySelector<HTMLElement>('.nav-list');
+  const pill = list?.querySelector<HTMLElement>('.nav-pill');
+  const moveTo = (el: HTMLElement | null) => {
+    if (!pill) return;
+    if (!el) { pill.style.opacity = '0'; return; }
+    pill.style.opacity = '1';
+    pill.style.width = el.offsetWidth + 'px';
+    pill.style.transform = `translateX(${el.offsetLeft}px)`;
+  };
+  const current = () => list?.querySelector<HTMLElement>('.nav-link.is-active')?.parentElement ?? null;
+  list?.querySelectorAll<HTMLElement>('.nav-item').forEach((it) => {
+    it.addEventListener('mouseenter', () => moveTo(it));
+    it.addEventListener('focusin', () => moveTo(it));
+  });
+  list?.addEventListener('mouseleave', () => moveTo(current()));
+  list?.addEventListener('focusout', () => moveTo(current()));
+
+  // Header gets a soft glass look and shadow after scrolling
+  const bar = document.getElementById('main-bar');
+  const onScroll = () => bar?.classList.toggle('is-scrolled', window.scrollY > 12);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

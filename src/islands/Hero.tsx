@@ -1,3 +1,4 @@
+import { ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
 import {
   motion,
@@ -131,43 +132,12 @@ export default function Hero({ title, text, cta, video, poster }: HeroProps) {
               animate="show"
               className="mt-[34px]"
             >
-              <motion.a
-                href={cta.href}
-                initial="rest"
-                animate="rest"
-                whileHover="hover"
-                whileTap={{ scale: 0.97 }}
-                className="relative inline-flex h-[58px] items-center overflow-hidden rounded-[50px] border border-brand bg-brand px-[30px] text-[16px] leading-4 font-medium tracking-[1px] text-white uppercase focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-              >
-                {/* white fill sweeps in from the left on hover */}
-                <motion.span
-                  aria-hidden="true"
-                  className="absolute inset-0 origin-left bg-white"
-                  variants={{ rest: { scaleX: 0 }, hover: { scaleX: 1 } }}
-                  transition={{ duration: 0.5, ease: EASE }}
-                />
-                <motion.span
-                  className="relative z-10"
-                  variants={{ rest: { color: '#ffffff' }, hover: { color: '#f5986a' } }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {cta.label}
-                </motion.span>
-                {/* arrow slides in on hover */}
-                <motion.span
-                  aria-hidden="true"
-                  className="relative z-10 flex items-center overflow-hidden"
-                  variants={{
-                    rest: { width: 0, marginLeft: 0, opacity: 0 },
-                    hover: { width: 20, marginLeft: 10, opacity: 1 },
-                  }}
-                  transition={{ duration: 0.4, ease: EASE }}
-                >
-                  <svg viewBox="0 0 448 512" className="size-5 shrink-0 fill-brand">
-                    <path d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z" />
-                  </svg>
-                </motion.span>
-              </motion.a>
+              <a href={cta.href} className="btn btn-primary btn-lg">
+                <span className="btn-label">{cta.label}</span>
+                <span className="btn-icon" aria-hidden="true">
+                  <ArrowRight strokeWidth={2} />
+                </span>
+              </a>
             </motion.div>
           </div>
         </motion.div>

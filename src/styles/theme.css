@@ -4,6 +4,7 @@
 */
 @theme {
   --color-brand: #f5986a;        /* orange: top bar, buttons, borders */
+  --radius-button: 6px; /* all buttons: square with slightly rounded corners */
   --color-brand-light: #f7bea4;  /* light orange: hover/active tint */
   --color-ink: #000000;          /* nav text */
   --color-body: #333333;         /* default text */
