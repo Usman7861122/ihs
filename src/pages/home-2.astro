@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../islands/Hero';
+import About from '../islands/About';
+import WhatWeDo from '../islands/WhatWeDo';
+import Showcase from '../islands/Showcase';
+import Rankings from '../islands/Rankings';
+import EhrIntegrations from '../islands/EhrIntegrations';
+import Mission from '../islands/Mission';
+import { hero } from '../data/hero';
+
+// Home 2: same page, only the hero video is different
+const hero2 = { ...hero, video: '/videos/hero-2.mp4', poster: '/images/hero-2-poster.jpg' };
+import { about } from '../data/about';
+import { whatWeDo } from '../data/whatWeDo';
+import { showcase } from '../data/showcase';
+import { rankings } from '../data/rankings';
+import { ehr } from '../data/ehr';
+import { mission } from '../data/mission';
+---
+
+<BaseLayout title="IHS | Home 2">
+  <main>
+    <Hero client:load {...hero2} />
+    <About client:visible {...about} />
+    <WhatWeDo client:visible {...whatWeDo} />
+    <Showcase client:visible {...showcase} />
+    <Rankings client:visible {...rankings} />
+    <EhrIntegrations client:visible {...ehr} />
+    <Mission client:visible {...mission} />
+  </main>
+</BaseLayout>
