@@ -6,11 +6,6 @@ export const whatWeDo = {
   imageAlt: 'Doctors smiling together at a laptop showing the Iron Health Solutions logo',
   items: [
     {
-      icon: 'ai',
-      title: 'AI SEO',
-      text: 'AI SEO driving healthcare visibility through AI Overviews.',
-    },
-    {
       icon: 'website',
       title: 'Medical Website Design Services',
       text: 'Compliant medical websites driving patient growth.',
@@ -19,6 +14,11 @@ export const whatWeDo = {
       icon: 'seo',
       title: 'Medical SEO & Local Optimization',
       text: 'Targeted medical SEO boosting visibility and organic growth.',
+    },
+    {
+      icon: 'ai',
+      title: 'AI SEO',
+      text: 'AI SEO driving healthcare visibility through AI Overviews.',
     },
     {
       icon: 'reputation',

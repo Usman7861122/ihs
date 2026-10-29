@@ -1,11 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-} from 'framer-motion';
+import { useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Megaphone, MapPinned, MonitorSmartphone, Sparkles, Star } from 'lucide-react';
 
 const ICONS = {
@@ -38,29 +32,17 @@ interface StepProps {
   index: number;
   last: boolean;
   reached: boolean;
+  filled: boolean;
   current: boolean;
   reduce: boolean;
-  onReach: (index: number, reached: boolean) => void;
 }
 
-/** One timeline step. It watches its own scroll position: the line fills as you scroll past. */
-function Step({ item, index, last, reached, current, reduce, onReach }: StepProps) {
-  const ref = useRef<HTMLLIElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start 62%', 'end 62%'],
-  });
-  useMotionValueEvent(scrollYProgress, 'change', (v) => onReach(index, v > 0));
-  useEffect(() => {
-    // Settle the first state on mount (reduced motion shows everything lit)
-    if (reduce) onReach(index, true);
-  }, [reduce, index, onReach]);
-
+/** One timeline step. It lights up when the video reaches its topic. */
+function Step({ item, last, reached, filled, current, reduce }: StepProps) {
   const Icon = ICONS[item.icon];
 
   return (
     <motion.li
-      ref={ref}
       initial={{ opacity: 0, x: reduce ? 0 : -36 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -76,7 +58,10 @@ function Step({ item, index, last, reached, current, reduce, onReach }: StepProp
           />
           <motion.span
             aria-hidden="true"
-            style={{ scaleY: reduce ? 1 : scrollYProgress, transformOrigin: 'top' }}
+            initial={false}
+            animate={{ scaleY: filled ? 1 : 0 }}
+            transition={{ duration: reduce ? 0 : 0.8, ease: EASE }}
+            style={{ transformOrigin: 'top' }}
             className="absolute top-16 bottom-0 left-8 w-0.5 -translate-x-1/2 rounded-full bg-brand"
           />
         </>
@@ -123,25 +108,26 @@ function Step({ item, index, last, reached, current, reduce, onReach }: StepProp
   );
 }
 
+// What the video explains, and the second each part starts (matches the video).
+const VIDEO_CHAPTERS = [
+  { at: 0, label: 'Iron Health Solutions' },
+  { at: 5, label: 'Medical Website Design' },
+  { at: 9.5, label: 'Medical SEO & Local Optimization' },
+  { at: 14, label: 'AI SEO & AEO' },
+  { at: 19, label: 'Reputation Management' },
+  { at: 24, label: 'Paid Ads & AI Chat Bot' },
+  { at: 29, label: 'Ready to grow your practice?' },
+];
+
 export default function WhatWeDo({ titleLight, titleBold, intro, image, imageAlt, items }: Props) {
   const reduce = !!useReducedMotion();
   const n = items.length;
 
-  const [reachedList, setReachedList] = useState<boolean[]>(() => Array(n).fill(false));
-  const onReach = (index: number, reached: boolean) =>
-    setReachedList((prev) => {
-      if (prev[index] === reached) return prev;
-      const next = [...prev];
-      next[index] = reached;
-      return next;
-    });
-
-  // Current step = the last one the scroll has reached
-  let active = -1;
-  reachedList.forEach((r, i) => {
-    if (r) active = i;
-  });
-  const shown = items[Math.max(active, 0)];
+  const [chapter, setChapter] = useState(0);
+  const shownLabel = VIDEO_CHAPTERS[chapter].label;
+  // Video part 1..n lights step 0..n-1. The intro lights none; the last part lights all.
+  const active = Math.min(chapter - 1, n - 1);
+  const allDone = chapter > n;
 
   return (
     <section
@@ -169,7 +155,7 @@ export default function WhatWeDo({ titleLight, titleBold, intro, image, imageAlt
       </div>
 
       <div className="relative grid lg:grid-cols-2">
-        {/* LEFT: heading + scrolling timeline */}
+        {/* LEFT: heading + timeline that follows the video */}
         <div className="px-2.5 py-[90px] lg:py-[110px] lg:pr-16 lg:pl-[max(10px,calc((100vw-1200px)/2))] order-2 lg:order-1">
           <div className="mx-auto max-w-[620px] lg:mx-0">
             <motion.h2
@@ -199,10 +185,10 @@ export default function WhatWeDo({ titleLight, titleBold, intro, image, imageAlt
                   item={item}
                   index={i}
                   last={i === n - 1}
-                  reached={reduce || !!reachedList[i]}
-                  current={i === active}
+                  reached={reduce || i <= active || allDone}
+                  filled={reduce || i < active || allDone}
+                  current={i === active && !allDone}
                   reduce={reduce}
-                  onReach={onReach}
                 />
               ))}
             </ol>
@@ -219,13 +205,24 @@ export default function WhatWeDo({ titleLight, titleBold, intro, image, imageAlt
               transition={{ duration: 0.9, ease: EASE }}
               className="relative aspect-[5/4] w-full overflow-hidden bg-[#1a0c04] shadow-[0_40px_80px_-30px_rgba(60,25,5,0.6)] lg:aspect-auto lg:h-full lg:rounded-l-[44px]"
             >
-              <motion.img
-                src={image}
-                alt={imageAlt}
+              <video
+                src="/videos/what-we-do.mp4"
+                poster="/images/what-we-do-poster.jpg"
+                aria-label={imageAlt}
                 className="absolute inset-0 size-full object-cover"
-                initial={{ scale: 1.08 }}
-                animate={reduce ? { scale: 1 } : { scale: [1.08, 1, 1.08] }}
-                transition={{ duration: 24, repeat: Infinity, ease: 'easeInOut' }}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                onTimeUpdate={(e) => {
+                  const t = e.currentTarget.currentTime;
+                  let i = 0;
+                  VIDEO_CHAPTERS.forEach((c, k) => {
+                    if (t >= c.at) i = k;
+                  });
+                  setChapter((prev) => (prev === i ? prev : i));
+                }}
               />
 
               <div
@@ -233,12 +230,12 @@ export default function WhatWeDo({ titleLight, titleBold, intro, image, imageAlt
                 className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black/55 to-transparent"
               />
 
-              {/* Chip follows the timeline step */}
+              {/* Chip follows what the video is explaining */}
               <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8">
                 <div className="overflow-hidden rounded-full bg-black/35 backdrop-blur-md">
                   <AnimatePresence mode="wait">
                     <motion.p
-                      key={shown.title}
+                      key={shownLabel}
                       initial={{ y: reduce ? 0 : 16, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: reduce ? 0 : -16, opacity: 0 }}
@@ -246,7 +243,7 @@ export default function WhatWeDo({ titleLight, titleBold, intro, image, imageAlt
                       className="flex items-center gap-2.5 px-4 py-2 text-[15px] leading-6 font-medium text-white md:px-5 md:text-[17px]"
                     >
                       <span className="size-2 rounded-full bg-brand" aria-hidden="true" />
-                      {shown.title}
+                      {shownLabel}
                     </motion.p>
                   </AnimatePresence>
                 </div>

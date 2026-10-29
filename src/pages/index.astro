@@ -5,6 +5,7 @@ import About from '../islands/About';
 import WhatWeDo from '../islands/WhatWeDo';
 import Showcase from '../islands/Showcase';
 import Rankings from '../islands/Rankings';
+import AiOverviews from '../islands/AiOverviews';
 import EhrIntegrations from '../islands/EhrIntegrations';
 import Mission from '../islands/Mission';
 import { hero } from '../data/hero';
@@ -12,6 +13,7 @@ import { about } from '../data/about';
 import { whatWeDo } from '../data/whatWeDo';
 import { showcase } from '../data/showcase';
 import { rankings } from '../data/rankings';
+import { aiOverviews } from '../data/aiOverviews';
 import { ehr } from '../data/ehr';
 import { mission } from '../data/mission';
 ---
@@ -25,5 +27,6 @@ import { mission } from '../data/mission';
     <Rankings client:visible {...rankings} />
     <EhrIntegrations client:visible {...ehr} />
     <Mission client:visible {...mission} />
+    <AiOverviews client:visible {...aiOverviews} />
   </main>
 </BaseLayout>
