@@ -44,7 +44,7 @@ export const navItems: NavItem[] = [
     label: 'Resources',
     href: '/recourses',
     children: [
-      { label: 'Blogs', desc: 'Patient education that improves SEO and authority.', href: '/blogs' },
+      { label: 'Blogs', desc: 'Patient education that improves SEO and authority.', href: '/blog/' },
       { label: 'Iron Packages', desc: 'High-performance web solutions to grow online.', href: '/iron-packages' },
       { label: 'Practice Scanner', desc: 'Check your site speed, SEO health and visibility.', href: 'https://reputation.ironhealthsolutions.com/scan-business/' },
     ],

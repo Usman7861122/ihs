@@ -64,7 +64,7 @@ export default function Mission({ eyebrow, titleStart, titleAccent, text, cta, i
           transition={{ duration: 0.8, delay: 0.25 }}
           className="mt-10"
         >
-          <a href={cta.href} className="btn btn-primary btn-lg">
+          <a href={cta.href} className="btn btn-primary btn-lg btn-spin">
             <span className="btn-label">{cta.label}</span>
             <span className="btn-icon">
               <ArrowRight aria-hidden="true" />

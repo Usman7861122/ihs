@@ -1,0 +1,78 @@
+---
+import { footer } from '../../data/footer';
+---
+
+<footer class="relative z-[110] -mt-12 overflow-clip rounded-t-[44px] bg-[#120d0a] text-white">
+  <!-- glow + dots -->
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+    <div class="absolute -top-24 left-1/2 h-[420px] w-[900px] max-w-full -translate-x-1/2 rounded-full bg-brand/25 blur-[150px]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(201,111,58,0.16)_1.2px,transparent_1.2px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_55%_40%_at_50%_0%,black,transparent_80%)]"></div>
+  </div>
+
+  <!-- CTA band -->
+  <div class="relative px-2.5 pt-[88px] pb-[72px] text-center md:pt-[112px] md:pb-[88px]">
+    <div class="mx-auto max-w-[820px]">
+      <h2 class="italic"><span class="font-medium">{footer.cta.title}</span></h2>
+      <span aria-hidden="true" class="mx-auto mt-5 block h-0.5 w-[184px] bg-brand"></span>
+      <p class="mx-auto mt-6 max-w-[640px] text-lead text-white/70">{footer.cta.text}</p>
+      <a href={footer.cta.button.href} class="btn btn-primary btn-lg btn-spin mt-9">
+        <span class="btn-label">{footer.cta.button.label}</span>
+        <span class="btn-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Main footer -->
+  <div class="relative border-t border-white/10 px-2.5 pt-14 pb-10 md:pt-16">
+    <div class="mx-auto grid max-w-[1180px] gap-12 md:grid-cols-2 lg:grid-cols-[minmax(0,5fr)_minmax(0,3fr)_minmax(0,4fr)] lg:gap-16">
+      <div>
+        <a href="/" aria-label="Iron Health Solutions home">
+          <img src="/images/Logo-light.png" alt="Iron Health Solutions" width="220" class="h-auto w-[200px] md:w-[230px]" />
+        </a>
+        <p class="mt-6 max-w-[460px] text-[16px] leading-7 text-white/60">{footer.about}</p>
+      </div>
+
+      <nav aria-label="Company">
+        <h3 class="text-[13px] font-semibold tracking-[3px] text-brand-light uppercase">Company</h3>
+        <ul class="mt-5 space-y-3.5">
+          {
+            footer.company.map((l) => (
+              <li>
+                <a href={l.href} class="text-[16px] text-white/75 transition-colors duration-300 hover:text-brand-light">{l.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Services">
+        <h3 class="text-[13px] font-semibold tracking-[3px] text-brand-light uppercase">Services</h3>
+        <ul class="mt-5 space-y-3.5">
+          {
+            footer.services.map((l) => (
+              <li>
+                <a href={l.href} class="text-[16px] text-white/75 transition-colors duration-300 hover:text-brand-light">{l.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <!-- bottom bar -->
+    <div class="mx-auto mt-14 flex max-w-[1180px] flex-col items-center justify-between gap-4 border-t border-white/10 pt-7 text-[14px] text-white/50 md:flex-row">
+      <p>{footer.copyright}</p>
+      <ul class="flex items-center gap-6">
+        {
+          footer.legal.map((l) => (
+            <li>
+              <a href={l.href} class="transition-colors duration-300 hover:text-brand-light">{l.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</footer>

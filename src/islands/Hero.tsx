@@ -101,7 +101,7 @@ export default function Hero({ title, text, cta, video, poster }: HeroProps) {
               {title.map(({ word, accent, newLine }, i) => (
                 <span key={i} aria-hidden="true">
                   {newLine && <br />}
-                  <span className="-mt-[0.1em] -mb-[0.14em] inline-block overflow-hidden pt-[0.1em] pr-[0.08em] pb-[0.14em] align-bottom">
+                  <span className="-mt-[0.1em] -mb-[0.14em] -ml-[0.1em] inline-block overflow-hidden pt-[0.1em] pr-[0.08em] pb-[0.14em] pl-[0.1em] align-bottom">
                     <motion.span
                       variants={wordVariants}
                       className={
@@ -132,7 +132,7 @@ export default function Hero({ title, text, cta, video, poster }: HeroProps) {
               animate="show"
               className="mt-[34px]"
             >
-              <a href={cta.href} className="btn btn-primary btn-lg">
+              <a href={cta.href} className="btn btn-primary btn-lg btn-spin">
                 <span className="btn-label">{cta.label}</span>
                 <span className="btn-icon" aria-hidden="true">
                   <ArrowRight strokeWidth={2} />

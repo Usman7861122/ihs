@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleBody from '../../components/ui/ArticleBody.astro';
+import { blogPosts } from '../../data/blogPosts';
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const others = blogPosts.filter((p) => p.slug !== post.slug);
+---
+
+<BaseLayout title={`${post.title} | IHS`} description={post.summary}>
+  <main class="bg-[#fbf3ec]">
+    <!-- Dark title band -->
+    <section class="relative overflow-hidden bg-[#120d0a] px-2.5 pt-[calc(var(--header-h)+56px)] pb-[150px] text-white md:pb-[200px]">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <div class="absolute -top-24 right-[8%] size-[560px] rounded-full bg-brand/25 blur-[150px]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(201,111,58,0.16)_1.2px,transparent_1.2px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_60%_80%_at_75%_20%,black,transparent_75%)]"></div>
+      </div>
+      <div class="relative mx-auto max-w-[900px]">
+        <a href="/blog/" class="inline-flex items-center gap-2 text-[14px] font-medium tracking-wide text-brand-light uppercase transition-colors hover:text-white">
+          <span aria-hidden="true">&larr;</span> All articles
+        </a>
+        <h1 class="mt-6 text-[clamp(32px,5vw,56px)] leading-[1.15] font-medium">{post.title}</h1>
+        <p class="mt-6 flex items-center gap-3 text-[15px] text-white/60">
+          <span>{post.date}</span>
+          <span aria-hidden="true" class="size-1 rounded-full bg-brand"></span>
+          <span>{post.read}</span>
+          <span aria-hidden="true" class="size-1 rounded-full bg-brand"></span>
+          <span>By Justin</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Cover + article -->
+    <article class="relative mx-auto -mt-[110px] max-w-[900px] px-2.5 pb-[88px] md:-mt-[150px] md:pb-[120px]">
+      <img
+        src={post.image}
+        alt=""
+        width={post.imageW}
+        height={post.imageH}
+        class="w-full rounded-[24px] border border-black/10 bg-white object-cover shadow-[0_40px_90px_-40px_rgba(60,25,5,0.6)] md:rounded-[32px]"
+      />
+      <div class="mx-auto mt-12 max-w-[760px] md:mt-16">
+        <ArticleBody text={post.body} />
+
+        <div class="mt-14 rounded-[28px] bg-[#120d0a] p-8 text-center text-white md:p-12">
+          <h2 class="text-[26px] leading-tight font-medium md:text-[32px]">Ready to grow your practice?</h2>
+          <p class="mx-auto mt-3 max-w-[460px] text-white/65">Start with a free local SEO audit and see where you stand.</p>
+          <a href="/#seo-audit" class="btn btn-glass btn-lg btn-spin mt-7">
+            <span class="btn-label">Get Started</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- More articles -->
+    <section class="border-t border-black/10 bg-white px-2.5 py-[72px] md:py-[96px]">
+      <div class="mx-auto max-w-[1100px]">
+        <h2 class="text-center text-[28px] font-medium italic md:text-[36px]">More articles</h2>
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          {
+            others.map((o) => (
+              <a href={o.href} class="group overflow-hidden rounded-[24px] border border-black/10 bg-white shadow-[0_20px_50px_-35px_rgba(120,60,20,0.6)] transition-shadow hover:shadow-[0_0_0_2px_#C96F3A]">
+                <div class="aspect-[16/9] overflow-hidden">
+                  <img src={o.image} alt="" loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <div class="p-6">
+                  <p class="text-[14px] text-black/50">{o.date} &middot; {o.read}</p>
+                  <h3 class="mt-2 text-[20px] leading-snug font-medium transition-colors group-hover:text-brand">{o.title}</h3>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

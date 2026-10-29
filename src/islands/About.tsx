@@ -173,7 +173,7 @@ export default function About({
           >
             {title.map(({ word: w, accent }, i) => (
               <span key={i} aria-hidden="true">
-                <span className="-mt-[0.1em] -mb-[0.14em] inline-block overflow-hidden pt-[0.1em] pr-[0.06em] pb-[0.14em] align-bottom">
+                <span className="-mt-[0.1em] -mb-[0.14em] -ml-[0.1em] inline-block overflow-hidden pt-[0.1em] pr-[0.06em] pb-[0.14em] pl-[0.1em] align-bottom">
                   <motion.span
                     variants={word}
                     className={

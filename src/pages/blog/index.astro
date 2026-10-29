@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { blogPosts } from '../../data/blogPosts';
+---
+
+<BaseLayout title="Blog | IHS" description="Simple, useful ideas to help your practice get found, trusted and booked.">
+  <main>
+    <section class="relative overflow-hidden bg-[#120d0a] px-2.5 pt-[calc(var(--header-h)+56px)] pb-[96px] text-white md:pb-[120px]">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+        <div class="absolute -top-24 right-[8%] size-[560px] rounded-full bg-brand/25 blur-[150px]"></div>
+      </div>
+      <div class="relative mx-auto max-w-[1100px]">
+        <p class="flex items-center gap-3 text-[14px] leading-none font-semibold tracking-[3px] text-brand-light uppercase">
+          <span aria-hidden="true" class="h-0.5 w-10 bg-brand"></span>
+          Blogs
+        </p>
+        <h1 class="mt-6 text-[clamp(36px,6vw,64px)] leading-[1.1] font-medium italic">
+          Our <span class="font-(family-name:--font-accent) font-normal text-brand">Blog</span>
+        </h1>
+        <p class="mt-5 max-w-[520px] text-lead text-white/65">Simple, useful ideas to help your practice get found, trusted and booked.</p>
+      </div>
+    </section>
+
+    <section class="-mt-12 rounded-t-[44px] bg-[#fbf3ec] px-2.5 py-[72px] md:py-[96px] relative">
+      <div class="mx-auto grid max-w-[1100px] gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          blogPosts.map((p) => (
+            <a href={p.href} class="group flex flex-col overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_24px_60px_-40px_rgba(120,60,20,0.6)] transition-shadow duration-300 hover:shadow-[0_0_0_2px_#C96F3A,0_30px_60px_-30px_rgba(201,111,58,0.6)]">
+              <div class="aspect-[16/10] overflow-hidden">
+                <img src={p.image} alt="" loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div class="flex flex-1 flex-col p-6 md:p-7">
+                <p class="text-[14px] text-black/50">{p.date} &middot; {p.read}</p>
+                <h2 class="mt-2.5 text-[21px] leading-snug font-medium transition-colors group-hover:text-brand">{p.title}</h2>
+                <p class="mt-3 text-[16px] leading-7 text-black/60">{p.summary}</p>
+                <span class="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium tracking-wide text-brand uppercase">Read article &rarr;</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

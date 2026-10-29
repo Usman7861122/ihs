@@ -205,3 +205,41 @@
     }
   }
 }
+
+/* Minimal border animation for the Get Started buttons: a soft light travels around the edge */
+@property --btn-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes btn-border-spin {
+  to { --btn-angle: 360deg; }
+}
+.btn.btn-spin::after {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  right: 0;
+  transform: none;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--btn-angle),
+    rgba(228, 162, 105, 0) 0deg,
+    rgba(228, 162, 105, 0) 250deg,
+    rgba(228, 162, 105, 0.9) 320deg,
+    #fff 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  transition: none;
+  animation: btn-border-spin 3.6s linear infinite;
+}
+.btn.btn-spin:hover::after {
+  left: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn.btn-spin::after { animation: none; }
+}

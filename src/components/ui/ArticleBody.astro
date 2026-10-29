@@ -1,0 +1,98 @@
+---
+// Turns the simple article text (## headings, - bullets, 1. numbers, **bold**) into HTML.
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const inline = (s: string) =>
+  esc(s)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|[^*])\*([^*]+)\*/g, '$1<em>$2</em>')
+    .replace(/<\/(strong|em)> ([:;.,!?])/g, '</$1>$2');
+
+type Block = { t: 'h2' | 'h3' | 'p'; s: string } | { t: 'ul' | 'ol'; items: string[] };
+const blocks: Block[] = [];
+for (const line of text.split('\n')) {
+  if (!line.trim()) continue;
+  let m;
+  if ((m = line.match(/^###+ (.*)/))) blocks.push({ t: 'h3', s: m[1] });
+  else if ((m = line.match(/^## (.*)/))) blocks.push({ t: 'h2', s: m[1] });
+  else if ((m = line.match(/^- (.*)/))) {
+    const last = blocks[blocks.length - 1];
+    if (last && last.t === 'ul') last.items.push(m[1]);
+    else blocks.push({ t: 'ul', items: [m[1]] });
+  } else if ((m = line.match(/^\d+\. (.*)/))) {
+    const last = blocks[blocks.length - 1];
+    if (last && last.t === 'ol') last.items.push(m[1]);
+    else blocks.push({ t: 'ol', items: [m[1]] });
+  } else blocks.push({ t: 'p', s: line });
+}
+
+// The first numbered list is a contents list that repeats the headings
+const firstOl = blocks.findIndex((b) => b.t === 'ol');
+const hasHeadings = blocks.some((b) => b.t === 'h2');
+---
+
+<div class="article-body">
+  {
+    blocks.map((b, i) => {
+      if (b.t === 'h2') return <h2 set:html={inline(b.s)} />;
+      if (b.t === 'h3') return <h3 set:html={inline(b.s)} />;
+      if (b.t === 'p') return <p set:html={inline(b.s)} />;
+      if (b.t === 'ul') return <ul>{b.items.map((it) => <li set:html={inline(it)} />)}</ul>;
+      const isToc = hasHeadings && i === firstOl;
+      return (
+        <>
+          {isToc && <p class="toc-label">In this article</p>}
+          <ol class:list={[isToc && 'toc']}>{b.items.map((it) => <li set:html={inline(it)} />)}</ol>
+        </>
+      );
+    })
+  }
+</div>
+
+<style is:global>
+  .article-body { font-size: 18px; line-height: 1.85; color: rgba(0, 0, 0, 0.74); }
+  .article-body p { margin: 0 0 1.4em; }
+  .article-body h2 {
+    margin: 2.2em 0 0.7em;
+    font-size: clamp(26px, 3vw, 34px);
+    line-height: 1.25;
+    font-weight: 600;
+    color: #1a0c04;
+  }
+  .article-body h3 { margin: 1.8em 0 0.6em; font-size: 22px; font-weight: 600; color: #1a0c04; }
+  .article-body ul { margin: 0 0 1.6em; padding: 0; list-style: none; }
+  .article-body ul li { position: relative; margin-bottom: 0.9em; padding-left: 1.7em; }
+  .article-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0.15em;
+    top: 0.72em;
+    width: 0.55em;
+    height: 0.55em;
+    border-radius: 50%;
+    background: #c96f3a;
+  }
+  .article-body strong { color: #1a0c04; font-weight: 600; }
+  .article-body ol { margin: 0 0 1.6em; padding-left: 1.4em; }
+  .article-body ol li { margin-bottom: 0.5em; padding-left: 0.3em; }
+  .article-body ol li::marker { color: #c96f3a; font-weight: 600; }
+  .article-body .toc-label {
+    margin: 0 0 0.6em;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c96f3a;
+  }
+  .article-body ol.toc {
+    margin-bottom: 2.4em;
+    padding: 1.4em 1.6em 1.4em 3em;
+    border-radius: 20px;
+    background: #fbf3ec;
+    border: 1px solid rgba(201, 111, 58, 0.25);
+  }
+</style>

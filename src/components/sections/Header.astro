@@ -21,7 +21,7 @@ import { navItems, headerButtons } from '../../data/navigation';
         <NavMenu client:load />
 
         {headerButtons.map((btn) => (
-          <a href={btn.href} class="btn btn-sm btn-outline">
+          <a href={btn.href} class:list={['btn btn-sm btn-outline', btn.label === 'Get Started' && 'btn-spin']}>
             <span class="btn-label">{btn.label}</span>
           </a>
         ))}
@@ -51,7 +51,7 @@ import { navItems, headerButtons } from '../../data/navigation';
       </ul>
       <div class="mobile-cta">
         {headerButtons.map((btn) => (
-          <a href={btn.href} class="btn btn-sm btn-outline" data-nav><span class="btn-label">{btn.label}</span></a>
+          <a href={btn.href} class:list={['btn btn-sm btn-outline', btn.label === 'Get Started' && 'btn-spin']} data-nav><span class="btn-label">{btn.label}</span></a>
         ))}
       </div>
     </nav>

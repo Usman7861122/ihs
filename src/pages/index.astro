@@ -7,6 +7,10 @@ import Showcase from '../islands/Showcase';
 import Rankings from '../islands/Rankings';
 import AiOverviews from '../islands/AiOverviews';
 import EhrIntegrations from '../islands/EhrIntegrations';
+import Testimonials from '../islands/Testimonials';
+import Partners from '../islands/Partners';
+import Blogs from '../islands/Blogs';
+import SeoAudit from '../islands/SeoAudit';
 import Mission from '../islands/Mission';
 import { hero } from '../data/hero';
 import { about } from '../data/about';
@@ -15,6 +19,10 @@ import { showcase } from '../data/showcase';
 import { rankings } from '../data/rankings';
 import { aiOverviews } from '../data/aiOverviews';
 import { ehr } from '../data/ehr';
+import { testimonials } from '../data/testimonials';
+import { partners } from '../data/partners';
+import { blogs } from '../data/blogs';
+import { seoAudit } from '../data/seoAudit';
 import { mission } from '../data/mission';
 ---
 
@@ -28,5 +36,9 @@ import { mission } from '../data/mission';
     <EhrIntegrations client:visible {...ehr} />
     <Mission client:visible {...mission} />
     <AiOverviews client:visible {...aiOverviews} />
+    <SeoAudit client:visible {...seoAudit} />
+    <Testimonials client:visible {...testimonials} />
+    <Blogs client:visible {...blogs} />
+    <Partners client:visible {...partners} />
   </main>
 </BaseLayout>
