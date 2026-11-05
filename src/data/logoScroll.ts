@@ -4,9 +4,9 @@ export const logoScroll = {
   stats: [
     { value: '10+', label: 'Years in healthcare marketing' },
     { value: '5.0', label: 'Google review rating' },
-    { value: '200+', label: 'Practices we have helped' },
+    { value: '300+', label: 'Practices we have helped' },
     { value: '3x', label: 'More patient calls on average' },
-    { value: '1:4', label: 'Team to client ratio' },
-    { value: '90%', label: 'Client retention rate' },
+    { value: '89+', label: 'Onsite Video Shots' },
+    { value: '94%', label: 'Client retention rate' },
   ],
 };

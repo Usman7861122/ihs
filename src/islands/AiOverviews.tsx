@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Play, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
 
 interface Point {
   title: string;
@@ -33,15 +33,6 @@ export default function AiOverviews({
   cta,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [muted, setMuted] = useState(true);
-  const toggleSound = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.muted = !v.muted;
-    setMuted(v.muted);
-    if (!v.muted) void v.play().catch(() => {});
-  };
-
   return (
     <section
       id="ai-overviews"
@@ -144,6 +135,8 @@ export default function AiOverviews({
                 className="absolute inset-0 size-full object-cover"
                 autoPlay
                 muted
+                disablePictureInPicture
+                controlsList="nodownload noremoteplayback"
                 loop
                 playsInline
                 preload="metadata"
@@ -155,21 +148,6 @@ export default function AiOverviews({
                 </span>
                 <span className="text-[15px]">Explainer video goes here (16:9)</span>
               </div>
-            )}
-            {video && (
-              <button
-                type="button"
-                onClick={toggleSound}
-                aria-label={muted ? 'Turn sound on' : 'Turn sound off'}
-                aria-pressed={!muted}
-                className="absolute right-4 bottom-4 flex size-11 cursor-pointer items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-md transition-colors duration-300 hover:bg-brand md:right-5 md:bottom-5 md:size-12"
-              >
-                {muted ? (
-                  <VolumeX className="size-5 md:size-6" strokeWidth={1.8} aria-hidden="true" />
-                ) : (
-                  <Volume2 className="size-5 md:size-6" strokeWidth={1.8} aria-hidden="true" />
-                )}
-              </button>
             )}
           </div>
         </motion.div>

@@ -20,7 +20,8 @@ export default function LogoScroll({ label, logo, stats }: Props) {
   const gridScale = useTransform(p, [0, 0.25, 0.65, 1], [10, 10, 1, 1]);
   const gridOpacity = useTransform(p, [0, 0.4, 0.65, 1], [0, 0, 1, 1]);
   const labelOpacity = useTransform(p, [0.63, 0.69, 1], [0, 1, 1]);
-  const hintOpacity = useTransform(p, [0, 0.12], [1, 0]);
+  const hintOpacity = useTransform(p, [0, 0.06], [1, 0]);
+  const hintDisplay = useTransform(p, (v) => (v > 0.08 ? 'none' : 'block'));
 
   return (
     <section
@@ -42,8 +43,8 @@ export default function LogoScroll({ label, logo, stats }: Props) {
         />
 
         <motion.p
-          style={{ opacity: hintOpacity }}
-          className="absolute bottom-28 text-xs uppercase tracking-[0.3em] text-white/50"
+          style={{ opacity: hintOpacity, display: hintDisplay }}
+          className="pointer-events-none absolute bottom-6 z-0 text-xs uppercase tracking-[0.3em] text-white/50"
         >
           Scroll
         </motion.p>
