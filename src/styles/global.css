@@ -61,3 +61,11 @@
     transition: none;
   }
 }
+
+/* Never show Safari's big play button on background videos */
+video::-webkit-media-controls,
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}

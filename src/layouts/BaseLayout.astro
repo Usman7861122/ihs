@@ -25,5 +25,8 @@ const { title, description = '' } = Astro.props;
     <slot />
     <Footer />
     <CookieConsent client:load />
+    <script>
+      import '../scripts/video-autoplay';
+    </script>
   </body>
 </html>
