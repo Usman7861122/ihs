@@ -1,0 +1,67 @@
+---
+// Reusable hero for every inner page (About, Services, Who We Help ...)
+interface Props {
+  eyebrow: string;
+  title: string;
+  accent?: string;
+  text: string;
+  image?: string;
+  crumbs?: { label: string; href?: string }[];
+  buttons?: { label: string; href: string; variant?: 'primary' | 'glass' }[];
+  stats?: { value: string; label: string }[];
+}
+const { eyebrow, title, accent, text, image, crumbs = [], buttons = [], stats = [] } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-[#120d0a] px-2.5 pt-[calc(var(--header-h)+64px)] pb-[130px] text-white md:pb-[170px]">
+  {image && <img src={image} alt="" class="absolute inset-0 size-full object-cover opacity-40" fetchpriority="high" />}
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(18,13,10,0.55),rgba(18,13,10,0.92))]"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute -top-24 right-[6%] size-[560px] rounded-full bg-brand/25 blur-[150px]"></div>
+
+  <div class="relative mx-auto max-w-[1100px]">
+    {
+      crumbs.length > 0 && (
+        <nav aria-label="Breadcrumb" class="mb-8 flex items-center gap-2 text-[14px] text-white/55">
+          {crumbs.map((c, i) => (
+            <>
+              {i > 0 && <span aria-hidden="true">/</span>}
+              {c.href ? <a href={c.href} class="transition-colors hover:text-brand-light">{c.label}</a> : <span class="text-white/85">{c.label}</span>}
+            </>
+          ))}
+        </nav>
+      )
+    }
+    <p class="flex items-center gap-3 text-[14px] leading-none font-semibold tracking-[3px] text-brand-light uppercase">
+      <span aria-hidden="true" class="h-0.5 w-10 bg-brand"></span>
+      {eyebrow}
+    </p>
+    <h1 class="mt-6 max-w-[820px] text-[clamp(40px,7vw,84px)] leading-[1.04] font-medium">
+      {title}
+      {accent && <span class="font-(family-name:--font-accent) font-normal text-brand italic"> {accent}</span>}
+    </h1>
+    <p class="mt-6 max-w-[600px] text-lead text-white/70">{text}</p>
+    {
+      buttons.length > 0 && (
+        <div class="mt-9 flex flex-wrap gap-3">
+          {buttons.map((b) => (
+            <a href={b.href} class={`btn btn-lg ${b.variant === 'glass' ? 'btn-glass' : 'btn-primary btn-spin'}`}>
+              <span class="btn-label">{b.label}</span>
+            </a>
+          ))}
+        </div>
+      )
+    }
+    {
+      stats.length > 0 && (
+        <dl class="mt-14 grid max-w-[760px] grid-cols-3 gap-4 border-t border-white/15 pt-8">
+          {stats.map((s) => (
+            <div>
+              <dt class="font-(family-name:--font-accent) text-4xl text-brand-light md:text-5xl">{s.value}</dt>
+              <dd class="mt-1 text-[14px] text-white/60">{s.label}</dd>
+            </div>
+          ))}
+        </dl>
+      )
+    }
+  </div>
+</section>

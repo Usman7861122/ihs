@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InnerHero from '../components/sections/InnerHero.astro';
+import Reveal from '../components/ui/Reveal.astro';
+import { whoWeHelp as w } from '../data/whoWeHelp';
+---
+
+<BaseLayout title="Who We Help | Iron Health Solutions" description="Iron Health Solutions helps private medical practices at every stage, from brand new practices to established ones, with SEO, reputation and patient acquisition.">
+  <main>
+    <InnerHero
+      {...w.hero}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Who We Help' }]}
+      buttons={[
+        { label: 'Get Started', href: '#get-started' },
+        { label: 'See Pricing', href: '/iron-packages', variant: 'glass' },
+      ]}
+    />
+
+    <!-- Two stages -->
+    <section class="relative -mt-12 rounded-t-[44px] bg-[#fbf3ec] px-2.5 py-[88px] text-ink md:py-[120px]">
+      <div class="mx-auto max-w-[1100px]">
+        <div class="mx-auto max-w-[680px] text-center" data-reveal>
+          <p class="text-[14px] leading-none font-semibold tracking-[3px] text-brand uppercase">{w.stages.eyebrow}</p>
+          <h2 class="mt-5 text-[clamp(32px,4.4vw,52px)] leading-[1.1] font-medium">
+            {w.stages.title} <span class="font-(family-name:--font-accent) font-normal text-brand italic">{w.stages.accent}</span>
+          </h2>
+          <p class="mt-4 text-[17px] leading-8 text-black/60">{w.stages.text}</p>
+        </div>
+        <div class="mt-12 grid gap-6 md:grid-cols-2">
+          {
+            w.stages.cards.map((c, i) => (
+              <a href={c.href} data-reveal style={`--reveal-delay:${i * 120}ms`} class="group block overflow-hidden rounded-[28px] border border-black/5 bg-white shadow-[0_30px_70px_-40px_rgba(143,66,34,0.6)] transition-shadow duration-500 hover:shadow-[0_0_0_2px_#C96F3A,0_30px_60px_-30px_rgba(201,111,58,0.6)]">
+                <div class="relative aspect-[16/9] overflow-hidden">
+                  <img src={c.image} alt={c.title} loading="lazy" class="absolute inset-0 size-full object-cover transition-transform duration-[900ms] group-hover:scale-105" />
+                  <span class="absolute top-4 left-4 rounded-full bg-brand px-3.5 py-1 text-[12px] font-semibold tracking-[2px] text-white uppercase">{c.tag}</span>
+                </div>
+                <div class="p-7 md:p-9">
+                  <h3 class="text-[clamp(24px,2.6vw,32px)] leading-tight font-medium">{c.title}</h3>
+                  <p class="mt-2 text-[16px] leading-7 text-black/60">{c.text}</p>
+                  <span class="btn btn-outline mt-6"><span class="btn-label">Learn more</span><span class="btn-icon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- New practices -->
+    <section id="new" class="relative -mt-12 scroll-mt-(--header-h) rounded-t-[44px] bg-[#fffaf5] px-2.5 py-[88px] text-ink md:py-[120px]">
+      <div class="mx-auto grid max-w-[1100px] items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div class="relative mx-auto w-full max-w-[420px] lg:max-w-none" data-reveal>
+          <div class="overflow-hidden rounded-[28px] shadow-[0_30px_80px_-30px_rgba(143,66,34,0.5)]">
+            <img src={w.newPractice.image} alt="Physician in a new medical clinic" loading="lazy" class="aspect-[4/5] size-full object-cover" />
+          </div>
+          <span aria-hidden="true" class="absolute -top-5 -left-5 -z-10 size-[160px] rounded-full bg-brand/15 blur-2xl"></span>
+        </div>
+        <div>
+          <div data-reveal>
+            <p class="flex items-center gap-3 text-[14px] leading-none font-semibold tracking-[3px] text-brand uppercase">
+              <span aria-hidden="true" class="h-0.5 w-10 bg-brand"></span>{w.newPractice.eyebrow}
+            </p>
+            <h2 class="mt-5 text-[clamp(32px,4.4vw,52px)] leading-[1.1] font-medium">
+              {w.newPractice.title} <span class="font-(family-name:--font-accent) font-normal text-brand italic">{w.newPractice.accent}</span>
+            </h2>
+            <p class="mt-5 text-[17px] leading-8 text-black/65">{w.newPractice.text}</p>
+          </div>
+          <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+            {
+              w.newPractice.items.map((it, i) => (
+                <li data-reveal style={`--reveal-delay:${i * 90}ms`} class="rounded-2xl border border-brand/15 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand/50 hover:shadow-[0_20px_50px_-30px_rgba(201,111,58,0.7)]">
+                  <span class="flex size-9 items-center justify-center rounded-full bg-brand/10 font-(family-name:--font-accent) text-[17px] text-brand italic">{i + 1}</span>
+                  <h3 class="mt-4 text-[19px] leading-snug font-medium">{it.title}</h3>
+                  <p class="mt-2 text-[15px] leading-7 text-black/60">{it.text}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Established practices -->
+    <section id="established" class="relative -mt-12 scroll-mt-(--header-h) rounded-t-[44px] bg-[#181310] px-2.5 py-[88px] text-white md:py-[120px]">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_60%_at_85%_0%,rgba(201,111,58,0.2),transparent_70%)]"></div>
+      <div class="relative mx-auto max-w-[1100px]">
+        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div data-reveal>
+            <p class="flex items-center gap-3 text-[14px] leading-none font-semibold tracking-[3px] text-brand-light uppercase">
+              <span aria-hidden="true" class="h-0.5 w-10 bg-brand"></span>{w.established.eyebrow}
+            </p>
+            <h2 class="mt-5 text-[clamp(32px,4.4vw,52px)] leading-[1.1] font-medium">
+              {w.established.title} <span class="font-(family-name:--font-accent) font-normal text-brand-light italic">{w.established.accent}</span>
+            </h2>
+            <p class="mt-5 text-[17px] leading-8 text-white/65">{w.established.text}</p>
+          </div>
+          <div class="overflow-hidden rounded-[28px] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]" data-reveal style="--reveal-delay:120ms">
+            <img src={w.established.image} alt="Experienced doctor with a patient" loading="lazy" class="aspect-[4/3] size-full object-cover" />
+          </div>
+        </div>
+        <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            w.established.items.map((it, i) => (
+              <div data-reveal style={`--reveal-delay:${(i % 3) * 90}ms`} class="group relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-b from-white/[0.07] to-white/[0.02] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-brand-light/40">
+                <span class="absolute inset-x-7 top-0 h-px bg-linear-to-r from-transparent via-brand-light to-transparent opacity-60"></span>
+                <span aria-hidden="true" class="font-(family-name:--font-accent) text-3xl text-brand-light/80 italic">0{i + 1}</span>
+                <h3 class="mt-4 text-[21px] leading-tight font-medium">{it.title}</h3>
+                <p class="mt-2 text-[15px] leading-7 text-white/60">{it.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing band -->
+    <section class="relative -mt-12 rounded-t-[44px] bg-[#fbf3ec] px-2.5 py-[88px] md:py-[120px]">
+      <div class="relative mx-auto max-w-[1100px] overflow-hidden rounded-[32px] shadow-[0_30px_80px_-30px_rgba(143,66,34,0.55)]" data-reveal>
+        <img src={w.closing.image} alt="A friendly healthcare team" loading="lazy" class="absolute inset-0 size-full object-cover" />
+        <div aria-hidden="true" class="absolute inset-0 bg-linear-to-r from-[#120d0a]/95 via-[#120d0a]/75 to-[#120d0a]/20"></div>
+        <div class="relative px-7 py-14 text-white md:px-14 md:py-20">
+          <p class="flex items-center gap-3 text-[14px] leading-none font-semibold tracking-[3px] text-brand-light uppercase">
+            <span aria-hidden="true" class="h-0.5 w-10 bg-brand"></span>{w.closing.eyebrow}
+          </p>
+          <h2 class="mt-5 max-w-[560px] text-[clamp(30px,4vw,48px)] leading-[1.12] font-medium">{w.closing.title}</h2>
+          <p class="mt-5 max-w-[480px] text-[17px] leading-8 text-white/75">{w.closing.text}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href={w.closing.primary.href} class="btn btn-primary btn-lg btn-spin"><span class="btn-label">{w.closing.primary.label}</span></a>
+            <a href={w.closing.secondary.href} class="btn btn-glass btn-lg"><span class="btn-label">{w.closing.secondary.label}</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <Reveal />
+  </main>
+</BaseLayout>
