@@ -11,5 +11,5 @@ export const aiOverviews = {
     { title: 'JSON-LD facts', text: 'Your services, doctors and locations, mapped out clearly.' },
     { title: 'AI Overview visibility', text: 'Be the practice AI recommends when patients ask.' },
   ],
-  cta: { label: 'Get an AI SEO Audit', href: '#get-started' },
+  cta: { label: 'Get an AI SEO Audit', href: '/contact/' },
 };

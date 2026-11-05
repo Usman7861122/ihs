@@ -42,16 +42,16 @@ export const navItems: NavItem[] = [
   { label: 'Portfolio', href: '/portfolio' },
   {
     label: 'Resources',
-    href: '/recourses',
+    href: '/blog/',
     children: [
       { label: 'Blogs', desc: 'Patient education that improves SEO and authority.', href: '/blog/' },
       { label: 'Iron Packages', desc: 'High-performance web solutions to grow online.', href: '/iron-packages' },
-      { label: 'Practice Scanner', desc: 'Check your site speed, SEO health and visibility.', href: 'https://reputation.ironhealthsolutions.com/scan-business/' },
+      { label: 'Practice Scanner', desc: 'Check your site speed, SEO health and visibility.', href: '/practice-scanner/' },
     ],
   },
 ];
 
 export const headerButtons = [
-  { label: 'Get Started', href: '#get-started', variant: 'solid' },
+  { label: 'Get Started', href: '/contact/', variant: 'solid' },
   { label: 'See Pricing', href: '/iron-packages', variant: 'outline' },
 ] as const;

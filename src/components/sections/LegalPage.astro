@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InnerHero from './InnerHero.astro';
+import Reveal from '../ui/Reveal.astro';
+import type { LegalDoc } from '../../data/legal';
+interface Props { d: LegalDoc }
+const { d } = Astro.props;
+const id = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const inline = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\*\*(.+?)\*\*/g, '<strong class="text-ink">$1</strong>');
+const others = [['Privacy Policy', '/privacy-policy/'], ['Terms & Conditions', '/terms-condition/'], ['Cookie Policy', '/cookie-policy/']].filter(([, h]) => !h.includes(d.slug));
+---
+
+<BaseLayout title={`${d.title} | Iron Health Solutions`} description={d.seo}>
+  <main>
+    <InnerHero
+      eyebrow={d.eyebrow}
+      title={d.title}
+      text={`${d.text} Last updated: ${d.updated}.`}
+      image="/images/heroes/hero-who-we-help.jpg"
+      crumbs={[{ label: 'Home', href: '/' }, { label: d.title }]}
+    />
+    <section class="relative -mt-12 rounded-t-[44px] bg-[#fbf3ec] px-2.5 pt-[72px] pb-[130px] text-ink md:pt-[96px] md:pb-[160px]">
+      <div class="mx-auto grid max-w-[1100px] gap-10 lg:grid-cols-[260px_1fr]">
+        <aside class="lg:sticky lg:top-[calc(var(--header-h)+24px)] lg:self-start">
+          <div class="rounded-[24px] border border-black/10 bg-white p-6">
+            <p class="text-[13px] font-semibold tracking-[2.5px] text-brand uppercase">On this page</p>
+            <ol class="mt-4 space-y-1">
+              {d.sections.map((s, i) => (
+                <li><a href={`#${id(s.title)}`} class="block rounded-lg px-3 py-1.5 text-[14.5px] text-black/65 transition-all duration-300 hover:translate-x-1 hover:bg-brand/10 hover:text-brand">{i + 1}. {s.title}</a></li>
+              ))}
+            </ol>
+          </div>
+          <div class="mt-4 rounded-[24px] border border-black/10 bg-white p-6">
+            <p class="text-[13px] font-semibold tracking-[2.5px] text-brand uppercase">Cookie choices</p>
+            <button type="button" data-cookie-settings class="btn btn-outline btn-sm mt-4"><span class="btn-label">Cookie Settings</span></button>
+          </div>
+        </aside>
+        <article class="rounded-[28px] border border-black/10 bg-white p-7 md:p-12">
+          {d.sections.map((s, i) => (
+            <section id={id(s.title)} class="scroll-mt-[calc(var(--header-h)+24px)] [&:not(:first-child)]:mt-10">
+              <h2 class="text-[26px] font-medium"><span class="mr-2 font-(family-name:--font-accent) text-brand">{i + 1}.</span>{s.title}</h2>
+              {s.paragraphs?.map((p) => <p class="mt-3 text-[16.5px] leading-8 text-black/65" set:html={inline(p)} />)}
+              {s.bullets && (
+                <ul class="mt-4 space-y-2.5">
+                  {s.bullets.map((b) => (
+                    <li class="flex gap-3 text-[16.5px] leading-7 text-black/65"><span aria-hidden="true" class="mt-3 size-1.5 shrink-0 rounded-full bg-brand"></span><span set:html={inline(b)} /></li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
+          <div class="mt-12 flex flex-wrap gap-3 border-t border-black/10 pt-8">
+            {others.map(([l, h]) => <a href={h} class="btn btn-outline btn-sm"><span class="btn-label">{l}</span></a>)}
+          </div>
+        </article>
+      </div>
+    </section>
+    <Reveal />
+  </main>
+</BaseLayout>

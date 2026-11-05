@@ -26,6 +26,16 @@ export interface BlogPost {
 
 // Short summaries written for the cards and the top of each article
 const SUMMARIES: Record<string, string> = {
+  'local-seo-checklist-for-doctors-in-2026':
+    "Use this simple checklist to help patients near you find your practice on Google.",
+  'how-to-get-more-patient-reviews-without-being-pushy':
+    "Easy, polite ways to collect more five star reviews and build trust with new patients.",
+  'how-ai-chatbots-help-medical-practices-book-more-patients':
+    "Learn how an AI chat assistant answers patient questions day and night and turns visitors into booked visits.",
+  '7-website-mistakes-that-cost-medical-practices-patients':
+    "Slow pages, hidden phone numbers and other common errors, and how to fix each one.",
+  'a-simple-90-day-marketing-plan-for-a-medical-practice':
+    "A month by month plan to fix the basics, grow your visibility and keep new patients coming.",
   '7-proven-dental-implant-marketing-strategies-to-grow-your-practice-in-2026':
     'Seven ways dental implant practices can reach more patients, from local SEO and education to paid ads, financing and reviews.',
   '7-med-spa-marketing-strategies-to-attract-more-clients-in-2026':

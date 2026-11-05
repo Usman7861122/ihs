@@ -72,7 +72,15 @@ import { footer } from '../../data/footer';
             </li>
           ))
         }
+        <li>
+          <button type="button" data-cookie-settings class="cursor-pointer transition-colors duration-300 hover:text-brand-light">Cookie Settings</button>
+        </li>
       </ul>
     </div>
   </div>
 </footer>
+<script>
+  document.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('[data-cookie-settings]')) window.dispatchEvent(new CustomEvent('ihs:open-cookie-settings'));
+  });
+</script>

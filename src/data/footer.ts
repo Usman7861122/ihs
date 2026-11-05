@@ -6,7 +6,7 @@ export const footer = {
   cta: {
     title: 'Ready to Grow Your Practice?',
     text: 'Partner with Iron Health Solutions to attract more patients, strengthen your online presence, and streamline your digital strategy.',
-    button: { label: 'Get Started', href: '#get-started' },
+    button: { label: 'Get Started', href: '/contact/' },
   },
   about:
     'At Iron Health Solutions, we help healthcare practices grow through innovative digital marketing, seamless technology integrations, and data-driven strategies. Our mission is to empower providers to attract more patients, build trust online, and achieve long-term success in an evolving healthcare landscape.',
@@ -21,6 +21,7 @@ export const footer = {
   legal: [
     { label: 'Terms & Conditions', href: '/terms-condition' },
     { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Cookie Policy', href: '/cookie-policy' },
   ],
   copyright: `© Copyright ${new Date().getFullYear()}. All Rights Reserved.`,
 };

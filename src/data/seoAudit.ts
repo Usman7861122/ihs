@@ -7,7 +7,7 @@ export const seoAudit = {
   text: 'Get your local SEO performance scorecard.',
   cta: {
     label: 'Scan Your Business',
-    href: 'https://reputation.ironhealthsolutions.com/scan-business/',
+    href: '/practice-scanner/',
   },
   // Sample scorecard shown as an illustration
   sampleLabel: 'Sample scorecard',

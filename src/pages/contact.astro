@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InnerHero from '../components/sections/InnerHero.astro';
+import Reveal from '../components/ui/Reveal.astro';
+import ContactForm from '../islands/ContactForm';
+import { contact as o } from '../data/contact';
+---
+
+<BaseLayout title={o.seo.title} description={o.seo.description}>
+  <main>
+    <InnerHero
+      eyebrow="Get Started"
+      title="Let's grow your practice"
+      accent="together."
+      text="Tell us about your practice. We will review your online presence and share a clear plan. Free, with no pressure."
+      image="/images/heroes/hero-who-we-help.jpg"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+      buttons={[{ label: 'Scan My Practice', href: '/practice-scanner/', variant: 'glass' }]}
+    />
+    <section class="relative -mt-12 rounded-t-[44px] bg-[#fbf3ec] px-2.5 pt-[72px] pb-[130px] text-ink md:pt-[96px] md:pb-[160px]">
+      <div class="mx-auto grid max-w-[1100px] items-start gap-10 lg:grid-cols-[1fr_1.15fr]">
+        <div data-reveal>
+          <p class="text-[14px] leading-none font-semibold tracking-[3px] text-brand uppercase">What happens next</p>
+          <h2 class="mt-5 text-[clamp(30px,4vw,46px)] leading-[1.1] font-medium">Four easy steps, <span class="font-(family-name:--font-accent) font-normal text-brand italic">no surprises.</span></h2>
+          <ol class="mt-8 space-y-4">
+            {o.steps.map((s, i) => (
+              <li class="group flex gap-4 rounded-[22px] border border-black/10 bg-white p-5 transition-all duration-300 hover:translate-x-1.5 hover:border-brand/60 hover:shadow-[0_20px_44px_-28px_rgba(201,111,58,0.7)]">
+                <span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand text-[17px] font-semibold text-white transition-transform duration-300 group-hover:scale-110">{i + 1}</span>
+                <div>
+                  <h3 class="text-[19px] font-medium">{s.title}</h3>
+                  <p class="mt-1 text-[15.5px] leading-7 text-black/60">{s.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <div class="mt-6 rounded-[22px] bg-gradient-to-br from-brand-deep via-brand to-brand-light p-6 text-white">
+            <h3 class="text-[20px] font-medium">Want a quick check first?</h3>
+            <p class="mt-1.5 text-[15.5px] leading-7 text-white/85">Run our free Practice Scanner and see your listings, keywords and reviews in one minute.</p>
+            <a href="/practice-scanner/" class="btn btn-glass btn-sm mt-4"><span class="btn-label">Scan my practice</span></a>
+          </div>
+        </div>
+        <div data-reveal style="--reveal-delay:120ms" class="relative lg:sticky lg:top-[calc(var(--header-h)+24px)]">
+          <ContactForm client:load endpoint={o.endpoint} interests={o.interests} />
+        </div>
+      </div>
+    </section>
+    <Reveal />
+  </main>
+</BaseLayout>

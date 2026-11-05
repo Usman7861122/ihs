@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServicePage from '../../components/sections/ServicePage.astro';
+import { websiteDesign as s } from '../../data/services/websiteDesign';
+---
+
+<BaseLayout title={s.seo.title} description={s.seo.description}>
+  <main>
+    <ServicePage s={s} />
+  </main>
+</BaseLayout>

@@ -57,9 +57,9 @@ const NAV_ITEMS: NavMenuItem[] = [
       {
         title: 'Resources',
         items: [
-          { label: 'Blogs', description: 'Patient education that improves SEO and authority.', icon: Newspaper, href: '/blogs' },
+          { label: 'Blogs', description: 'Patient education that improves SEO and authority.', icon: Newspaper, href: '/blog/' },
           { label: 'Iron Packages', description: 'High-performance web solutions to grow online.', icon: Package, href: '/iron-packages' },
-          { label: 'Practice Scanner', description: 'Check your site speed, SEO health and visibility.', icon: ScanSearch, href: 'https://reputation.ironhealthsolutions.com/scan-business/' },
+          { label: 'Practice Scanner', description: 'Check your site speed, SEO health and visibility.', icon: ScanSearch, href: '/practice-scanner/' },
         ],
       },
     ],

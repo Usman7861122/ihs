@@ -3,7 +3,7 @@ export const mission = {
   titleStart: 'Our',
   titleAccent: 'Mission',
   text: 'At Iron Health Solutions, we help healthcare practices grow through innovative digital marketing, seamless technology integrations, and data-driven strategies. Our mission is to empower providers to attract more patients, build trust online, and achieve long-term success in an evolving healthcare landscape.',
-  cta: { label: 'Get Started', href: '#get-started' },
+  cta: { label: 'Get Started', href: '/contact/' },
   // Web-optimised copy of public/images/Mission.jpg (the original, 3854px wide)
   image: '/images/mission-web.jpg',
 };

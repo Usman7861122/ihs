@@ -1,44 +1,78 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import InnerHero from '../../components/sections/InnerHero.astro';
+import Reveal from '../../components/ui/Reveal.astro';
 import { blogPosts } from '../../data/blogPosts';
+
+const [featured, ...rest] = blogPosts;
+const arrow = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
 ---
 
-<BaseLayout title="Blog | IHS" description="Simple, useful ideas to help your practice get found, trusted and booked.">
+<BaseLayout title="Blog | Medical Marketing Tips | Iron Health Solutions" description="Simple, useful ideas to help your practice get found, trusted and booked.">
   <main>
-    <section class="relative overflow-hidden bg-[#120d0a] px-2.5 pt-[calc(var(--header-h)+56px)] pb-[96px] text-white md:pb-[120px]">
-      <div aria-hidden="true" class="pointer-events-none absolute inset-0">
-        <div class="absolute -top-24 right-[8%] size-[560px] rounded-full bg-brand/25 blur-[150px]"></div>
-      </div>
-      <div class="relative mx-auto max-w-[1100px]">
-        <p class="flex items-center gap-3 text-[14px] leading-none font-semibold tracking-[3px] text-brand-light uppercase">
-          <span aria-hidden="true" class="h-0.5 w-10 bg-brand"></span>
-          Blogs
-        </p>
-        <h1 class="mt-6 text-[clamp(36px,6vw,64px)] leading-[1.1] font-medium italic">
-          Our <span class="font-(family-name:--font-accent) font-normal text-brand">Blog</span>
-        </h1>
-        <p class="mt-5 max-w-[520px] text-lead text-white/65">Simple, useful ideas to help your practice get found, trusted and booked.</p>
+    <InnerHero
+      eyebrow="Our Blog"
+      title="Simple ideas to help your practice"
+      accent="get found and booked."
+      text="Short, clear guides on local SEO, reviews, websites, ads and AI for medical practices."
+      image="/images/heroes/hero-join.jpg"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Blog' }]}
+      buttons={[
+        { label: 'Scan My Practice', href: '/practice-scanner/', variant: 'primary' },
+        { label: 'See Services', href: '/services/', variant: 'glass' },
+      ]}
+    />
+
+    <section class="relative -mt-12 rounded-t-[44px] bg-[#fbf3ec] px-2.5 py-[88px] text-ink md:py-[120px]">
+      <div class="mx-auto max-w-[1100px]">
+        <a href={featured.href} data-reveal class="group grid overflow-hidden rounded-[32px] border border-black/10 bg-white shadow-[0_24px_60px_-40px_rgba(120,60,20,0.6)] transition-shadow duration-300 hover:shadow-[0_0_0_2px_#C96F3A,0_30px_60px_-30px_rgba(201,111,58,0.6)] lg:grid-cols-2">
+          <div class="aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[380px]">
+            <img src={featured.image} alt={featured.title} class="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          </div>
+          <div class="flex flex-col justify-center p-7 md:p-12">
+            <span class="self-start rounded-full bg-brand/10 px-3 py-1 text-[13px] font-semibold tracking-wide text-brand uppercase">Latest article</span>
+            <p class="mt-5 text-[14px] text-black/50">{featured.date} &middot; {featured.read}</p>
+            <h2 class="mt-3 text-[clamp(26px,3vw,38px)] leading-tight font-medium transition-colors group-hover:text-brand">{featured.title}</h2>
+            <p class="mt-4 text-[17px] leading-8 text-black/60">{featured.summary}</p>
+            <span class="btn btn-outline mt-7 self-start"><span class="btn-label">Read article</span><span class="btn-icon" set:html={arrow} /></span>
+          </div>
+        </a>
+
+        <div class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {
+            rest.map((p, i) => (
+              <a href={p.href} data-reveal style={`--reveal-delay:${(i % 3) * 100}ms`} class="group flex flex-col overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_24px_60px_-40px_rgba(120,60,20,0.6)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_0_2px_#C96F3A,0_30px_60px_-30px_rgba(201,111,58,0.6)]">
+                <div class="aspect-[16/10] overflow-hidden">
+                  <img src={p.image} alt={p.title} loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <div class="flex flex-1 flex-col p-6 md:p-7">
+                  <p class="text-[14px] text-black/50">{p.date} &middot; {p.read}</p>
+                  <h2 class="mt-2.5 text-[21px] leading-snug font-medium transition-colors group-hover:text-brand">{p.title}</h2>
+                  <p class="mt-3 flex-1 text-[16px] leading-7 text-black/60">{p.summary}</p>
+                  <span class="btn btn-outline btn-sm mt-5 self-start"><span class="btn-label">Read article</span><span class="btn-icon" set:html={arrow} /></span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
       </div>
     </section>
 
-    <section class="-mt-12 rounded-t-[44px] bg-[#fbf3ec] px-2.5 py-[72px] md:py-[96px] relative">
-      <div class="mx-auto grid max-w-[1100px] gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {
-          blogPosts.map((p) => (
-            <a href={p.href} class="group flex flex-col overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_24px_60px_-40px_rgba(120,60,20,0.6)] transition-shadow duration-300 hover:shadow-[0_0_0_2px_#C96F3A,0_30px_60px_-30px_rgba(201,111,58,0.6)]">
-              <div class="aspect-[16/10] overflow-hidden">
-                <img src={p.image} alt="" loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-              <div class="flex flex-1 flex-col p-6 md:p-7">
-                <p class="text-[14px] text-black/50">{p.date} &middot; {p.read}</p>
-                <h2 class="mt-2.5 text-[21px] leading-snug font-medium transition-colors group-hover:text-brand">{p.title}</h2>
-                <p class="mt-3 text-[16px] leading-7 text-black/60">{p.summary}</p>
-                <span class="btn btn-outline btn-sm mt-5 self-start"><span class="btn-label">Read article</span><span class="btn-icon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span>
-              </div>
-            </a>
-          ))
-        }
+    <section class="relative -mt-12 rounded-t-[44px] bg-[#fffaf5] px-2.5 pt-[88px] pb-[130px] text-ink md:pt-[110px] md:pb-[160px]">
+      <div class="mx-auto max-w-[1100px]">
+        <div data-reveal class="group relative overflow-hidden rounded-[36px] bg-gradient-to-br from-brand-deep via-brand to-brand-light px-6 py-14 text-center text-white shadow-[0_40px_90px_-40px_rgba(143,66,34,0.8)] md:px-14 md:py-20">
+          <span aria-hidden="true" class="absolute -top-24 -left-24 size-[320px] rounded-full bg-white/10 transition-transform duration-700 group-hover:scale-125"></span>
+          <span aria-hidden="true" class="absolute -right-20 -bottom-28 size-[360px] rounded-full bg-black/10 transition-transform duration-700 group-hover:scale-125"></span>
+          <div class="relative">
+            <h2 class="text-[clamp(30px,4.4vw,52px)] leading-[1.1] font-medium">How does your practice look online?</h2>
+            <p class="mx-auto mt-5 max-w-[620px] text-lead text-white/85">Run our free Practice Scanner and get a simple report on your listings, keywords and reviews.</p>
+            <div class="mt-9 flex flex-wrap justify-center gap-3">
+              <a href="/practice-scanner/" class="btn btn-glass btn-lg"><span class="btn-label">Scan my practice</span></a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+    <Reveal />
   </main>
 </BaseLayout>

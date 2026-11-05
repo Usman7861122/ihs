@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InnerHero from '../components/sections/InnerHero.astro';
+import Reveal from '../components/ui/Reveal.astro';
+import { Search, MapPin, Star, ListChecks, Gauge, FileText } from 'lucide-react';
+
+const SCAN = 'https://reputation.ironhealthsolutions.com/scan-business/';
+const steps = [
+  { t: 'Enter your practice', d: 'Type your practice name, your name, phone and email. It takes less than one minute.' },
+  { t: 'We scan the web', d: 'The scanner checks Google, Facebook, Bing, Foursquare and more for your listings and reviews.' },
+  { t: 'Get your report', d: 'See what is right, what is wrong and what to fix first, in simple words.' },
+];
+const gets = [
+  { icon: MapPin, t: 'Listing accuracy', d: 'Is your name, address and phone the same everywhere? Wrong details cost you patients.' },
+  { icon: Search, t: 'Keyword visibility', d: 'See where you show up when patients search for your services near you.' },
+  { icon: Star, t: 'Reputation score', d: 'Check your star rating and reviews across the main review sites.' },
+  { icon: ListChecks, t: 'Missing listings', d: 'Find the directories where you are not listed yet.' },
+  { icon: Gauge, t: 'Competitor view', d: 'Learn how you compare with other practices in your area.' },
+  { icon: FileText, t: 'Clear action list', d: 'A short list of fixes, ordered by what will help most.' },
+];
+const icons = { Search, MapPin, Star, ListChecks, Gauge, FileText };
+---
+
+<BaseLayout title="Practice Scanner | Free Local SEO Audit | Iron Health Solutions" description="Scan your practice for free. See your listings, keywords and reviews across Google, Facebook, Bing and more.">
+  <main>
+    <InnerHero
+      eyebrow="Practice Scanner"
+      title="See how patients find you."
+      accent="Free in 1 minute."
+      text="Our free local SEO audit checks your listings, keywords and reviews, then shows you what to fix to get more patients."
+      image="/images/heroes/hero-scanner.jpg"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Practice Scanner' }]}
+      buttons={[
+        { label: 'Scan My Practice', href: SCAN, variant: 'primary' },
+        { label: 'Read our blog', href: '/blog/', variant: 'glass' },
+      ]}
+      stats={[{ value: 'Free', label: 'no card needed' }, { value: '1 min', label: 'to start' }, { value: '5+', label: 'sites checked' }]}
+    />
+
+    <section class="relative -mt-12 rounded-t-[44px] bg-[#fbf3ec] px-2.5 py-[88px] text-ink md:py-[120px]">
+      <div class="mx-auto max-w-[1100px]">
+        <div class="mx-auto max-w-[700px] text-center" data-reveal>
+          <p class="text-[14px] leading-none font-semibold tracking-[3px] text-brand uppercase">How it works</p>
+          <h2 class="mt-5 text-[clamp(32px,4.4vw,52px)] leading-[1.1] font-medium">Three easy steps to <span class="font-(family-name:--font-accent) font-normal text-brand italic">your report.</span></h2>
+        </div>
+        <div class="mt-12 grid gap-5 md:grid-cols-3">
+          {steps.map((s, i) => (
+            <div data-reveal style={`--reveal-delay:${i * 100}ms`} class="group rounded-[24px] border border-black/10 bg-white p-8 transition-all duration-500 hover:-translate-y-2 hover:border-brand/60 hover:shadow-[0_30px_60px_-30px_rgba(201,111,58,0.6)]">
+              <span class="flex size-12 items-center justify-center rounded-full bg-brand text-lg font-semibold text-white">{i + 1}</span>
+              <h3 class="mt-5 text-[22px] font-medium">{s.t}</h3>
+              <p class="mt-3 text-[16px] leading-7 text-black/60">{s.d}</p>
+            </div>
+          ))}
+        </div>
+        <div class="mt-10 text-center" data-reveal>
+          <a href={SCAN} target="_blank" rel="noopener" class="btn btn-outline btn-lg"><span class="btn-label">Start my free scan</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative -mt-12 overflow-hidden rounded-t-[44px] bg-[#181310] px-2.5 py-[88px] text-white md:py-[120px]">
+      <span aria-hidden="true" class="pointer-events-none absolute -top-24 right-[8%] size-[420px] rounded-full bg-brand/20 blur-[130px]"></span>
+      <div class="relative mx-auto max-w-[1100px]">
+        <div class="mx-auto max-w-[680px] text-center" data-reveal>
+          <p class="text-[14px] leading-none font-semibold tracking-[3px] text-brand-light uppercase">What you get</p>
+          <h2 class="mt-5 text-[clamp(32px,4.4vw,52px)] leading-[1.1] font-medium">A clear picture of your <span class="font-(family-name:--font-accent) font-normal text-brand italic">online health.</span></h2>
+        </div>
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {gets.map((g, i) => (
+            <div data-reveal style={`--reveal-delay:${i * 80}ms`} class="group rounded-[24px] border border-white/10 bg-white/5 p-7 transition-all duration-500 hover:-translate-y-2 hover:border-brand/60 hover:bg-brand/10">
+              <span class="flex size-12 items-center justify-center rounded-2xl bg-brand/20 text-brand-light transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
+                <g.icon size={24} />
+              </span>
+              <h3 class="mt-5 text-[21px] font-medium">{g.t}</h3>
+              <p class="mt-3 text-[15px] leading-7 text-white/65">{g.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="relative -mt-12 rounded-t-[44px] bg-[#fffaf5] px-2.5 pt-[88px] pb-[130px] text-ink md:pt-[110px] md:pb-[160px]">
+      <div class="mx-auto max-w-[1100px]">
+        <div data-reveal class="group relative overflow-hidden rounded-[36px] bg-gradient-to-br from-brand-deep via-brand to-brand-light px-6 py-14 text-center text-white shadow-[0_40px_90px_-40px_rgba(143,66,34,0.8)] md:px-14 md:py-20">
+          <span aria-hidden="true" class="absolute -top-24 -left-24 size-[320px] rounded-full bg-white/10 transition-transform duration-700 group-hover:scale-125"></span>
+          <span aria-hidden="true" class="absolute -right-20 -bottom-28 size-[360px] rounded-full bg-black/10 transition-transform duration-700 group-hover:scale-125"></span>
+          <div class="relative">
+            <h2 class="text-[clamp(30px,4.4vw,52px)] leading-[1.1] font-medium">Ready to see your score?</h2>
+            <p class="mx-auto mt-5 max-w-[620px] text-lead text-white/85">Run the free scan now. If you want help fixing the results, our team is ready.</p>
+            <div class="mt-9 flex flex-wrap justify-center gap-3">
+              <a href={SCAN} target="_blank" rel="noopener" class="btn btn-glass btn-lg"><span class="btn-label">Scan my practice</span></a>
+              <a href="/services/medical-seo-local-optimization/" class="btn btn-glass btn-lg"><span class="btn-label">Medical SEO service</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <Reveal />
+  </main>
+</BaseLayout>

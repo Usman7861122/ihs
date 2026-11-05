@@ -44,7 +44,7 @@ export const joinPage = {
       { title: 'SDR', place: 'Washington', type: 'Sales' },
       { title: 'Web Developer', place: 'Remote', type: 'Remote' },
     ],
-    apply: { label: 'Apply', href: '#get-started' },
+    apply: { label: 'Apply', href: '/contact/' },
   },
   steps: {
     eyebrow: 'How hiring works',

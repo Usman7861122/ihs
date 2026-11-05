@@ -6,7 +6,7 @@ export const ehr = {
   note: 'And many more. Tell us your system and we will connect it.',
   video: '/videos/ehr-integrations.mp4',
   poster: '/images/ehr-integrations-poster.jpg',
-  cta: { label: 'Talk to an Expert', href: '#get-started' },
+  cta: { label: 'Talk to an Expert', href: '/contact/' },
   logos: [
     { name: 'eClinicalWorks', src: '/images/ehr/eclinicalworks.webp' },
     { name: 'Elation Health', src: '/images/ehr/elation.webp' },

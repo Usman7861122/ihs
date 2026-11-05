@@ -69,7 +69,6 @@ export const showcase = {
     },
     {
       id: 'run-doctor',
-      url: 'https://run-doctor.vercel.app/',
       name: 'The Run Doctor',
       specialty: 'Foot & Ankle Sports Medicine',
       laptopImage: '/images/showcase-desktop-3.jpg',

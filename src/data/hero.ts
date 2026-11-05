@@ -10,7 +10,7 @@ export const hero = {
     { word: 'Landed' },
   ],
   text: 'Leading digital marketing agency helping healthcare practices attract the right patients and grow their online presence.',
-  cta: { label: 'Get Started', href: '#get-started' },
+  cta: { label: 'Get Started', href: '/contact/' },
   video: '/videos/hero.mp4',
   poster: '/images/hero-poster.jpg',
 };

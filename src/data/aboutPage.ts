@@ -65,6 +65,6 @@ export const aboutPage = {
     accent: 'Pasadena, California',
     text: 'Our team works from Pasadena and supports healthcare practices all across the United States. Wherever your patients are, we help them find you.',
     image: '/images/about-pasadena.jpg',
-    cta: { label: 'Talk to our team', href: '#get-started' },
+    cta: { label: 'Talk to our team', href: '/contact/' },
   },
 };

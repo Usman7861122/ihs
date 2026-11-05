@@ -48,7 +48,7 @@ export const whoWeHelp = {
     title: 'Let us help you grow, no matter where you are',
     text: 'We build a custom plan for new and established practices alike. Tell us about yours and we will take it from there.',
     image: '/images/who/healthcare-team.jpg',
-    primary: { label: 'Get Started', href: '#get-started' },
+    primary: { label: 'Get Started', href: '/contact/' },
     secondary: { label: 'See Pricing', href: '/iron-packages' },
   },
 };
