@@ -1,9 +1,9 @@
 export const showcase = {
   eyebrow: 'Medical Website Design',
-  titleStart: 'Websites that look',
-  titleAccent: 'elite',
-  titleEnd: 'and bring in patients',
-  text: 'Every site we build is made for one job: helping the right patients find your practice, trust it, and book.',
+  titleStart: 'Custom-coded',
+  titleAccent: 'precision.',
+  titleEnd: 'Zero templates.',
+  text: 'Most agencies rely on bloated templates that slow down your site and cheapen your brand. We custom-build elite, lightning-fast digital flagships designed to position your practice as the absolute authority in your market.',
   sites: [
     {
       id: 'bhalla',

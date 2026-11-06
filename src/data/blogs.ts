@@ -7,7 +7,7 @@ export const blogs = {
   text: 'Simple, useful ideas to help your practice get found, trusted and booked.',
   allHref: '/blog/',
   allLabel: 'View all articles',
-  posts: blogPosts.map((p) => ({
+  posts: blogPosts.slice(0, 4).map((p) => ({
     title: p.title,
     summary: p.summary,
     href: p.href,

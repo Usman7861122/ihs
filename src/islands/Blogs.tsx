@@ -90,9 +90,9 @@ export default function Blogs({ eyebrow, titleStart, titleAccent, text, allHref,
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.8, ease: EASE }}
-            className="group relative block overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] md:rounded-[36px]"
+            className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] md:rounded-[36px]"
           >
-            <div className="relative aspect-[16/10] overflow-hidden">
+            <div className="relative aspect-[16/10] min-h-[240px] flex-1 overflow-hidden lg:aspect-auto">
               <img
                 src={main.image}
                 alt=""
@@ -102,18 +102,22 @@ export default function Blogs({ eyebrow, titleStart, titleAccent, text, allHref,
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-linear-to-t from-[#120d0a] via-[#120d0a]/40 to-transparent"
+                className="absolute inset-0 bg-linear-to-t from-[#120d0a]/50 via-transparent to-transparent"
               />
               <span className="absolute top-5 right-5 flex size-12 items-center justify-center rounded-full bg-white/90 text-brand transition-colors duration-300 group-hover:bg-brand group-hover:text-white">
                 <ArrowUpRight className="size-6" aria-hidden="true" />
               </span>
             </div>
-            <div className="relative -mt-16 px-6 pb-8 md:px-9 md:pb-10">
+            <div className="relative shrink-0 px-6 pt-6 pb-7 md:px-9 md:pt-8 md:pb-9">
               <Meta post={main} />
               <h3 className="mt-3 text-[24px] leading-[1.3] font-medium transition-colors duration-300 group-hover:text-brand-light md:text-[30px]">
                 {main.title}
               </h3>
               <p className="mt-3 max-w-[560px] text-[16px] leading-7 text-white/60">{main.summary}</p>
+              <span className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium tracking-wide text-brand-light uppercase">
+                Read article
+                <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+              </span>
             </div>
           </motion.a>
 

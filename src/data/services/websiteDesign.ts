@@ -51,6 +51,19 @@ export const websiteDesign = {
       },
     ],
   },
+  showcase: {
+    eyebrow: 'Recent work',
+    title: 'Websites we built that',
+    accent: 'look the part.',
+    text: 'A few of our latest medical websites. Each one is custom designed, fast on phones and made to turn visitors into booked patients.',
+    items: [
+      { name: 'Dr. Amandeep Bhalla, MD', specialty: 'Orthopedic Spine Surgery', domain: 'bhallaspine.com', image: '/images/portfolio/bhalla.jpg', phone: '/images/portfolio/phone-bhalla-v2.jpg' },
+      { name: 'The Stem Cell Institute', specialty: 'Regenerative Medicine', domain: 'the-stem-cell.vercel.app', image: '/images/portfolio/stem-cell.jpg', phone: '/images/portfolio/phone-stem-cell-v2.jpg' },
+      { name: 'The Run Doctor', specialty: 'Foot & Ankle Sports Medicine', domain: 'rundoctor.com', image: '/images/portfolio/run-doctor.jpg', phone: '/images/portfolio/phone-run-doctor-v2.jpg' },
+      { name: 'AgeWell Medicine & Aesthetics', specialty: 'Longevity Medicine', domain: 'agewellmedicine.com', image: '/images/portfolio/agewell.jpg', phone: '/images/portfolio/phone-agewell-v2.jpg' },
+    ],
+    button: { label: 'See full portfolio', href: '/portfolio/' },
+  },
   benefits: {
     eyebrow: 'Why it matters',
     title: 'A better website brings',

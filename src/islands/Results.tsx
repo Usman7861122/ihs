@@ -107,10 +107,10 @@ export default function Results({ eyebrow, titleStart, titleAccent, titleEnd, te
               className="absolute inset-0 h-full w-full object-cover object-top"
             />
 
-            <span className="absolute left-4 top-4 rounded-full bg-[#181310]/85 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white shadow-md ring-1 ring-white/30 backdrop-blur">
+            <span className="label-pop label-pop-dark pointer-events-none absolute left-4 top-4 rounded-full bg-[#181310] px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white ring-2 ring-white/60">
               {beforeLabel}
             </span>
-            <span className="absolute right-4 top-4 rounded-full bg-brand px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white shadow-sm">
+            <span className="label-pop label-pop-brand pointer-events-none absolute right-4 top-4 rounded-full bg-brand px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white ring-2 ring-white/70" style={{ animationDelay: '0.8s' }}>
               {afterLabel}
             </span>
 

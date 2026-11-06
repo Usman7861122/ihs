@@ -334,7 +334,7 @@ export default function Showcase({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: EASE, delay: 0.25 }}
-            className="mx-auto mt-6 max-w-[640px] !text-white/65"
+            className="mx-auto mt-6 max-w-[760px] !text-white/65"
           >
             {text}
           </motion.p>

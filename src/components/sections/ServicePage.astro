@@ -67,6 +67,61 @@ const check = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width=
   </div>
 </section>
 
+<!-- Recent work (optional) -->
+{s.showcase && (
+<section class="relative -mt-12 rounded-t-[44px] bg-[#fbf3ec] px-2.5 py-[88px] text-ink md:py-[120px]">
+  <div class="mx-auto max-w-[1100px]">
+    <div class="mx-auto max-w-[680px] text-center" data-reveal>
+      <p class="text-[14px] leading-none font-semibold tracking-[3px] text-brand uppercase">{s.showcase.eyebrow}</p>
+      <h2 class="mt-5 text-[clamp(32px,4.4vw,52px)] leading-[1.1] font-medium">{s.showcase.title} <span class="font-(family-name:--font-accent) font-normal text-brand italic">{s.showcase.accent}</span></h2>
+      <p class="mt-4 text-[17px] leading-8 text-black/60">{s.showcase.text}</p>
+    </div>
+    <div class="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2">
+      {s.showcase.items.map((it, i) => (
+        <a href={it.href ?? '/portfolio/'} data-reveal style={`--reveal-delay:${(i % 2) * 120}ms`} class="group relative block pb-2">
+          <span aria-hidden="true" class="absolute -inset-3 -z-0 rounded-[40px] bg-gradient-to-br from-brand/15 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
+          <div class="relative flex items-end rounded-[30px] bg-gradient-to-br from-[#f1ddcb] via-[#f7e9dc] to-[#ecc9a8]/70 p-4 pb-5 md:p-6 md:pb-7">
+            <div class="relative min-w-0 flex-1 overflow-hidden rounded-[22px] border border-black/10 bg-white shadow-[0_40px_80px_-40px_rgba(60,25,5,0.65)] transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_0_0_2px_#C96F3A,0_50px_90px_-40px_rgba(201,111,58,0.7)]">
+              <div class="flex items-center gap-1.5 border-b border-black/10 bg-[#f3ece5] px-4 py-3">
+                <span class="size-2.5 rounded-full bg-[#ff5f57]"></span><span class="size-2.5 rounded-full bg-[#febc2e]"></span><span class="size-2.5 rounded-full bg-[#28c840]"></span>
+                <span class="ml-3 truncate rounded-full bg-white px-4 py-1 text-[12px] text-black/45">{it.domain}</span>
+              </div>
+              <div class="aspect-[16/10] overflow-hidden">
+                <img src={it.image} alt={`${it.name} website`} loading="lazy" class="size-full object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-105" />
+              </div>
+            </div>
+            {it.phone && (
+              <div class="relative z-10 -ml-[9%] w-[23%] max-w-[130px] min-w-[78px] shrink-0 translate-y-1 transition-transform duration-500 group-hover:-translate-y-2">
+                <div class="relative rounded-[14px] bg-gradient-to-b from-[#3a3a3e] via-[#1b1b1e] to-[#2c2c30] p-[2.5px] shadow-[0_28px_44px_-12px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.12)_inset] md:rounded-[18px]">
+                  <span aria-hidden="true" class="absolute top-[20%] -left-[2px] h-[7%] w-[3px] rounded-l bg-[#2a2a2e]"></span>
+                  <span aria-hidden="true" class="absolute top-[30%] -left-[2px] h-[11%] w-[3px] rounded-l bg-[#2a2a2e]"></span>
+                  <span aria-hidden="true" class="absolute top-[26%] -right-[2px] h-[14%] w-[3px] rounded-r bg-[#2a2a2e]"></span>
+                  <div class="relative overflow-hidden rounded-[11px] bg-black md:rounded-[15px]">
+                    <div aria-hidden="true" class="flex h-[9px] items-center justify-center gap-1 bg-black md:h-[12px]"><span class="h-[2px] w-[22%] rounded-full bg-[#2c2c30]"></span><span class="size-[3px] rounded-full bg-[#26262c]"></span></div>
+                    <img src={it.phone} alt={`${it.name} on mobile`} loading="lazy" class="block aspect-[9/17] w-full object-cover object-top" />
+                    <div aria-hidden="true" class="h-[6px] bg-black md:h-[8px]"></div>
+                    <span aria-hidden="true" class="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"></span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          <div class="relative mt-5 flex items-end justify-between gap-4 px-1">
+            <div>
+              <h3 class="text-[22px] leading-tight font-medium transition-colors duration-300 group-hover:text-brand">{it.name}</h3>
+              <p class="mt-1 text-[15px] text-black/55">{it.specialty}</p>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+    <div class="mt-12 text-center" data-reveal>
+      <a href={s.showcase.button.href} class="btn btn-outline btn-lg"><span class="btn-label">{s.showcase.button.label}</span><span class="btn-icon" set:html={arrow}></span></a>
+    </div>
+  </div>
+</section>
+)}
+
 <!-- Benefits + stats (dark) -->
 <section class="relative -mt-12 rounded-t-[44px] bg-[#181310] px-2.5 py-[88px] text-white md:py-[120px]">
   <div class="mx-auto max-w-[1100px]">

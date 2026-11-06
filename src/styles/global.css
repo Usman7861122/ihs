@@ -69,3 +69,26 @@ video::-webkit-media-controls-overlay-play-button {
   display: none !important;
   -webkit-appearance: none;
 }
+
+/* Before / After labels: always-on attention animation */
+@keyframes label-pop {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  12% { transform: scale(1.22) rotate(-3deg); }
+  24% { transform: scale(0.96) rotate(2deg); }
+  36% { transform: scale(1.12) rotate(-1deg); }
+  50% { transform: scale(1); }
+}
+@keyframes label-ripple-dark {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.75), 0 8px 24px -6px rgba(0, 0, 0, 0.6); }
+  70%, 100% { box-shadow: 0 0 0 18px rgba(255, 255, 255, 0), 0 8px 24px -6px rgba(0, 0, 0, 0.6); }
+}
+@keyframes label-ripple-brand {
+  0% { box-shadow: 0 0 0 0 rgba(201, 111, 58, 0.9), 0 8px 24px -6px rgba(201, 111, 58, 0.8); }
+  70%, 100% { box-shadow: 0 0 0 18px rgba(201, 111, 58, 0), 0 8px 24px -6px rgba(201, 111, 58, 0.8); }
+}
+.label-pop { animation: label-pop 2.4s ease-in-out infinite; }
+.label-pop-dark { animation: label-pop 2.4s ease-in-out infinite, label-ripple-dark 1.4s ease-out infinite; }
+.label-pop-brand { animation: label-pop 2.4s ease-in-out infinite, label-ripple-brand 1.4s ease-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .label-pop, .label-pop-dark, .label-pop-brand { animation: none; }
+}
