@@ -16,6 +16,7 @@ interface Props {
   titleAccent: string;
   titleEnd: string;
   subtitle: string;
+  eyebrow: string;
   shots: Shot[];
 }
 
@@ -60,7 +61,7 @@ function Chip({
   );
 }
 
-export default function Rankings({ titleStart, titleAccent, titleEnd, subtitle, shots }: Props) {
+export default function Rankings({ titleStart, titleAccent, titleEnd, subtitle, eyebrow, shots }: Props) {
   const reduce = !!useReducedMotion();
   const ref = useRef<HTMLElement>(null);
 
@@ -144,15 +145,21 @@ export default function Rankings({ titleStart, titleAccent, titleEnd, subtitle, 
         <ContainerScroll
           titleComponent={
             <>
+              <p className="text-button mb-5 inline-flex items-center gap-4 text-brand">
+                <span aria-hidden="true" className="h-px w-10 bg-brand/70" />
+                {eyebrow}
+                <span aria-hidden="true" className="h-px w-10 bg-brand/70" />
+              </p>
               <h2 className="italic">
                 <span className="font-medium">{titleStart}</span>{' '}
                 <span className="font-(family-name:--font-accent) font-normal text-brand">
                   {titleAccent}
                 </span>{' '}
                 <span className="font-medium">{titleEnd}</span>
+                <br />
+                <span className="font-medium">{subtitle}</span>
               </h2>
-              <span aria-hidden="true" className="mx-auto mt-5 block h-0.5 w-[184px] bg-brand" />
-              <h3 className="mt-6 text-black/70">{subtitle}</h3>
+              <span aria-hidden="true" className="mx-auto mt-6 block h-0.5 w-[184px] bg-brand" />
             </>
           }
         >
@@ -162,7 +169,7 @@ export default function Rankings({ titleStart, titleAccent, titleEnd, subtitle, 
               return (
                 <figure
                   key={shot.label}
-                  className="group relative flex min-h-0 flex-col overflow-hidden rounded-xl bg-white ring-2 ring-transparent transition-shadow duration-500 hover:shadow-[0_24px_50px_-18px_rgba(201,111,58,0.7)] hover:ring-brand/60"
+                  className="group relative z-0 flex min-h-0 origin-center cursor-zoom-in flex-col overflow-hidden rounded-xl bg-white shadow-lg ring-2 ring-transparent transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:z-30 hover:scale-[1.14] hover:shadow-[0_40px_80px_-20px_rgba(201,111,58,0.75)] hover:ring-brand/70 md:hover:scale-[1.2]"
                 >
                   <figcaption className="flex items-center gap-2.5 border-b border-black/10 px-4 py-2.5 md:py-3">
                     <span
@@ -186,7 +193,7 @@ export default function Rankings({ titleStart, titleAccent, titleEnd, subtitle, 
                       alt={shot.alt}
                       loading="lazy"
                       draggable={false}
-                      className="size-full object-cover object-left-top transition-transform duration-700 ease-out group-hover:scale-[1.04] md:h-auto"
+                      className="size-full object-cover object-left-top md:h-auto"
                     />
                   </div>
                 </figure>

@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 interface Props {
   label: string;
   logo: string;
-  stats: { value: string; label: string }[];
+  stats: { value: string; label: string; note?: string }[];
 }
 
 /**
@@ -78,6 +78,7 @@ export default function LogoScroll({ label, logo, stats }: Props) {
                   {s.value}
                 </p>
                 <p className="mx-auto mt-3 max-w-[16ch] text-sm text-white/65 md:text-base">{s.label}</p>
+                {s.note && <p className="mt-1 text-xs text-white/45 md:text-sm">{s.note}</p>}
               </div>
             ))}
           </div>

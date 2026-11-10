@@ -1,4 +1,5 @@
 export const rankings = {
+  eyebrow: 'The Impact Of AI SEARCH',
   titleStart: 'Your',
   titleAccent: 'Rankings',
   titleEnd: 'are Still There.',
