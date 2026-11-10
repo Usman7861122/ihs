@@ -23,5 +23,4 @@ export const about = {
   // 3:4 story video (made in Higgsfield, same scenes as the original), fills the card
   video: '/videos/about.mp4',
   poster: '/images/about-poster.jpg',
-  badge: { title: 'Pasadena, California', text: 'Serving medical practices nationwide' },
 };

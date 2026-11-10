@@ -6,7 +6,7 @@ import {
   useReducedMotion,
   type Variants,
 } from 'framer-motion';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface Props {
   eyebrow: string;
@@ -16,7 +16,6 @@ interface Props {
   cta: { label: string; href: string };
   video: string;
   poster: string;
-  badge: { title: string; text: string };
 }
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -52,7 +51,6 @@ export default function About({
   cta,
   video,
   poster,
-  badge,
 }: Props) {
   const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
@@ -131,23 +129,6 @@ export default function About({
               className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 via-transparent to-transparent"
             />
           </div>
-
-          {/* floating badge */}
-          <motion.div
-            initial={{ opacity: 0, y: reduce ? 0 : 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.5 }}
-            className="absolute -bottom-6 -left-3 flex max-w-[280px] items-center gap-3 rounded-2xl bg-white px-4 py-3.5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.35)] md:-left-8"
-          >
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand text-white">
-              <MapPin className="size-5" strokeWidth={1.8} aria-hidden="true" />
-            </span>
-            <span className="block">
-              <span className="block text-[16px] leading-5 font-medium">{badge.title}</span>
-              <span className="mt-0.5 block text-[14px] leading-5 text-black/60">{badge.text}</span>
-            </span>
-          </motion.div>
         </motion.div>
 
         {/* Text, right */}
