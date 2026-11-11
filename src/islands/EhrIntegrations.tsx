@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Link2 } from 'lucide-react';
 
@@ -62,6 +63,25 @@ export default function EhrIntegrations({
   cta,
   logos,
 }: Props) {
+  // Play the animation once when it comes into view, then stop on the last frame
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.muted = true;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.play().catch(() => {});
+          io.disconnect();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   // One row with every logo; repeated so each half is wider than the screen
   const row = [...logos, ...logos];
 
@@ -128,13 +148,12 @@ export default function EhrIntegrations({
         {/* No fade or slide here: an animated wrapper stops the blend, and a white box shows */}
         <div className="relative">
           <video
+            ref={videoRef}
             src={video}
             poster={poster}
             aria-label="Iron Health connected to EHR systems such as DrChrono, Eaglesoft, Office Ally, athenahealth, Dentrix and eClinicalWorks"
             className="block aspect-video w-full mix-blend-multiply"
-            autoPlay
             muted
-            loop
             playsInline
             preload="auto"
           />

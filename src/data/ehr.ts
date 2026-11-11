@@ -4,8 +4,8 @@ export const ehr = {
   titleEnd: 'Software',
   text: 'Iron Health connects with the EHR and practice systems you already use. Your patient data, appointments and reports stay in sync, so your team does not need to learn a new tool.',
   note: 'And many more. Tell us your system and we will connect it.',
-  video: '/videos/ehr-integrations-v3.mp4',
-  poster: '/images/ehr-integrations-poster-v3.jpg',
+  video: '/videos/ehr-integrations-v4.mp4',
+  poster: '/images/ehr-integrations-poster-v4.jpg',
   cta: { label: 'Talk to an Expert', href: '/contact/' },
   logos: [
     { name: 'eClinicalWorks', src: '/images/ehr/eclinicalworks.webp' },
