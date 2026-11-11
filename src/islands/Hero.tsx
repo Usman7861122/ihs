@@ -56,10 +56,11 @@ export default function Hero({ title, text, cta, video, poster }: HeroProps) {
   return (
     <section
       ref={ref}
-      className="relative h-[56.25vw] min-h-[640px] w-full overflow-hidden bg-[#2a1208] text-white"
+      className="relative w-full overflow-hidden bg-[#140701] pt-(--header-h) text-white md:h-[56.25vw] md:min-h-[640px] md:bg-[#2a1208] md:pt-0"
     >
       {/* Background video */}
-      <div className="absolute inset-0">
+      {/* Phone: the video sits on its own, text goes below it. Desktop: video fills the section. */}
+      <div className="relative aspect-[4/3] w-full md:absolute md:inset-0 md:aspect-auto">
         <video
           className="h-full w-full object-cover"
           autoPlay
@@ -77,18 +78,18 @@ export default function Hero({ title, text, cta, video, poster }: HeroProps) {
       {/* Readability overlays */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(20,7,1,0.85)_0%,rgba(20,7,1,0.62)_35%,rgba(20,7,1,0.3)_60%,rgba(20,7,1,0)_85%)]"
+        className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(20,7,1,0.85)_0%,rgba(20,7,1,0.62)_35%,rgba(20,7,1,0.3)_60%,rgba(20,7,1,0)_85%)] md:block"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-linear-to-b from-black/25 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 hidden h-48 bg-linear-to-b from-black/25 to-transparent md:block"
       />
 
       {/* Content */}
-      <div className="relative z-10 h-full px-2.5">
+      <div className="relative z-10 px-2.5 md:h-full">
         <motion.div
           style={{ y: contentY, opacity: contentOpacity }}
-          className="mx-auto flex h-full w-full max-w-(--container-header) items-center pt-(--header-h) pb-[10vh]"
+          className="mx-auto w-full max-w-(--container-header) pt-8 pb-[92px] md:flex md:h-full md:items-center md:pt-(--header-h) md:pb-[10vh]"
         >
           <div className="max-w-[500px]">
             <motion.h1
@@ -147,7 +148,7 @@ export default function Hero({ title, text, cta, video, poster }: HeroProps) {
       <motion.div
         style={{ opacity: cueOpacity }}
         aria-hidden="true"
-        className="absolute bottom-[104px] left-1/2 z-10 -translate-x-1/2"
+        className="absolute bottom-[104px] left-1/2 z-10 hidden -translate-x-1/2 md:block"
       >
         <motion.div
           initial={{ opacity: 0 }}
