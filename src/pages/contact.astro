@@ -15,7 +15,6 @@ import { contact as o } from '../data/contact';
       text="Tell us about your practice. We will review your online presence and share a clear plan. Free, with no pressure."
       image="/images/heroes/hero-who-we-help.jpg"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
-      buttons={[{ label: 'Scan My Practice', href: '/practice-scanner/', variant: 'glass' }]}
     />
     <section class="relative -mt-12 rounded-t-[44px] bg-[#fbf3ec] px-2.5 pt-[72px] pb-[130px] text-ink md:pt-[96px] md:pb-[160px]">
       <div class="mx-auto grid max-w-[1100px] items-start gap-10 lg:grid-cols-[1fr_1.15fr]">
@@ -33,11 +32,6 @@ import { contact as o } from '../data/contact';
               </li>
             ))}
           </ol>
-          <div class="mt-6 rounded-[22px] bg-gradient-to-br from-brand-deep via-brand to-brand-light p-6 text-white">
-            <h3 class="text-[20px] font-medium">Want a quick check first?</h3>
-            <p class="mt-1.5 text-[15.5px] leading-7 text-white/85">Run our free Practice Scanner and see your listings, keywords and reviews in one minute.</p>
-            <a href="/practice-scanner/" class="btn btn-glass btn-sm mt-4"><span class="btn-label">Scan my practice</span></a>
-          </div>
         </div>
         <div data-reveal style="--reveal-delay:120ms" class="relative lg:sticky lg:top-[calc(var(--header-h)+24px)]">
           <ContactForm client:load endpoint={o.endpoint} interests={o.interests} />

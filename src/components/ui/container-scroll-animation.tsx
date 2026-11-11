@@ -36,7 +36,7 @@ export const ContainerScroll = ({
 
   return (
     <div
-      className="h-[50rem] md:h-[64rem] flex items-start justify-center relative px-2 md:px-20"
+      className="h-[68rem] md:h-[64rem] flex items-start justify-center relative px-2 md:px-20"
       ref={containerRef}
     >
       <div
@@ -87,9 +87,9 @@ export const Card = ({
         boxShadow:
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
       }}
-      className="max-w-5xl mt-10 md:mt-14 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
+      className="max-w-5xl mt-10 md:mt-14 mx-auto h-[41rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-2xl"
     >
-      <div className=" h-full w-full  rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4 [transform:translateZ(0)]">
+      <div className=" h-full w-full overflow-hidden md:overflow-visible rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4 [transform:translateZ(0)]">
         {children}
       </div>
     </motion.div>

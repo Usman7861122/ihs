@@ -52,6 +52,18 @@
     gap: 0;
   }
 
+  /* Buttons without an icon chip: same space left and right, so the label sits in the middle */
+  .btn:not(:has(.btn-icon)):not(.btn-square) {
+    justify-content: center;
+    padding-right: 28px;
+  }
+  .btn-lg:not(:has(.btn-icon)):not(.btn-square) {
+    padding-right: 32px;
+  }
+  .btn-sm:not(:has(.btn-icon)):not(.btn-square) {
+    padding-right: 18px;
+  }
+
   /* diagonal light sweep on hover */
   .btn::after {
     content: '';
