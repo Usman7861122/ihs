@@ -15,7 +15,7 @@ export default function Mission({ eyebrow, titleStart, titleAccent, text, cta, i
     <section
       id="mission"
       // clip-path makes the fixed layer visible only inside this section (works on phones too)
-      className="relative z-[60] flex min-h-screen items-center justify-center px-2.5 py-[120px] text-white [clip-path:inset(0)]"
+      className="relative z-[105] flex min-h-screen items-center justify-center px-2.5 py-[120px] text-white [clip-path:inset(0)]"
     >
       {/* Fixed window: the photo stays still while the page scrolls over it */}
       <div aria-hidden="true" className="fixed inset-0 -z-10">

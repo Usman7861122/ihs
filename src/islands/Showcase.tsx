@@ -104,6 +104,9 @@ function FeatureCard({
 
 // Shows a real website inside a device screen. The page renders at its normal
 // design width, then is scaled down to fit the screen, so it stays interactive.
+// Extra width (in design pixels) that hides the embedded page's scrollbar
+const SCROLLBAR_PAD = 24;
+
 function LiveFrame({
   url,
   designWidth,
@@ -143,7 +146,8 @@ function LiveFrame({
           onLoad={() => setLoaded(true)}
           sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
           style={{
-            width: designWidth,
+            // wider than the screen: the scrollbar of the embedded page lands in the clipped part
+            width: designWidth + SCROLLBAR_PAD,
             height: size.h / scale,
             transform: `scale(${scale})`,
             transformOrigin: 'top left',

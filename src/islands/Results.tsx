@@ -41,7 +41,7 @@ export default function Results({ eyebrow, titleStart, titleAccent, titleEnd, te
   return (
     <section
       id="results"
-      className="relative z-[105] -mt-12 overflow-clip rounded-t-[44px] bg-[#f6ebe0] text-ink"
+      className="relative z-[55] -mt-12 overflow-clip rounded-t-[44px] bg-[#f6ebe0] text-ink"
     >
       <div className="relative bg-[#181310] px-2.5 pb-[170px] pt-[88px] text-white md:pb-[240px] md:pt-[120px]">
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_70%_at_50%_0%,rgba(201,111,58,0.22),transparent_70%)]" />
