@@ -188,7 +188,7 @@ export default function About({
           {/* Stats */}
           <div
             ref={statsRef}
-            className="mt-10 grid max-w-[600px] grid-cols-3 gap-4 border-t border-black/10 pt-8"
+            className="mt-10 grid max-w-[600px] grid-cols-2 gap-4 border-t border-black/10 pt-8"
           >
             {stats.map((s) => (
               <div key={s.label}>
