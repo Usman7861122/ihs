@@ -1,0 +1,58 @@
+name: Deploy to S3
+
+# Runs on every push to main, and can also be started by hand from the Actions tab.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Only one deploy at a time; a newer push replaces an older waiting one.
+concurrency:
+  group: deploy-s3
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CF_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      # Uses a normal IAM user access key stored in GitHub Secrets (no identity provider / OIDC).
+      - name: Upload to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+          BUCKET: iron-health-website
+        run: |
+          # 1) Everything except HTML: delete old files, long cache (file names change when content changes)
+          aws s3 sync dist "s3://$BUCKET" --delete \
+            --exclude "*.html" \
+            --cache-control "public,max-age=31536000,immutable"
+          # 2) HTML pages: always check for a fresh copy
+          aws s3 sync dist "s3://$BUCKET" --delete \
+            --exclude "*" --include "*.html" \
+            --cache-control "public,max-age=0,must-revalidate" \
+            --content-type "text/html; charset=utf-8"
+
+      # Optional: only runs if you add a CloudFront distribution ID secret.
+      - name: Clear CloudFront cache
+        if: env.CF_ID != ''
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+        run: aws cloudfront create-invalidation --distribution-id "$CF_ID" --paths "/*"
