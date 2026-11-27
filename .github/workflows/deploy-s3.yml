@@ -38,15 +38,24 @@ jobs:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
           BUCKET: iron-health-website
         run: |
-          # 1) Everything except HTML: delete old files, long cache (file names change when content changes)
+          # 1) Everything except HTML and the fixed-name root files: delete old files, long cache
+          #    (file names change when content changes)
           aws s3 sync dist "s3://$BUCKET" --delete \
             --exclude "*.html" \
+            --exclude "robots.txt" --exclude "sitemap.xml" --exclude "favicon.ico" \
+            --exclude "icon-*.png" --exclude "apple-touch-icon.png" --exclude "og-default.jpg" \
             --cache-control "public,max-age=31536000,immutable"
           # 2) HTML pages: always check for a fresh copy
           aws s3 sync dist "s3://$BUCKET" --delete \
             --exclude "*" --include "*.html" \
             --cache-control "public,max-age=0,must-revalidate" \
             --content-type "text/html; charset=utf-8"
+          # 3) Root files that keep the same name (robots, sitemap, icons): short cache so changes show up fast
+          aws s3 sync dist "s3://$BUCKET" \
+            --exclude "*" \
+            --include "robots.txt" --include "sitemap.xml" --include "favicon.ico" \
+            --include "icon-*.png" --include "apple-touch-icon.png" --include "og-default.jpg" \
+            --cache-control "public,max-age=300,must-revalidate"
 
       # Optional: only runs if you add a CloudFront distribution ID secret.
       - name: Clear CloudFront cache
