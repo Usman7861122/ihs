@@ -1,0 +1,18 @@
+# Iron Health Solutions
+
+> Iron Health Solutions is a Pasadena, California digital marketing agency for private medical practices. We build custom websites and run medical SEO, AI search (AEO), reputation management and paid ads for doctors across the US.
+
+## Main pages
+
+- [Services](https://www.ironhealthsolutions.com/services/): Website design, medical SEO, content, reputation, paid ads with an AI chat bot, and AEO.
+- [Website Design Services](https://www.ironhealthsolutions.com/services/website-design-services/): Fast, patient-friendly websites for private medical practices.
+- [Medical SEO and Local Optimization](https://www.ironhealthsolutions.com/services/medical-seo-local-optimization/): Show up on Google and Maps when patients search for a doctor.
+- [AEO: Answer Engine Optimization](https://www.ironhealthsolutions.com/services/aeo/): Get found in ChatGPT, Google AI Overviews and Perplexity.
+- [Reputation Management](https://www.ironhealthsolutions.com/services/reputation-management/): More five-star reviews and a protected practice name.
+- [Paid Advertisement and AI Chat Bot](https://www.ironhealthsolutions.com/services/paid-advertisement-ai-chat-bot/): Google Ads plus an AI chat bot that answers patients 24/7.
+- [Who We Help](https://www.ironhealthsolutions.com/who-we-help/): Practices from brand new to established.
+- [Portfolio](https://www.ironhealthsolutions.com/portfolio/): Medical websites we built.
+- [Packages](https://www.ironhealthsolutions.com/iron-packages/): Starter, Premium and Premium Plus marketing plans.
+- [Blog](https://www.ironhealthsolutions.com/blog/): Practical marketing guides for medical practices.
+- [About Us](https://www.ironhealthsolutions.com/about-us/): Who we are and where we work.
+- [Contact](https://www.ironhealthsolutions.com/contact/): Talk to us about your practice.

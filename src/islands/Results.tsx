@@ -71,7 +71,7 @@ export default function Results({ eyebrow, titleStart, titleAccent, titleEnd, te
                 setPos(50);
               }}
               className={`rounded-full border px-5 py-2 text-sm font-medium transition-colors ${
-                i === idx ? 'border-brand bg-brand text-white' : 'border-white/20 bg-white/5 text-white/75 hover:border-brand-light'
+                i === idx ? 'border-brand-strong bg-brand-strong text-white' : 'border-white/20 bg-white/5 text-white/75 hover:border-brand-light'
               }`}
             >
               {c.name}
@@ -112,7 +112,7 @@ export default function Results({ eyebrow, titleStart, titleAccent, titleEnd, te
             <span className="label-pop label-pop-dark pointer-events-none absolute left-4 top-4 rounded-full bg-[#181310] px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white ring-2 ring-white/60">
               {beforeLabel}
             </span>
-            <span className="label-pop label-pop-brand pointer-events-none absolute right-4 top-4 rounded-full bg-brand px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white ring-2 ring-white/70" style={{ animationDelay: '0.8s' }}>
+            <span className="label-pop label-pop-brand pointer-events-none absolute right-4 top-4 rounded-full bg-brand-strong px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white ring-2 ring-white/70" style={{ animationDelay: '0.8s' }}>
               {afterLabel}
             </span>
 

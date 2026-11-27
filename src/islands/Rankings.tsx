@@ -181,7 +181,7 @@ export default function Rankings({ titleStart, titleAccent, titleEnd, subtitle, 
                     </span>
                     <span
                       className={`text-[15px] leading-5 font-medium md:text-[17px] ${
-                        shot.tone === 'brand' ? 'text-brand' : 'text-black/80'
+                        shot.tone === 'brand' ? 'text-brand-strong' : 'text-black/80'
                       }`}
                     >
                       {shot.label}

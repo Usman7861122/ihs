@@ -108,7 +108,7 @@ export default function Testimonials({ eyebrow, titleStart, titleAccent, titleEn
             {/* TEXT */}
             <div className="flex flex-col justify-between gap-8 p-7 md:p-12">
               <div>
-                <div className="flex gap-1 text-brand" aria-label="5 out of 5 stars">
+                <div className="flex gap-1 text-brand" role="img" aria-label="5 out of 5 stars">
                   {Array.from({ length: 5 }).map((_, k) => (
                     <Star key={k} className="size-6 fill-current" strokeWidth={1.2} aria-hidden="true" />
                   ))}
@@ -159,7 +159,7 @@ export default function Testimonials({ eyebrow, titleStart, titleAccent, titleEn
                         k === i ? 'border-brand opacity-100' : 'border-transparent opacity-50 hover:opacity-100'
                       }`}
                     >
-                      <img src={t.photo} alt="" width={48} height={48} loading="lazy" onError={(e) => (e.currentTarget.style.display = 'none')} draggable={false} className="size-full object-cover" />
+                      <img src={t.photo} alt={`${t.name}, client`} width={48} height={48} loading="lazy" onError={(e) => (e.currentTarget.style.display = 'none')} draggable={false} className="size-full object-cover" />
                     </button>
                   ))}
                 </div>

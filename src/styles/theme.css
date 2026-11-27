@@ -5,6 +5,7 @@
 @theme {
   --color-brand: #C96F3A;        /* Mars copper: top bar, buttons, borders (from hero + about videos) */
   --radius-button: 6px; /* all buttons: square with slightly rounded corners */
+  --color-brand-strong: #AC5826; /* darker copper for small text and solid buttons on light backgrounds (4.5:1 contrast) */
   --color-brand-deep: #8F4222;   /* deep rust: hover, shadows */
   --color-brand-light: #E4A269;  /* light orange: hover/active tint */
   --color-ink: #000000;          /* nav text */

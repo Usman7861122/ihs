@@ -31,7 +31,7 @@ const arrow = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width=
           </div>
           <div class="flex flex-col justify-center p-7 md:p-12">
             <span class="self-start rounded-full bg-brand/10 px-3 py-1 text-[13px] font-semibold tracking-wide text-brand uppercase">Latest article</span>
-            <p class="mt-5 text-[14px] text-black/50">{featured.date} &middot; {featured.read}</p>
+            <p class="mt-5 text-[14px] text-black/60">{featured.date} &middot; {featured.read}</p>
             <h2 class="mt-3 text-[clamp(26px,3vw,38px)] leading-tight font-medium transition-colors group-hover:text-brand">{featured.title}</h2>
             <p class="mt-4 text-[17px] leading-8 text-black/60">{featured.summary}</p>
             <span class="btn btn-outline mt-7 self-start"><span class="btn-label">Read article</span><span class="btn-icon" set:html={arrow} /></span>
@@ -46,7 +46,7 @@ const arrow = '<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width=
                   <img src={p.image} alt={p.title} loading="lazy" class="size-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div class="flex flex-1 flex-col p-6 md:p-7">
-                  <p class="text-[14px] text-black/50">{p.date} &middot; {p.read}</p>
+                  <p class="text-[14px] text-black/60">{p.date} &middot; {p.read}</p>
                   <h2 class="mt-2.5 text-[21px] leading-snug font-medium transition-colors group-hover:text-brand">{p.title}</h2>
                   <p class="mt-3 flex-1 text-[16px] leading-7 text-black/60">{p.summary}</p>
                   <span class="btn btn-outline btn-sm mt-5 self-start"><span class="btn-label">Read article</span><span class="btn-icon" set:html={arrow} /></span>
