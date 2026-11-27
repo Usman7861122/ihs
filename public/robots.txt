@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ironhealthsolutions.com/sitemap.xml
+Sitemap: https://www.ironhealthsolutions.com/sitemap.xml

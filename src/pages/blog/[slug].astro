@@ -17,12 +17,12 @@ const articleSchema = {
   '@type': 'BlogPosting',
   headline: post.title,
   description: seo?.description ?? post.summary,
-  image: new URL(post.image, 'https://ironhealthsolutions.com').href,
+  image: new URL(post.image, 'https://www.ironhealthsolutions.com').href,
   datePublished: post.published,
   dateModified: post.published,
   author: { '@type': 'Organization', name: 'Iron Health Solutions' },
-  publisher: { '@id': 'https://ironhealthsolutions.com/#organization' },
-  mainEntityOfPage: new URL(post.href, 'https://ironhealthsolutions.com').href,
+  publisher: { '@id': 'https://www.ironhealthsolutions.com/#organization' },
+  mainEntityOfPage: new URL(post.href, 'https://www.ironhealthsolutions.com').href,
 };
 ---
 

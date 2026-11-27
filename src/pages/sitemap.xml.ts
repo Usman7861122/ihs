@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { blogPosts } from '../data/blogPosts';
 
 // Builds /sitemap.xml from the real pages, so it never goes out of date.
-const SITE = 'https://ironhealthsolutions.com';
+const SITE = 'https://www.ironhealthsolutions.com';
 
 // Pages that should not be listed (test copies)
 const SKIP = new Set(['/home-2/', '/404/']);
