@@ -155,7 +155,7 @@ export default function EhrIntegrations({
             className="block aspect-video w-full mix-blend-multiply"
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
           />
         </div>
       </div>

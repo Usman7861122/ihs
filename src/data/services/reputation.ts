@@ -1,5 +1,5 @@
 export const reputation = {
-  seo: { title: 'Reputation Management for Physicians | Iron Health Solutions', description: 'Get more five-star reviews, answer feedback with care and protect your practice name online.' },
+  seo: { title: 'Reputation Management for Physicians | Iron Health Solutions', description: 'Get more five-star reviews, reply to patient feedback with care and protect your practice name online. See how our reputation service works. Book a call.' },
   hero: {
     eyebrow: 'Reputation Management',
     title: 'Stronger reviews. More patient',

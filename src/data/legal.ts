@@ -7,7 +7,7 @@ const contact = 'You can contact us any time through the "Get Started" form on o
 export const privacy: LegalDoc = {
   slug: 'privacy-policy', eyebrow: 'Legal', title: 'Privacy Policy', updated,
   text: 'We respect your privacy. This page explains what information we collect, why we collect it and the choices you have.',
-  seo: 'How Iron Health Solutions collects, uses and protects your information.',
+  seo: 'Read how Iron Health Solutions collects, uses and protects your personal information when you visit our website or contact us. See your choices here.',
   sections: [
     { title: 'Who we are', paragraphs: ['Iron Health Solutions ("IHS", "we", "us") provides website design, SEO, reputation, advertising and AI services for private medical practices. This policy covers our website and the forms, tools and scanners we run on it.'] },
     { title: 'Information we collect', paragraphs: ['We collect only what we need to answer you and to run our business.'], bullets: ['Details you give us, such as your name, email, phone number, practice name and message', 'Details you enter in our Practice Scanner, such as your practice name and contact information', 'Technical data, such as your browser, device, pages viewed and approximate location, collected with cookies when you allow them', 'Records of our emails and calls with you'] },
@@ -27,7 +27,7 @@ export const privacy: LegalDoc = {
 export const terms: LegalDoc = {
   slug: 'terms-condition', eyebrow: 'Legal', title: 'Terms & Conditions', updated,
   text: 'These terms explain the rules for using our website and services. Please read them carefully.',
-  seo: 'The terms and conditions for using the Iron Health Solutions website and services.',
+  seo: 'Read the terms and conditions for using the Iron Health Solutions website and services, including your rights and ours. Contact us with any questions.',
   sections: [
     { title: 'Agreeing to these terms', paragraphs: ['By using our website or services, you agree to these terms. If you do not agree, please do not use the site. If you sign a separate service agreement with us, that agreement controls where it differs from this page.'] },
     { title: 'Our services', paragraphs: ['We offer website design, medical SEO, content, reputation management, paid advertising, AI chat tools and related marketing services. The exact scope, price and timeline of each project are set out in your proposal or service agreement.'] },
@@ -48,7 +48,7 @@ export const terms: LegalDoc = {
 export const cookies: LegalDoc = {
   slug: 'cookie-policy', eyebrow: 'Legal', title: 'Cookie Policy', updated,
   text: 'This page explains which cookies we use, why we use them and how you can control them.',
-  seo: 'Which cookies Iron Health Solutions uses and how to change your cookie choices.',
+  seo: 'Learn which cookies Iron Health Solutions uses on this website, why we use them and how to change your cookie choices at any time. Read the full policy.',
   sections: [
     { title: 'What are cookies?', paragraphs: ['Cookies are small text files that a website saves on your device. They help a site work, remember your choices and understand how it is used. Similar tools, such as local storage and pixels, work in the same way and are covered by this policy.'] },
     { title: 'The cookies we use', paragraphs: ['We group cookies into four types.'], bullets: ['**Strictly necessary:** keep the site secure and remember your cookie choice. These are always on and cannot be switched off.', '**Preferences:** remember settings and form details so the site is easier to use.', '**Analytics:** show us how visitors use the site, such as pages viewed and load times, so we can improve it.', '**Marketing:** help us show relevant ads and measure how well our ads work.'] },

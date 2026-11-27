@@ -4,7 +4,7 @@ export const contact = {
   endpoint: 'https://bbefycjse7glzutjpznk74s7mm0jbtty.lambda-url.us-east-1.on.aws/',
   seo: {
     title: 'Get Started | Contact Iron Health Solutions',
-    description: 'Tell us about your practice and get a clear plan and quote. Free consultation, no pressure.',
+    description: 'Talk to Iron Health Solutions about a new website, SEO or AI search for your practice. Based in Pasadena, CA. Send us a message and get a clear plan.',
   },
   interests: ['Website design', 'Medical SEO & local optimization', 'Onsite content production', 'Reputation management', 'Paid ads & AI chat bot', 'AEO (AI search)', 'Starter package', 'Premium package', 'Premium Plus package', 'Not sure yet'],
   steps: [

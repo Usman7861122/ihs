@@ -3,7 +3,7 @@ export const aiOverviews = {
   titleStart: 'AI',
   titleAccent: 'Overviews',
   text: 'The modern "gold standard" relies on a combination of HTML5 semantic architecture to give AI models readable content and JSON-LD to map out facts.',
-  video: '/videos/ai-overviews-v2.mp4',
+  video: '/videos/ai-overviews-opt.mp4',
   poster: '/images/ai-overviews-poster-v2.jpg',
   videoLabel: 'Explainer video: how AI Overviews find and show your practice',
   points: [

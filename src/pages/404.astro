@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InnerHero from '../components/sections/InnerHero.astro';
+---
+
+<BaseLayout title="Page Not Found | Iron Health Solutions" description="This page could not be found. Go back to the Iron Health Solutions home page, our services or the contact page." noindex>
+  <main>
+    <InnerHero
+      eyebrow="Error 404"
+      title="This page"
+      accent="could not be found."
+      text="The link may be old or the address may have a typo. Use one of these links to get back on track."
+      buttons={[
+        { label: 'Go to the home page', href: '/', variant: 'primary' },
+        { label: 'See our services', href: '/services/', variant: 'glass' },
+        { label: 'Contact us', href: '/contact/', variant: 'glass' },
+      ]}
+    />
+  </main>
+</BaseLayout>

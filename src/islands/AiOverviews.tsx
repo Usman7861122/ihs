@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 
@@ -33,6 +33,9 @@ export default function AiOverviews({
   cta,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Only start loading the video once the page has hydrated (this section is client:visible)
+  const [videoReady, setVideoReady] = useState(false);
+  useEffect(() => setVideoReady(true), []);
   return (
     <section
       id="ai-overviews"
@@ -129,7 +132,7 @@ export default function AiOverviews({
             {video ? (
               <video
                 ref={videoRef}
-                src={video}
+                src={videoReady ? video : undefined}
                 poster={poster || undefined}
                 aria-label={videoLabel}
                 className="absolute inset-0 size-full object-cover"

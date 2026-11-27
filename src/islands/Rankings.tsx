@@ -191,6 +191,8 @@ export default function Rankings({ titleStart, titleAccent, titleEnd, subtitle, 
                     <img
                       src={shot.src}
                       alt={shot.alt}
+                      width={841}
+                      height={600}
                       loading="lazy"
                       draggable={false}
                       className="size-full object-cover object-left-top md:h-auto"

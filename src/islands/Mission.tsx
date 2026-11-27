@@ -19,7 +19,7 @@ export default function Mission({ eyebrow, titleStart, titleAccent, text, cta, i
     >
       {/* Fixed window: the photo stays still while the page scrolls over it */}
       <div aria-hidden="true" className="fixed inset-0 -z-10">
-        <img src={image} alt="" draggable={false} className="size-full object-cover object-center" />
+        <img src={image} alt="" width={2560} height={1195} loading="lazy" draggable={false} className="size-full object-cover object-center" />
         <div className="absolute inset-0 bg-black/45" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(18,13,10,0.15),rgba(18,13,10,0.75)_80%)]" />
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-brand/30 to-transparent" />

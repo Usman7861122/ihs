@@ -98,10 +98,12 @@ export default function Results({ eyebrow, titleStart, titleAccent, titleEnd, te
             }}
             onPointerMove={(e) => e.buttons && move(e.clientX)}
           >
-            <img src={after.src} alt={after.alt} draggable={false} className="absolute inset-0 h-full w-full object-cover object-top" />
+            <img src={after.src} alt={after.alt} width={1600} height={800} draggable={false} className="absolute inset-0 h-full w-full object-cover object-top" />
             <img
               src={before.src}
               alt={before.alt}
+              width={1600}
+              height={800}
               draggable={false}
               style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
               className="absolute inset-0 h-full w-full object-cover object-top"

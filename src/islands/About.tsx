@@ -118,7 +118,7 @@ export default function About({
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="none"
               poster={poster}
               aria-hidden="true"
             >

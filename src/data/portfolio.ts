@@ -1,6 +1,6 @@
 export const portfolio = {
   seo: {
-    title: 'Portfolio | Medical Websites We Built | Iron Health Solutions',
+    title: 'Medical Websites We Built | Iron Health Solutions',
     description: 'See real medical websites designed and built by Iron Health Solutions. Open any project to preview the live site on a laptop and phone.',
   },
   hero: {

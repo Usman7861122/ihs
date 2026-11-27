@@ -67,7 +67,7 @@ export default function Hero({ title, text, cta, video, poster }: HeroProps) {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster={poster}
           aria-hidden="true"
         >

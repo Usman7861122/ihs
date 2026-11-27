@@ -132,7 +132,9 @@ export default function Testimonials({ eyebrow, titleStart, titleAccent, titleEn
                         <img
                           src={item.logo}
                           alt={item.logoAlt}
+                          height={40}
                           loading="lazy"
+                          onError={(e) => (e.currentTarget.style.display = 'none')}
                           draggable={false}
                           className="h-10 max-w-[170px] object-contain object-left"
                         />
@@ -157,7 +159,7 @@ export default function Testimonials({ eyebrow, titleStart, titleAccent, titleEn
                         k === i ? 'border-brand opacity-100' : 'border-transparent opacity-50 hover:opacity-100'
                       }`}
                     >
-                      <img src={t.photo} alt="" loading="lazy" draggable={false} className="size-full object-cover" />
+                      <img src={t.photo} alt="" width={48} height={48} loading="lazy" onError={(e) => (e.currentTarget.style.display = 'none')} draggable={false} className="size-full object-cover" />
                     </button>
                   ))}
                 </div>

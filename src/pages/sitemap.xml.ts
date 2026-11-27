@@ -5,7 +5,7 @@ import { blogPosts } from '../data/blogPosts';
 const SITE = 'https://ironhealthsolutions.com';
 
 // Pages that should not be listed (test copies)
-const SKIP = new Set(['/home-2/']);
+const SKIP = new Set(['/home-2/', '/404/']);
 
 const pageFiles = import.meta.glob('./**/*.astro');
 

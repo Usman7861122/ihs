@@ -10,7 +10,7 @@ export const showcase = {
       url: 'https://the-stem-cell.vercel.app/',
       name: 'The Stem Cell Institute',
       specialty: 'Regenerative Medicine',
-      laptopImage: '/images/showcase-desktop-2.jpg',
+      laptopImage: '/images/showcase-desktop-2.webp',
       phoneImage: '/images/showcase-phone-2.jpg',
       phone: {
         name: 'The Stem Cell Institute',
@@ -41,7 +41,7 @@ export const showcase = {
       url: 'https://bhalla-spine.vercel.app/',
       name: 'Dr. Amandeep Bhalla, MD',
       specialty: 'Orthopedic Spine Surgery',
-      laptopImage: '/images/showcase-desktop.jpg',
+      laptopImage: '/images/showcase-desktop.webp',
       phoneImage: '/images/showcase-phone.jpg',
       phone: {
         name: 'Dr. Amandeep Bhalla, MD',
@@ -71,7 +71,7 @@ export const showcase = {
       id: 'run-doctor',
       name: 'The Run Doctor',
       specialty: 'Foot & Ankle Sports Medicine',
-      laptopImage: '/images/showcase-desktop-3.jpg',
+      laptopImage: '/images/showcase-desktop-3.webp',
       phoneImage: '/images/showcase-phone-3.jpg',
       phone: {
         name: 'The Run Doctor',

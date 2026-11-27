@@ -2,19 +2,21 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleBody from '../../components/ui/ArticleBody.astro';
 import { blogPosts } from '../../data/blogPosts';
+import { blogSeo } from '../../data/blogSeo';
 
 export function getStaticPaths() {
   return blogPosts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
 
 const { post } = Astro.props;
+const seo = blogSeo[post.slug];
 const others = blogPosts.filter((p) => p.slug !== post.slug);
 
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: post.title,
-  description: post.summary,
+  description: seo?.description ?? post.summary,
   image: new URL(post.image, 'https://ironhealthsolutions.com').href,
   datePublished: post.published,
   dateModified: post.published,
@@ -25,8 +27,8 @@ const articleSchema = {
 ---
 
 <BaseLayout
-  title={post.title.length > 50 ? post.title : `${post.title} | Iron Health Solutions`}
-  description={post.summary}
+  title={seo?.title ?? (post.title.length > 50 ? post.title : `${post.title} | Iron Health Solutions`)}
+  description={seo?.description ?? post.summary}
   image={post.image}
   type="article"
   published={post.published}

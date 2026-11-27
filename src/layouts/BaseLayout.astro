@@ -60,7 +60,39 @@ const website = {
   name: SITE_NAME,
   publisher: { '@id': `${SITE}/#organization` },
 };
-const jsonLd = [organization, website, ...schema];
+// Breadcrumbs for every inner page, and Service schema for the service pages
+const segments = path.split('/').filter(Boolean);
+const crumbNames: Record<string, string> = { services: 'Services', blog: 'Blog' };
+const pageName = title.split('|')[0].trim();
+const crumbs: Record<string, unknown>[] = [];
+if (segments.length > 0 && !noindex) {
+  const items = [{ name: 'Home', url: `${SITE}/` }];
+  segments.forEach((seg, i) => {
+    const last = i === segments.length - 1;
+    items.push({
+      name: last ? pageName : (crumbNames[seg] ?? seg),
+      url: `${SITE}/${segments.slice(0, i + 1).join('/')}/`,
+    });
+  });
+  crumbs.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, item: it.url })),
+  });
+}
+const isService = segments[0] === 'services' && segments.length === 2;
+const service = isService
+  ? [{
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: pageName,
+      description,
+      url: canonical,
+      provider: { '@id': `${SITE}/#organization` },
+      areaServed: 'US',
+    }]
+  : [];
+const jsonLd = [organization, website, ...crumbs, ...service, ...schema];
 ---
 
 <!doctype html>

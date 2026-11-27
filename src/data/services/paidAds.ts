@@ -1,5 +1,5 @@
 export const paidAds = {
-  seo: { title: 'Paid Advertisement & AI Chat Bot | Iron Health Solutions', description: 'Google Ads and an AI chat bot that answer patients 24/7 and turn clicks into booked appointments.' },
+  seo: { title: 'Paid Advertisement & AI Chat Bot | Iron Health Solutions', description: 'Google Ads plus an AI chat bot that answers patients 24/7 and turns clicks into booked appointments for your medical practice. Get your free ad plan today.' },
   hero: {
     eyebrow: 'Paid Advertisement & AI Chat Bot',
     title: 'More patient inquiries from ads and',

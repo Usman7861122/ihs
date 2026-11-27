@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Megaphone, MapPinned, MonitorSmartphone, Sparkles, Star } from 'lucide-react';
 
@@ -124,6 +124,9 @@ export default function WhatWeDo({ titleLight, titleBold, intro, image, imageAlt
   const n = items.length;
 
   const [chapter, setChapter] = useState(0);
+  // Only start loading the video once the page has hydrated (this section is client:visible)
+  const [videoReady, setVideoReady] = useState(false);
+  useEffect(() => setVideoReady(true), []);
   const shownLabel = VIDEO_CHAPTERS[chapter].label;
   // Video part 1..n lights step 0..n-1. The intro lights none; the last part lights all.
   const active = Math.min(chapter - 1, n - 1);
@@ -206,7 +209,7 @@ export default function WhatWeDo({ titleLight, titleBold, intro, image, imageAlt
               className="relative aspect-[5/4] w-full overflow-hidden bg-[#1a0c04] shadow-[0_40px_80px_-30px_rgba(60,25,5,0.6)] lg:aspect-auto lg:h-full lg:rounded-l-[44px]"
             >
               <video
-                src="/videos/what-we-do.mp4"
+                src={videoReady ? "/videos/what-we-do-opt.mp4" : undefined}
                 poster="/images/what-we-do-poster.jpg"
                 aria-label={imageAlt}
                 className="absolute inset-0 size-full object-cover"

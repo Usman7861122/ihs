@@ -1,6 +1,6 @@
 export const websiteDesign = {
   seo: {
-    title: 'Website Design Services for Physicians | Iron Health Solutions',
+    title: 'Medical Website Design for Physicians | Iron Health',
     description:
       'HIPAA-compliant, fast and patient-friendly website design for private medical practices. Built to rank in search and turn visitors into booked patients.',
   },

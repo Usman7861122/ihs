@@ -1,5 +1,5 @@
 export const aeo = {
-  seo: { title: 'AEO: Answer Engine Optimization for Doctors | Iron Health Solutions', description: 'Help your practice show up in ChatGPT, Google AI Overviews and other AI answers when patients ask for a doctor.' },
+  seo: { title: 'AEO: Answer Engine Optimization for Doctors', description: 'Get found in ChatGPT, Google AI Overviews and Perplexity. Our AEO service helps doctors become the answer patients see. Book a free call.' },
   hero: {
     eyebrow: 'AEO',
     title: 'Be the answer when patients ask',

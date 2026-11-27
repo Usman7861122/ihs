@@ -96,6 +96,8 @@ export default function Blogs({ eyebrow, titleStart, titleAccent, text, allHref,
               <img
                 src={main.image}
                 alt=""
+                width={1400}
+                height={933}
                 loading="lazy"
                 draggable={false}
                 className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -137,6 +139,8 @@ export default function Blogs({ eyebrow, titleStart, titleAccent, text, allHref,
                   <img
                     src={post.image}
                     alt=""
+                    width={1400}
+                    height={933}
                     loading="lazy"
                     draggable={false}
                     className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

@@ -11,6 +11,6 @@ export const hero = {
   ],
   text: 'Leading digital marketing agency helping healthcare practices attract the right patients and grow their online presence.',
   cta: { label: 'Get Started', href: '/contact/' },
-  video: '/videos/hero.mp4',
+  video: '/videos/hero-opt.mp4',
   poster: '/images/hero-poster.jpg',
 };
