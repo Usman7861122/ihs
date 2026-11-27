@@ -1,4 +1,6 @@
 export const hero = {
+  // The page's real H1 (for search engines). Shown as a small label above the big line.
+  heading: 'Medical Marketing and Website Design for Doctors',
   // accent: true = italic serif + highlight color
   // newLine: true = start this word on a new line
   title: [

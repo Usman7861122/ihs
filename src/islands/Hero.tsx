@@ -9,6 +9,7 @@ import {
 } from 'framer-motion';
 
 interface HeroProps {
+  heading?: string;
   title: { word: string; accent?: boolean; newLine?: boolean }[];
   text: string;
   cta: { label: string; href: string };
@@ -18,7 +19,7 @@ interface HeroProps {
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export default function Hero({ title, text, cta, video, poster }: HeroProps) {
+export default function Hero({ heading, title, text, cta, video, poster }: HeroProps) {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
 
@@ -92,8 +93,19 @@ export default function Hero({ title, text, cta, video, poster }: HeroProps) {
           className="mx-auto w-full max-w-(--container-header) pt-8 pb-[92px] md:flex md:h-full md:items-center md:pt-(--header-h) md:pb-[10vh]"
         >
           <div className="max-w-[500px]">
-            <motion.h1
-              className="[text-shadow:0_2px_28px_rgba(0,0,0,0.4)]"
+            {heading && (
+              <motion.h1
+                variants={fadeUp(0.05)}
+                initial="hidden"
+                animate="show"
+                className="text-button mb-5 inline-flex items-center gap-4 font-semibold leading-[1.5] tracking-[2px] text-white uppercase md:whitespace-nowrap [text-shadow:0_1px_16px_rgba(0,0,0,0.5)]"
+              >
+                <span aria-hidden="true" className="h-px w-10 bg-brand" />
+                {heading}
+              </motion.h1>
+            )}
+            <motion.p
+              className="text-h1 font-medium capitalize [text-shadow:0_2px_28px_rgba(0,0,0,0.4)]"
               variants={titleVariants}
               initial="hidden"
               animate="show"
@@ -116,7 +128,7 @@ export default function Hero({ title, text, cta, video, poster }: HeroProps) {
                   </span>{' '}
                 </span>
               ))}
-            </motion.h1>
+            </motion.p>
 
             <motion.p
               variants={fadeUp(0.85)}
