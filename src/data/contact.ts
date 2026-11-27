@@ -1,7 +1,7 @@
 export const contact = {
-  // Where the form sends messages. Paste a form service URL here (for example a Formspree
-  // endpoint like https://formspree.io/f/xxxx or a WordPress / CRM webhook that accepts JSON).
-  endpoint: '',
+  // Where the form sends messages: an AWS Lambda function (ihs-contact-form) that emails
+  // justin@ironhealthsolutions.com through SES, sent from noreply@ironhealthsolutions.com.
+  endpoint: 'https://bbefycjse7glzutjpznk74s7mm0jbtty.lambda-url.us-east-1.on.aws/',
   seo: {
     title: 'Get Started | Contact Iron Health Solutions',
     description: 'Tell us about your practice and get a clear plan and quote. Free consultation, no pressure.',

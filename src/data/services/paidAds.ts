@@ -71,10 +71,10 @@ export const paidAds = {
     secondary: { label: 'Scan Your Practice', href: '/practice-scanner/' },
   },
   related: [
-    { label: 'Website Design', href: '/services/website-design-services' },
-    { label: 'Medical SEO', href: '/services/medical-seo-local-optimization' },
-    { label: 'Reputation Management', href: '/services/reputation-management' },
-    { label: 'AEO', href: '/services/aeo' },
+    { label: 'Website Design', href: '/services/website-design-services/' },
+    { label: 'Medical SEO', href: '/services/medical-seo-local-optimization/' },
+    { label: 'Reputation Management', href: '/services/reputation-management/' },
+    { label: 'AEO', href: '/services/aeo/' },
   ],
-  crumbs: [{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: 'Paid Ads & AI Chat Bot' }],
+  crumbs: [{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: 'Paid Ads & AI Chat Bot' }],
 };

@@ -22,12 +22,12 @@ export const overview = {
     text: 'Each service works well alone and even better together. A fast website, strong search ranking, great reviews and smart ads all feed each other.',
   },
   cards: [
-    { n: '01', title: 'Website Design', text: 'HIPAA-minded, fast websites that turn visitors into booked patients.', image: '/images/services/web-devices.jpg', href: '/services/website-design-services' },
-    { n: '02', title: 'Medical SEO & Local Optimization', text: 'Show up on Google and Maps when patients search for a doctor near them.', image: '/images/services/seo-hero.jpg', href: '/services/medical-seo-local-optimization' },
-    { n: '03', title: 'Onsite Content Production', text: 'Clear, caring pages and blogs that teach patients and lift rankings.', image: '/images/services/content-hero.jpg', href: '/services/onsite-content-production' },
-    { n: '04', title: 'Reputation Management', text: 'More five-star reviews and careful replies that build patient trust.', image: '/images/services/reputation-hero.jpg', href: '/services/reputation-management' },
-    { n: '05', title: 'Paid Advertisement & AI Chat Bot', text: 'Ads that bring patients in and a chat bot that answers them 24/7.', image: '/images/services/ads-hero.jpg', href: '/services/paid-advertisement-ai-chat-bot' },
-    { n: '06', title: 'AEO', text: 'Be the practice that ChatGPT and Google AI recommend to patients.', image: '/images/services/aeo-hero.jpg', href: '/services/aeo' },
+    { n: '01', title: 'Website Design', text: 'HIPAA-minded, fast websites that turn visitors into booked patients.', image: '/images/services/web-devices.jpg', href: '/services/website-design-services/' },
+    { n: '02', title: 'Medical SEO & Local Optimization', text: 'Show up on Google and Maps when patients search for a doctor near them.', image: '/images/services/seo-hero.jpg', href: '/services/medical-seo-local-optimization/' },
+    { n: '03', title: 'Onsite Content Production', text: 'Clear, caring pages and blogs that teach patients and lift rankings.', image: '/images/services/content-hero.jpg', href: '/services/onsite-content-production/' },
+    { n: '04', title: 'Reputation Management', text: 'More five-star reviews and careful replies that build patient trust.', image: '/images/services/reputation-hero.jpg', href: '/services/reputation-management/' },
+    { n: '05', title: 'Paid Advertisement & AI Chat Bot', text: 'Ads that bring patients in and a chat bot that answers them 24/7.', image: '/images/services/ads-hero.jpg', href: '/services/paid-advertisement-ai-chat-bot/' },
+    { n: '06', title: 'AEO', text: 'Be the practice that ChatGPT and Google AI recommend to patients.', image: '/images/services/aeo-hero.jpg', href: '/services/aeo/' },
   ],
   steps: {
     eyebrow: 'How it works',
@@ -44,6 +44,6 @@ export const overview = {
     title: 'Not sure where to start?',
     text: 'Run a free scan of your practice. We will show you what to fix first and which service helps most.',
     primary: { label: 'Book a Free Consultation', href: '/contact/' },
-    secondary: { label: 'See Pricing', href: '/iron-packages' },
+    secondary: { label: 'See Pricing', href: '/iron-packages/' },
   },
 };

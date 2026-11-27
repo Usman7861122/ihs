@@ -12,7 +12,13 @@ export default function ContactForm({ endpoint, interests }: Props) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
-    if (data.website) return; // honeypot: bots fill this hidden field
+    // Bot trap: people never see the hidden "website" field, bots fill it in.
+    // Show the same thank-you screen so the bot thinks it worked, but send nothing.
+    if (data.website) {
+      setState('done');
+      form.reset();
+      return;
+    }
     if (!endpoint) {
       setState('error');
       setMsg('This form is not connected yet. Please try again soon.');
@@ -21,12 +27,15 @@ export default function ContactForm({ endpoint, interests }: Props) {
     setState('sending');
     try {
       const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ ...data, page: location.href }) });
-      if (!res.ok) throw new Error(String(res.status));
+      if (!res.ok) {
+        const err = await res.json().catch(() => null);
+        throw new Error(err?.error || String(res.status));
+      }
       setState('done');
       form.reset();
-    } catch {
+    } catch (err) {
       setState('error');
-      setMsg('Something went wrong. Please check your details and try again.');
+      setMsg(err instanceof Error && err.message.startsWith('Please') ? err.message : 'Something went wrong. Please check your details and try again, or call us.');
     }
   }
 
@@ -45,7 +54,11 @@ export default function ContactForm({ endpoint, interests }: Props) {
     <form onSubmit={onSubmit} className="rounded-[28px] bg-white p-7 md:p-10">
       <h2 className="text-[28px] font-medium">Get your free consultation</h2>
       <p className="mt-2 text-[16px] leading-7 text-black/60">Please do not include patient names or health details.</p>
-      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
+      {/* Hidden bot trap: leave empty */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', top: 'auto', width: 1, height: 1, overflow: 'hidden' }}>
+        <label htmlFor="website">Leave this field empty</label>
+        <input id="website" type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+      </div>
       <div className="mt-7 grid gap-5 sm:grid-cols-2">
         <div><label htmlFor="name" className={label}>Full name *</label><input id="name" name="name" required autoComplete="name" placeholder="Dr. Jane Smith" className={field} /></div>
         <div><label htmlFor="practice" className={label}>Practice name *</label><input id="practice" name="practice" required placeholder="Smith Orthopedics" className={field} /></div>

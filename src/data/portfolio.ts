@@ -84,6 +84,6 @@ export const portfolio = {
     title: 'Want a website like these?',
     text: 'Book a free consultation. We will review your current site and show you what a new one could do for your practice.',
     primary: { label: 'Book a Free Consultation', href: '/contact/' },
-    secondary: { label: 'See Pricing', href: '/iron-packages' },
+    secondary: { label: 'See Pricing', href: '/iron-packages/' },
   },
 };

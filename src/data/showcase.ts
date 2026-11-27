@@ -115,5 +115,5 @@ export const showcase = {
       text: 'Pages written to rank for the treatments and conditions patients search.',
     },
   ],
-  cta: { label: 'See our work', href: '/portfolio' },
+  cta: { label: 'See our work', href: '/portfolio/' },
 };

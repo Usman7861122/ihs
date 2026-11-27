@@ -20,7 +20,7 @@ export const about = {
     { value: 10, suffix: '+', label: 'Years of experience' },
     { value: 70, suffix: '+', label: 'EHR / EMR integrations' },
   ],
-  cta: { label: 'Learn more about us', href: '/about-us' },
+  cta: { label: 'Learn more about us', href: '/about-us/' },
   // 3:4 story video (made in Higgsfield, same scenes as the original), fills the card
   video: '/videos/about.mp4',
   poster: '/images/about-poster.jpg',

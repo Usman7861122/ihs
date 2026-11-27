@@ -71,10 +71,10 @@ export const reputation = {
     secondary: { label: 'Scan Your Practice', href: '/practice-scanner/' },
   },
   related: [
-    { label: 'Website Design', href: '/services/website-design-services' },
-    { label: 'Medical SEO', href: '/services/medical-seo-local-optimization' },
-    { label: 'On-site Content', href: '/services/onsite-content-production' },
-    { label: 'Paid Ads & AI Chat Bot', href: '/services/paid-advertisement-ai-chat-bot' },
+    { label: 'Website Design', href: '/services/website-design-services/' },
+    { label: 'Medical SEO', href: '/services/medical-seo-local-optimization/' },
+    { label: 'On-site Content', href: '/services/onsite-content-production/' },
+    { label: 'Paid Ads & AI Chat Bot', href: '/services/paid-advertisement-ai-chat-bot/' },
   ],
-  crumbs: [{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: 'Reputation Management' }],
+  crumbs: [{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: 'Reputation Management' }],
 };

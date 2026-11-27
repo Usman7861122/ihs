@@ -9,9 +9,29 @@ export function getStaticPaths() {
 
 const { post } = Astro.props;
 const others = blogPosts.filter((p) => p.slug !== post.slug);
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.summary,
+  image: new URL(post.image, 'https://ironhealthsolutions.com').href,
+  datePublished: post.published,
+  dateModified: post.published,
+  author: { '@type': 'Organization', name: 'Iron Health Solutions' },
+  publisher: { '@id': 'https://ironhealthsolutions.com/#organization' },
+  mainEntityOfPage: new URL(post.href, 'https://ironhealthsolutions.com').href,
+};
 ---
 
-<BaseLayout title={`${post.title} | IHS`} description={post.summary}>
+<BaseLayout
+  title={post.title.length > 50 ? post.title : `${post.title} | Iron Health Solutions`}
+  description={post.summary}
+  image={post.image}
+  type="article"
+  published={post.published}
+  schema={[articleSchema]}
+>
   <main class="bg-[#fbf3ec]">
     <!-- Dark title band -->
     <section class="relative overflow-hidden bg-[#120d0a] px-2.5 pt-[calc(var(--header-h)+56px)] pb-[150px] text-white md:pb-[200px]">

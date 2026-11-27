@@ -102,10 +102,10 @@ export const websiteDesign = {
     secondary: { label: 'Scan Your Practice', href: '/practice-scanner/' },
   },
   related: [
-    { label: 'Medical SEO', href: '/services/medical-seo-local-optimization' },
-    { label: 'On-site Content', href: '/services/onsite-content-production' },
-    { label: 'Reputation Management', href: '/services/reputation-management' },
-    { label: 'AEO', href: '/services/aeo' },
+    { label: 'Medical SEO', href: '/services/medical-seo-local-optimization/' },
+    { label: 'On-site Content', href: '/services/onsite-content-production/' },
+    { label: 'Reputation Management', href: '/services/reputation-management/' },
+    { label: 'AEO', href: '/services/aeo/' },
   ],
-  crumbs: [{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: 'Website Design' }],
+  crumbs: [{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: 'Website Design' }],
 };
