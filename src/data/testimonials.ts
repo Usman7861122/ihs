@@ -9,7 +9,7 @@ export const testimonials = {
     {
       name: 'Daniel Vapne',
       quote:
-        'Justin and Dan were incredible to work with. They were fast, professional, and truly exceeded my expectations.',
+        'Iron Health Solutions was incredible to work with. They were fast, professional, and truly exceeded my expectations.',
       photo: `${base}daniel-vapne.webp`,
       logo: `${base}daniel-vapne-logo.webp`,
       logoAlt: 'The Advantage Blog logo',
@@ -25,7 +25,7 @@ export const testimonials = {
     {
       name: 'Susan Lacy',
       quote:
-        'Justin has been great to work with. I am always cautious after having been burned (singed) in the past, but he and his team came through with all their promised elements and created a website that is beautiful and functional.',
+        'Iron Health Solutions has been great to work with. I am always cautious after having been burned (singed) in the past, but they came through with all their promised elements and created a website that is beautiful and functional.',
       photo: `${base}susan-lacy.webp`,
       logo: `${base}susan-lacy-logo.webp`,
       logoAlt: 'Dr. Susan Lacy practice logo',
